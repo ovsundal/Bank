@@ -27,7 +27,7 @@ public class Personer implements PersonerRemote {
 	@SuppressWarnings("unchecked")
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public List <Person> list() throws Exception {
-		//bruker Lava Persistence Query Language, ikke SQL
+		//bruker Java Persistence Query Language, ikke SQL
 		Query query = entityManager.createQuery("SELECT p from Person as p");
 		List <Person> l = query.getResultList();
 		return l;
