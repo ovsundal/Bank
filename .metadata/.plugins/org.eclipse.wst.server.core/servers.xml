@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <servers>
-  <server hostname="localhost" id="OpenEJB 3.0.0 at localhost" name="OpenEJB 3.0.0 at localhost" org.apache.openejb.eclipse.server.adminport="4200" org.apache.openejb.eclipse.server.configfile="" org.apache.openejb.eclipse.server.ejbport="4201" org.apache.openejb.eclipse.server.hsqlport="9001" org.apache.openejb.eclipse.server.httpejbport="4204" org.apache.openejb.eclipse.server.telnetport="4202" runtime-id="OpenEJB 3.0.0" server-type="org.apache.openejb.server.generic.openejb3" server-type-id="org.apache.openejb.server.generic.openejb3" start-timeout="20" stop-timeout="20" timestamp="2">
-    <list key="modules" value0="EAPProject::org.eclipse.jst.jee.server:EAPProject::jst.ear::6.0" value1="EJBOpenEJB::org.eclipse.jst.jee.server:EJBOpenEJB::jst.ejb::3.1"/>
+  <server hostname="localhost" id="OpenEJB 3.0.0 at localhost" name="OpenEJB 3.0.0 at localhost" org.apache.openejb.eclipse.server.adminport="4200" org.apache.openejb.eclipse.server.configfile="" org.apache.openejb.eclipse.server.ejbport="4201" org.apache.openejb.eclipse.server.hsqlport="9001" org.apache.openejb.eclipse.server.httpejbport="4204" org.apache.openejb.eclipse.server.telnetport="4202" runtime-id="OpenEJB 3.0.0" server-type="org.apache.openejb.server.generic.openejb3" server-type-id="org.apache.openejb.server.generic.openejb3" start-timeout="20" stop-timeout="20" timestamp="1">
+    <list key="modules" value0="EJBOpenEJB::org.eclipse.jst.jee.server:EJBOpenEJB::jst.ejb::3.1"/>
   </server>
 </servers>

@@ -8,7 +8,7 @@ import javax.persistence.*;
  * Session Bean implementation class Personer
  */
 @Stateful(name= "Personer")
-public class Personer implements PersonerRemote {
+public class Personer implements PersonerRemote, PersonerLocal {
 	@PersistenceContext(unitName = "bankdb-unit", type = PersistenceContextType.TRANSACTION)
 	private EntityManager entityManager;
 	
