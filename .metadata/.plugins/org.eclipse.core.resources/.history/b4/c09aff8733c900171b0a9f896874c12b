@@ -1,0 +1,10 @@
+package sessionsBeans;
+
+import javax.ejb.Remote;
+
+@Remote
+public interface KontoerRemote {
+	public void add(Konto k) throws Exception;
+	public void remove(Konto k) throws Exception;
+	public List <Konto> list() throws Exception;
+}

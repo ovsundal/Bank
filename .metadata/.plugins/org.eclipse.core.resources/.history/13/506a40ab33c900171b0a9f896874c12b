@@ -1,0 +1,20 @@
+package sessionsBeans;
+
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+
+/**
+ * Session Bean implementation class Kontoer
+ */
+@Stateless
+@LocalBean
+public class Kontoer implements KontoerRemote, KontoerLocal {
+
+    /**
+     * Default constructor. 
+     */
+    public Kontoer() {
+        // TODO Auto-generated constructor stub
+    }
+
+}
