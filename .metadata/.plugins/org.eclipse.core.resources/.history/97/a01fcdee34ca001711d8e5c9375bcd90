@@ -42,7 +42,7 @@ public class TestEJB {
 	private static void addPersons() {
 		
 		try {
-			pt.addPersons();
+			pt.addPerson();
 			System.out.println("Three persons were added to database:");
 			System.out.println("------------------------------------");
 			pt.list();
@@ -60,7 +60,7 @@ public class TestEJB {
 			kt.list();
 			System.out.println("------------------------------------");
 		} catch (Exception e) {
-			System.out.println("Error, could not create accounts");
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

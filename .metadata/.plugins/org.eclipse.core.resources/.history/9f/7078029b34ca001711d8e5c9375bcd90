@@ -17,7 +17,7 @@ public class TestEJB {
 		
 		
 		
-		cleanUpTests();
+		
 		
 		
 		
@@ -42,7 +42,7 @@ public class TestEJB {
 	private static void addPersons() {
 		
 		try {
-			pt.addPersons();
+			pt.addPerson();
 			System.out.println("Three persons were added to database:");
 			System.out.println("------------------------------------");
 			pt.list();
@@ -54,15 +54,7 @@ public class TestEJB {
 	}
 	
 	private static void createAccounts() {
-		try {
-			kt.addKonto();
-			System.out.println("Accounts created: ");
-			kt.list();
-			System.out.println("------------------------------------");
-		} catch (Exception e) {
-			System.out.println("Error, could not create accounts");
-			e.printStackTrace();
-		}
+		// TODO Auto-generated method stub
 		
 	}
 
@@ -72,11 +64,11 @@ public class TestEJB {
 		KundeImportTest kit = new KundeImportTest();
 		KontoTest kt = new KontoTest();
 		
-//		pt.setUp();
+		pt.setUp();
 		kit.setUp();
-//		kt.setUp();
-//		System.out.println("Adding persons using Personer-bean from PersonTest...");
-//		pt.addPerson();
+		kt.setUp();
+		System.out.println("Adding persons using Personer-bean from PersonTest...");
+		pt.addPerson();
 //		pt.list();
 		kt.addKonto();
 		System.out.println("Listing accounts: ");

@@ -34,7 +34,7 @@ public class PersonTest extends TestCase {
 		List<Person> list = personer.list();
 		int assertsize = list.size();
 		assertEquals( "List.size()", assertsize, list.size());
-		addPersons();
+		addPerson();
 		list = personer.list();
 		assertEquals( "List.size()", assertsize + 4, list.size());
 		list();

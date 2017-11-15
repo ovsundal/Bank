@@ -57,7 +57,7 @@ public class KontoTest extends TestCase {
 			
 			Konto k = new Konto();
 			System.out.println("Adding account:");
-			kontoer.createAccountAndPerson("test123", "120", new Date(), p);
+			kontoer.createAccount("test123", "120", new Date(), p);
 			System.out.println("Done Adding account:");
 		}
 		finally{

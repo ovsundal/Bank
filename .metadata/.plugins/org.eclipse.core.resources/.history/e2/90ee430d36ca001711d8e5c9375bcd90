@@ -34,28 +34,33 @@ public class PersonTest extends TestCase {
 		List<Person> list = personer.list();
 		int assertsize = list.size();
 		assertEquals( "List.size()", assertsize, list.size());
-		addPersons();
+		addPerson();
 		list = personer.list();
 		assertEquals( "List.size()", assertsize + 4, list.size());
 		list();
 	}
 	
-	public void addPersons() throws Exception {
+	public void addPerson() throws Exception {
 		try{
 			Calendar c = Calendar.getInstance();
 			c.set(1988, 00, 00, 01, 01, 01);
-			Person p = new Person((Date) c.getTime(), "11111", "Ove Sundal", 
-					"Tastatunet 22","", "4027", "Stavanger");
+			Person p = new Person((Date) c.getTime(), "15251", "Gurgle Halsbrann", 
+					"Jørgen Fisefins terasse 3","", "8515", "Narvik");
 			personer.add(p);
 			
 			c.set(1986, 01, 01, 01, 01, 01);
-			p = new Person((Date)c.getTime(), "12345", "Kristin Hagen", 
-					"Tastatunet 22","", "8515", "Narvik");
+			p = new Person((Date)c.getTime(), "12345", "Sylfrid Fuglesang", "Øvre Undergang 22","",
+					"8515", "Narvik");
 			personer.add(p);
 			
 			c.set(1990, 11, 11, 01, 01, 01);
-			p = new Person((Date)c.getTime(), "33332", "Knut Lurendreier", "Luregaten 22", 
-					"Trikseveien 14","7815", "Lureland");
+			p = new Person((Date)c.getTime(), "33332", "Snork Rumlepung", "c/o Rosa Balle", 
+					"Snyltestien 1","8514", "Narvik");
+			personer.add(p);
+
+			c.set(1991, 9, 21, 01, 01, 01);
+			p = new Person((Date)c.getTime(), "54321","Walter Pengesluk","Andeby undergrunn","",
+					"8500","Narvik");
 			personer.add(p);
 			}
 		finally{
