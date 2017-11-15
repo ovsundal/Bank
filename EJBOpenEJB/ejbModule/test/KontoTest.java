@@ -49,8 +49,16 @@ public class KontoTest extends TestCase {
 	
 	public void addKonto() throws Exception {
 		try{
-			Konto k = new Konto("test", "test2", "test3");
-			kontoer.add(k);
+			Calendar c = Calendar.getInstance();
+			c.set(1988, 00, 00, 01, 01, 01);
+			
+			Person p = new Person((Date) c.getTime(), "34797", "Stisan Sigd", 
+					"Jørgen Fisefins terasse 3","", "8515", "Narvik");
+			
+			Konto k = new Konto();
+			System.out.println("Adding account:");
+			kontoer.createAccount("test123", "120", new Date(), p);
+			System.out.println("Done Adding account:");
 		}
 		finally{
 		}
@@ -58,8 +66,9 @@ public class KontoTest extends TestCase {
 	
 	public void list() throws Exception {
 		List<Konto> list = kontoer.list();
+		System.out.println(list);
 		for(Konto kon : list) {
-			System.out.println("Listing : "+ kon.getDato() + " -" + 
+			System.out.println("Listing : " + kon.getOwner().getNavn() + kon.getDato() + " -" + 
 					kon.getNavn() + ": "+ kon.getSaldo());
 		}
 	}

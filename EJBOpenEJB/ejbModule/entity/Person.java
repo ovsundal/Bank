@@ -4,12 +4,15 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "Person")
 @Table(name = "Person")
 public class Person implements Serializable {
-	@Column(name = "id")
+	
+	@OneToOne(mappedBy="owner")
+	private Konto konto;
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue
 	private int id;
 	@Column(name = "Fodselsdato")
 	private Date Fodselsdato;
@@ -25,15 +28,9 @@ public class Person implements Serializable {
 	private String Postnummer;
 	@Column(name = "Poststed", length = 35)
 	private String Poststed;
-	@Column(name = "Passord")
-	private String Passord;
-	@Column(name = "PIN_kode", length = 4)
-	private String PIN_kode;
-	@Column(name = "Kommentar", length = 200)
-	private String Kommentar;
 
 	/*** Konstruktører*/
-	public Person(int id, Date Fodselsdato, String Fodselsnummer, String Navn,String Adresselinje_1, String Adresselinje_2, String Postnummer,String Poststed, String Passord, String PIN_kode, String Kommentar) {
+	public Person(int id, Date Fodselsdato, String Fodselsnummer, String Navn,String Adresselinje_1, String Adresselinje_2, String Postnummer,String Poststed) {
 		
 		setId(id);
 		setFodselsdato(Fodselsdato);
@@ -43,12 +40,10 @@ public class Person implements Serializable {
 		setAdresselinje_2(Adresselinje_2);
 		setPostnummer(Postnummer);
 		setPoststed(Poststed);
-		setPassord(Passord);
-		setPIN_kode(PIN_kode);
-		setKommentar(Kommentar);
+
 		}
 
-	public Person(Date Fodselsdato, String Fodselsnummer, String Navn, String Adresselinje_1,String Adresselinje_2, String Postnummer, String Poststed, String Passord,String PIN_kode, String Kommentar) {
+	public Person(Date Fodselsdato, String Fodselsnummer, String Navn, String Adresselinje_1,String Adresselinje_2, String Postnummer, String Poststed) {
 		
 		setFodselsdato(Fodselsdato);
 		setFodselsnummer(Fodselsnummer);
@@ -57,9 +52,6 @@ public class Person implements Serializable {
 		setAdresselinje_2(Adresselinje_2);
 		setPostnummer(Postnummer);
 		setPoststed(Poststed);
-		setPassord(Passord);
-		setPIN_kode(PIN_kode);
-		setKommentar(Kommentar);
 		}
 
 	public Person () {
@@ -128,29 +120,5 @@ public class Person implements Serializable {
 
 	public void setPoststed(String poststed) {
 		Poststed = poststed;
-	}
-
-	public String getPassord() {
-		return Passord;
-	}
-
-	public void setPassord(String passord) {
-		Passord = passord;
-	}
-
-	public String getPIN_kode() {
-		return PIN_kode;
-	}
-
-	public void setPIN_kode(String pIN_kode) {
-		PIN_kode = pIN_kode;
-	}
-
-	public String getKommentar() {
-		return Kommentar;
-	}
-
-	public void setKommentar(String kommentar) {
-		Kommentar = kommentar;
 	}
 }

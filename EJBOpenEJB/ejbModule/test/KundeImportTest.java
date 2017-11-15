@@ -41,7 +41,7 @@ public class KundeImportTest extends TestCase {
 			Calendar c = Calendar.getInstance();
 			c.set(1968, 00, 00, 11, 11, 11);
 			Person p = new Person((Date) c.getTime(), "53421", "SnurpenotJohansen", "Lavpannebakke2", "", "8515",
-					"Narvik", "FlåklypaGrandPrix", "1231", "Tidligere stunt reporter");
+					"Narvik");
 			kir.newKunde(p);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

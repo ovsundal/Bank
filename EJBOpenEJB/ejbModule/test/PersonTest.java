@@ -45,23 +45,22 @@ public class PersonTest extends TestCase {
 			Calendar c = Calendar.getInstance();
 			c.set(1988, 00, 00, 01, 01, 01);
 			Person p = new Person((Date) c.getTime(), "15251", "Gurgle Halsbrann", 
-					"Jørgen Fisefins terasse 3","", "8515", "Narvik", "Harry Potter", 
-					"1111","En av de virkelig store Halsbrannene i historien");
+					"Jørgen Fisefins terasse 3","", "8515", "Narvik");
 			personer.add(p);
 			
 			c.set(1986, 01, 01, 01, 01, 01);
 			p = new Person((Date)c.getTime(), "12345", "Sylfrid Fuglesang", "Øvre Undergang 22","",
-					"8515", "Narvik", "Jupp", "1111", "Kvitrende glad og positiv");
+					"8515", "Narvik");
 			personer.add(p);
 			
 			c.set(1990, 11, 11, 01, 01, 01);
 			p = new Person((Date)c.getTime(), "33332", "Snork Rumlepung", "c/o Rosa Balle", 
-					"Snyltestien 1","8514", "Narvik", "Money","1111","Uten sidestykke i nyere historie");
+					"Snyltestien 1","8514", "Narvik");
 			personer.add(p);
 
 			c.set(1991, 9, 21, 01, 01, 01);
 			p = new Person((Date)c.getTime(), "54321","Walter Pengesluk","Andeby undergrunn","",
-					"8500","Narvik","Donald","1111","Nær venn av Kjell Inge Røkke");
+					"8500","Narvik");
 			personer.add(p);
 			}
 		finally{

@@ -10,35 +10,42 @@ import javax.persistence.*;
  * @author Ove
  *
  */
-@Entity
+@Entity(name= "Konto")
 @Table(name = "Konto")
 public class Konto implements Serializable {
-	@Column(name = "id")
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue
 	private int id;
-	@Column(name = "Navn", length = 30)
+	@Column(name = "Navn")
 	private String Navn;
-	@Column(name = "Saldo", length = 30)
+	@Column(name = "Saldo")
 	private String Saldo;
-	@Column(name = "Dato", length = 30)
-	private String Dato;
+	@Column(name = "Dato")
+	private Date Dato;
+	
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@MapsId
+	private Person owner;
 	
 	//Constructors
 	public Konto() {
 	}
-	
-	public Konto(int id, String navn, String saldo, String dato) {
-		setId(id);
+
+	public Konto(String navn, String saldo, Date dato, Person p) {
+		
 		setNavn(navn);
 		setSaldo(saldo);
 		setDato(dato);
+		setOwner(p);
 	}
 	
-	public Konto(String navn, String saldo, String dato) {
-		setNavn(navn);
-		setSaldo(saldo);
-		setDato(dato);
+	public Person getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Person owner) {
+		this.owner = owner;
 	}
 
 	public int getId() {
@@ -65,11 +72,11 @@ public class Konto implements Serializable {
 		Saldo = saldo;
 	}
 
-	public String getDato() {
+	public Date getDato() {
 		return Dato;
 	}
 
-	public void setDato(String dato) {
+	public void setDato(Date dato) {
 		Dato = dato;
 	}
 	
