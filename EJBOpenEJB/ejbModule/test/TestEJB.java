@@ -13,18 +13,20 @@ public class TestEJB {
 		System.out.println("Creating 3 persons using Personer-bean from PersonTest...");
 		addPersons();
 		
-		System.out.println("Searching for a person based on personnummer (33332223344) using Personer-bean from PersonTest: ");
-		findPerson();
+		String personnummerToFind = "33332223344";
+		System.out.println("Searching for a person based on personnummer(" + personnummerToFind + ") using Personer-bean from PersonTest: ");
+		findPerson(personnummerToFind);
 		
-		System.out.println("Removing a person from database based on personnummer 33332223344 (Knut Lurendreier) using Personer-bean from PersonTest:");
-		removePerson();
+		String personnummerToRemove = "12345678910";
+		System.out.println("Removing a person from database based on personnummer +(" + personnummerToRemove + ") using Personer-bean from PersonTest:");
+		removePerson(personnummerToRemove);
 		
 		System.out.println("Should now be 2 persons in database listing from Personer-bean from PersonTest:");
 		listPersons();
 		
 		//tests from Kontoer-bean
-		System.out.println("Creating 1 account for Ove, 2 accounts for Kristin using Kontoer-bean from KontoTest:");
-		createAccounts();
+//		System.out.println("Creating 1 account for Ove, 2 accounts for Kristin using Kontoer-bean from KontoTest:");
+//		createAccounts();
 		
 		
 		cleanUpTests();
@@ -63,9 +65,9 @@ public class TestEJB {
 		}
 	}
 	
-	private static void findPerson() {
+	private static void findPerson(String personnummer) {
 		try {
-			pt.findPerson();
+			pt.findPerson(personnummer);
 			System.out.println("------------------------------------");
 		} catch(NullPointerException e) {
 			System.out.println("Error, could not find any persons");
@@ -75,9 +77,9 @@ public class TestEJB {
 		}
 	}
 	
-	private static void removePerson() {
+	private static void removePerson(String personnummer) {
 		
-		pt.removePerson();
+		pt.removePerson(personnummer);
 	}
 	
 	private static void listPersons() {

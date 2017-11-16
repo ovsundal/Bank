@@ -53,7 +53,8 @@ public class KontoTest extends TestCase {
 	public void addKonto() throws Exception {
 		try{
 			//query a person (Ove) from database
-			Person ove = personer.find("01020304056");
+			String personnummer = "01020304056";
+			Person ove = personer.find(personnummer);
 			
 			Date d = new Date();
 			

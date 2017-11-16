@@ -24,7 +24,8 @@ public class Konto implements Serializable {
 	@Column(name = "Dato")
 	private Date Dato_opprettet;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	//add cascade , cascade = CascadeType.ALL
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="OWNER_ID")
 	private Person owner;
 	

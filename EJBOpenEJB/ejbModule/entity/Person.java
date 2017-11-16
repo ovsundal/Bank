@@ -1,6 +1,7 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import javax.persistence.*;
 public class Person implements Serializable {
 	
 	@OneToMany(mappedBy="owner")
-	private List<Konto> konto;
+	private List<Konto> konto = new ArrayList<>();
 
 	@Id
 	@GeneratedValue

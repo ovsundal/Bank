@@ -47,14 +47,14 @@ public class Personer implements PersonerRemote, PersonerLocal {
 	public Person find(String personnummer) {
 		
 		Person p = null;
-		String pn = "01020304056";
 		
 		try {
 			String pnummer = personnummer;
 			//todo: protect against SQL injection
-			Query query = entityManager.createQuery("SELECT p from Person as p WHERE p.Personnummer LIKE :pnummer")
-					.setParameter("pnummer", pn);
+			Query query = entityManager.createQuery("SELECT p from Person as p WHERE p.Personnummer LIKE :personnummer")
+					.setParameter("personnummer", personnummer);
 			p = (Person) query.getSingleResult();
+			System.out.println("This guy was found: " + p.getNavn());
 			return p;
 		} catch(NoResultException ex) {
 			System.out.println("Could not find any results with this personnummer");

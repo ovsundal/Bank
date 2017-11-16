@@ -68,10 +68,10 @@ public class PersonTest extends TestCase {
 	 * 
 	 * @throws Exception
 	 */
-	public void findPerson() {
+	public void findPerson(String personnummer) {
 
 		try {
-			Person pers = personer.find("33332223344");
+			Person pers = personer.find(personnummer);
 			System.out.println("Person found: " + pers.getPersonnummer() + " -" + pers.getNavn() + ": "
 					+ pers.getAdresselinje_1() + pers.getPostnummer());
 		} catch (NullPointerException e) {
@@ -85,14 +85,15 @@ public class PersonTest extends TestCase {
 	/**
 	 * Remove a person from the database
 	 */
-	public void removePerson() {
+	public void removePerson(String personnummer) {
 
 		Person p;
+		personnummer = "33332223344";
 		try {
-			p = personer.find("33332223344");
+			p = personer.find(personnummer);
 			personer.remove(p);
 		} catch (Exception e) {
-			System.out.println("Error, could not delete person with personnummer 33332223344");
+			System.out.println("Error, could not delete person with personnummer " + personnummer );
 			e.printStackTrace();
 		}
 
