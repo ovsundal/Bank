@@ -88,6 +88,7 @@ public class PersonTest extends TestCase {
 	public void removePerson(String personnummer) {
 
 		Person p;
+		personnummer = "33332223344";
 		try {
 			p = personer.find(personnummer);
 			personer.remove(p);
