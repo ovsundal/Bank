@@ -12,14 +12,13 @@ public class TestEJB {
 		System.out.println("Creating 3 persons...");
 		addPersons();
 		
-		System.out.println("Searching for a person based on personnummer (33332223344): ");
+		System.out.println("Searching for a person based on personnummer (01020304056): ");
 		findPerson();
 		
 		System.out.println("Removing a person from database based on personnummer 33332223344 (Knut Lurendreier)");
 		removePerson();
 		
-		System.out.println("Should now be 2 persons in database:");
-		listPersons();
+		
 		
 		
 //		System.out.println("Creating 0 accounts for person 1, 1 account for person 2, 2 accounts for person 3:");
@@ -62,33 +61,6 @@ public class TestEJB {
 		}
 	}
 	
-	private static void findPerson() {
-		try {
-			pt.findPerson();
-			System.out.println("------------------------------------");
-		} catch(NullPointerException e) {
-			System.out.println("Error, could not find any persons");
-		}
-		catch(Exception e) {
-			System.out.println("Error, could not find person");
-		}
-	}
-	
-	private static void removePerson() {
-		
-		pt.removePerson();
-	}
-	
-	private static void listPersons() {
-		try {
-			pt.list();
-			System.out.println("------------------------------------");
-		} catch (Exception e) {
-			System.out.println("Error, could not list persons from database");
-			e.printStackTrace();
-		}
-	}
-	
 	private static void createAccounts() {
 		try {
 			kt.addKonto();
@@ -101,7 +73,17 @@ public class TestEJB {
 		}
 	}
 	
-	
+	private static void findPerson() {
+		try {
+			pt.findPerson();
+			System.out.println("------------------------------------");
+		} catch(NullPointerException e) {
+			System.out.println("Error, could not find any persons");
+		}
+		catch(Exception e) {
+			System.out.println("Error, could not find person");
+		}
+	}
 
 	public static void doTest() throws Exception {
 

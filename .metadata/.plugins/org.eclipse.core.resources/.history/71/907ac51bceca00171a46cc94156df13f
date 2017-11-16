@@ -12,25 +12,19 @@ public class Personer implements PersonerRemote, PersonerLocal {
 	@PersistenceContext(unitName = "bankdb-unit", type = PersistenceContextType.TRANSACTION)
 	private EntityManager entityManager;
 	
-	public Personer() {}
-	
-	/**
-	 * Add a new person to the database
-	 */
+	/*** Default constructor.*/
+	public Personer() {
+		// TODO: Auto-generated constructor stub
+		}
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void add(Person person) throws Exception {
 		entityManager.persist(person);
 		}
-	/**
-	 * Remove a person from the database
-	 */
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void remove(Person person) throws Exception {
 		entityManager.remove(entityManager.merge(person));
 		}
-	/**
-	 * Lists all persons in the database. Only used for testing
-	 */
+	
 	@SuppressWarnings("unchecked")
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public List <Person> list() throws Exception {
@@ -40,13 +34,13 @@ public class Personer implements PersonerRemote, PersonerLocal {
 		return l;
 	}
 	/**
-	 * Method for querying a person based on his/hers personnummer
+	 * Method for finding a person based on unique personnummer
 	 */
 	@Override
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public Person find(String personnummer) {
 		
 		Person p = null;
+		
 		String pn = "01020304056";
 		
 		try {

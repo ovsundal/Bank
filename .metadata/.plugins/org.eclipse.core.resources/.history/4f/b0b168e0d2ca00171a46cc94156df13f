@@ -82,7 +82,6 @@ public class TestEJB {
 	private static void listPersons() {
 		try {
 			pt.list();
-			System.out.println("------------------------------------");
 		} catch (Exception e) {
 			System.out.println("Error, could not list persons from database");
 			e.printStackTrace();

@@ -19,7 +19,7 @@ public class TestEJB {
 		removePerson();
 		
 		System.out.println("Should now be 2 persons in database:");
-		listPersons();
+		
 		
 		
 //		System.out.println("Creating 0 accounts for person 1, 1 account for person 2, 2 accounts for person 3:");
@@ -77,16 +77,6 @@ public class TestEJB {
 	private static void removePerson() {
 		
 		pt.removePerson();
-	}
-	
-	private static void listPersons() {
-		try {
-			pt.list();
-			System.out.println("------------------------------------");
-		} catch (Exception e) {
-			System.out.println("Error, could not list persons from database");
-			e.printStackTrace();
-		}
 	}
 	
 	private static void createAccounts() {
