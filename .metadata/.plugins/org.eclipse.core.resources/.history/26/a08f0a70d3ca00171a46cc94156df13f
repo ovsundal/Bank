@@ -15,10 +15,10 @@ public class TestEJB {
 		System.out.println("Searching for a person based on personnummer (33332223344) using Personer-bean from PersonTest: ");
 		findPerson();
 		
-		System.out.println("Removing a person from database based on personnummer 33332223344 (Knut Lurendreier) using Personer-bean from PersonTest:");
+		System.out.println("Removing a person from database based on personnummer 33332223344 (Knut Lurendreier)");
 		removePerson();
 		
-		System.out.println("Should now be 2 persons in database listing from Personer-bean from PersonTest:");
+		System.out.println("Should now be 2 persons in database:");
 		listPersons();
 		
 		
