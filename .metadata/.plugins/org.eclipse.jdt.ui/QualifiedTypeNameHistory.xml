@@ -9,4 +9,6 @@
 <fullyQualifiedTypeName name="org.junit.Test"/>
 <fullyQualifiedTypeName name="javax.ejb.TransactionManagement"/>
 <fullyQualifiedTypeName name="javax.ejb.EJB"/>
+<fullyQualifiedTypeName name="entity.Person"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
 </qualifiedTypeNameHistroy>

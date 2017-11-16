@@ -49,15 +49,15 @@ public class KontoTest extends TestCase {
 	
 	public void addKonto() throws Exception {
 		try{
-//			Calendar c = Calendar.getInstance();
-//			c.set(1988, 00, 00, 01, 01, 01);
+			Calendar c = Calendar.getInstance();
+			c.set(1988, 00, 00, 01, 01, 01);
 			
-			Person p = new Person("34797557788", "Stisan Sigd", 
+			Person p = new Person((Date) c.getTime(), "34797", "Stisan Sigd", 
 					"Jørgen Fisefins terasse 3","", "8515", "Narvik");
 			
 			Konto k = new Konto();
 			System.out.println("Adding account:");
-			kontoer.createAccountAndPerson("Brukskonto", "1250", new Date(), p);
+			kontoer.createAccountAndPerson("test123", "120", new Date(), p);
 			System.out.println("Done Adding account:");
 		}
 		finally{
@@ -68,7 +68,7 @@ public class KontoTest extends TestCase {
 		List<Konto> list = kontoer.list();
 		System.out.println(list);
 		for(Konto kon : list) {
-			System.out.println("Listing : " + kon.getOwner().getNavn() + kon.getDato() + " - " + 
+			System.out.println("Listing : " + kon.getOwner().getNavn() + kon.getDato() + " -" + 
 					kon.getNavn() + ": "+ kon.getSaldo());
 		}
 	}
@@ -79,11 +79,11 @@ public class KontoTest extends TestCase {
 			for(Konto kon : list) {
 				if(kon.getId() > 0) {
 					kontoer.remove(kon);
-					System.out.println("Deleting ... : "+ kon.getDato() + " - " + 
+					System.out.println("Deleting ... : "+ kon.getDato() + " -" + 
 					kon.getNavn() + ": "+ kon.getSaldo());
 					}
 				else {
-					System.out.println("Delete failed ... : "+ kon.getDato() + " - " + 
+					System.out.println("Delete failed ... : "+ kon.getDato() + " -" + 
 							kon.getNavn() + ": "+ kon.getSaldo());
 					}
 			}

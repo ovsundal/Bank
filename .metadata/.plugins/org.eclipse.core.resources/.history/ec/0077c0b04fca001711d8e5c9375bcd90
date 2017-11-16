@@ -65,6 +65,8 @@ public class Kontoer implements KontoerRemote, KontoerLocal {
     @TransactionAttribute(value= TransactionAttributeType.REQUIRES_NEW)
 	@Override
 	public void createAccountAndPerson(String navn, String saldo, Date dato, Person p) {
+		// TODO Auto-generated method stub
+    	System.out.println("Lager ny konto...");
 		Konto konto = new Konto(navn, saldo, dato, p);
 		entityManager.persist(konto);
 	}

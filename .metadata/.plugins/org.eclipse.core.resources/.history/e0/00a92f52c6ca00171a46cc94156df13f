@@ -42,16 +42,18 @@ public class PersonTest extends TestCase {
 	
 	public void addPersons() throws Exception {
 		try{
-//			Calendar c = Calendar.getInstance();
-//			c.set(1988, 00, 00, 01, 01, 01);
+			Calendar c = Calendar.getInstance();
+			c.set(1988, 00, 00, 01, 01, 01);
 			Person p = new Person("01020304056", "Ove Sundal", 
 					"Tastatunet 22","", "4027", "Stavanger");
 			personer.add(p);
 			
+			c.set(1986, 01, 01, 01, 01, 01);
 			p = new Person("12345678910", "Kristin Hagen", 
 					"Tastatunet 22","", "8515", "Narvik");
 			personer.add(p);
 			
+			c.set(1990, 11, 11, 01, 01, 01);
 			p = new Person("33332223344", "Knut Lurendreier", "Luregaten 22", 
 					"Trikseveien 14","7815", "Lureland");
 			personer.add(p);
@@ -64,8 +66,8 @@ public class PersonTest extends TestCase {
 	public void list() throws Exception {
 		List<Person> list = personer.list();
 		for(Person pers : list) {
-			System.out.println("Listing : "+ pers.getPersonnummer() + " -" + 
-					pers.getNavn() + ": "+ pers.getAdresselinje_1() + pers.getPostnummer());
+			System.out.println("Listing : "+ pers.getFodselsdato() + " -" + 
+					pers.getFodselsnummer() + ": "+ pers.getNavn());
 		}
 	}
 	
@@ -75,12 +77,11 @@ public class PersonTest extends TestCase {
 			for(Person pers : list) {
 				if(pers.getId() > 0) {
 					personer.remove(pers);
-					System.out.println("Deleting ... : " + pers.getPersonnummer() + " -" + 
-					pers.getNavn() + ": "+ pers.getAdresselinje_1() + pers.getPostnummer());
+					System.out.println("Deleting ... : "+ pers.getFodselsdato() + " -" + 
+					pers.getFodselsnummer() + ": "+ pers.getNavn());
 					}
 				else {
-					System.out.println("Delete failed ... : " + pers.getPersonnummer() + " -" + 
-							pers.getNavn() + ": "+ pers.getAdresselinje_1() + pers.getPostnummer());
+					System.out.println("Delete failed ... : "+ pers.getFodselsdato() + "-"+ pers.getFodselsnummer() + ": "+ pers.getNavn());
 					}
 			}
 		}

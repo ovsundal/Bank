@@ -43,7 +43,7 @@ public class TestEJB {
 		
 		try {
 			pt.addPersons();
-			System.out.println("3 persons were added to database:");
+			System.out.println("Three persons were added to database:");
 			System.out.println("------------------------------------");
 			pt.list();
 			System.out.println("------------------------------------");

@@ -14,8 +14,10 @@ public class Person implements Serializable {
 	@Id
 	@GeneratedValue
 	private int id;
-	@Column (name = "Personnummer", length = 11)
-	private String Personnummer;
+	@Column(name = "Fodselsdato")
+	private Date Fodselsdato;
+	@Column(name = "Fodselsnummer", length = 5)
+	private String Fodselsnummer;
 	@Column(name = "Navn", length = 30)
 	private String Navn;
 	@Column(name = "Adresselinje_1", length = 30)
@@ -28,11 +30,23 @@ public class Person implements Serializable {
 	private String Poststed;
 
 	/*** Konstruktører*/
-	public Person () {}
-
-	public Person(String Personnummer, String Navn, String Adresselinje_1,String Adresselinje_2, String Postnummer, String Poststed) {
+	public Person(int id, Date Fodselsdato, String Fodselsnummer, String Navn,String Adresselinje_1, String Adresselinje_2, String Postnummer,String Poststed) {
 		
-		setPersonnummer(Personnummer);
+		setId(id);
+		setFodselsdato(Fodselsdato);
+		setFodselsnummer(Fodselsnummer);
+		setNavn(Navn);
+		setAdresselinje_1(Adresselinje_1);
+		setAdresselinje_2(Adresselinje_2);
+		setPostnummer(Postnummer);
+		setPoststed(Poststed);
+
+		}
+
+	public Person(Date Fodselsdato, String Fodselsnummer, String Navn, String Adresselinje_1,String Adresselinje_2, String Postnummer, String Poststed) {
+		
+		setFodselsdato(Fodselsdato);
+		setFodselsnummer(Fodselsnummer);
 		setNavn(Navn);
 		setAdresselinje_1(Adresselinje_1);
 		setAdresselinje_2(Adresselinje_2);
@@ -40,12 +54,8 @@ public class Person implements Serializable {
 		setPoststed(Poststed);
 		}
 
-	public String getPersonnummer() {
-		return Personnummer;
-	}
-
-	public void setPersonnummer(String personnummer) {
-		Personnummer = personnummer;
+	public Person () {
+		
 	}
 
 	public int getId() {
@@ -54,6 +64,22 @@ public class Person implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public Date getFodselsdato() {
+		return Fodselsdato;
+	}
+
+	public void setFodselsdato(Date fodselsdato) {
+		Fodselsdato = fodselsdato;
+	}
+
+	public String getFodselsnummer() {
+		return Fodselsnummer;
+	}
+
+	public void setFodselsnummer(String fodselsnummer) {
+		Fodselsnummer = fodselsnummer;
 	}
 
 	public String getNavn() {

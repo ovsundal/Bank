@@ -75,12 +75,11 @@ public class PersonTest extends TestCase {
 			for(Person pers : list) {
 				if(pers.getId() > 0) {
 					personer.remove(pers);
-					System.out.println("Deleting ... : " + pers.getPersonnummer() + " -" + 
-					pers.getNavn() + ": "+ pers.getAdresselinje_1() + pers.getPostnummer());
+					System.out.println("Deleting ... : "+ pers.getFodselsdato() + " -" + 
+					pers.getFodselsnummer() + ": "+ pers.getNavn());
 					}
 				else {
-					System.out.println("Delete failed ... : " + pers.getPersonnummer() + " -" + 
-							pers.getNavn() + ": "+ pers.getAdresselinje_1() + pers.getPostnummer());
+					System.out.println("Delete failed ... : "+ pers.getFodselsdato() + "-"+ pers.getFodselsnummer() + ": "+ pers.getNavn());
 					}
 			}
 		}
