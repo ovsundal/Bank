@@ -68,9 +68,7 @@ public class KontoTest extends TestCase {
 			d = new Date();
 			k = new Konto(knut, "Gjeldskonto", "19999", d);
 			kontoer.add(k);
-			k = new Konto(knut, "Midtlivskrisekonto", "200000", d);
 			kontoer.add(k);	
-			k = new Konto(knut, "Luksuskonto", "999999", d);
 			kontoer.add(k);	
 		} 
 		finally{

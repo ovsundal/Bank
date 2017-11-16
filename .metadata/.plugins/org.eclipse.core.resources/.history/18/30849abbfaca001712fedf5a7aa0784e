@@ -72,20 +72,12 @@ public class PersonTest extends TestCase {
 
 		try {
 			Person pers = personer.find(personnummer);
-			
-			//if no accounts have been made, secure against nullpointerexception
-			if(pers.getKonto() == null) {
-				System.out.println("Person found: " + pers.getPersonnummer() + " - " + pers.getNavn() + ": "
-						+ pers.getAdresselinje_1() + pers.getPostnummer() + " - Number of accounts: 0");
-			} else {
-				System.out.println("Person found: " + pers.getPersonnummer() + " - " + pers.getNavn() + ": "
-						+ pers.getAdresselinje_1() + pers.getPostnummer() + " - Number of accounts: " + pers.getKonto().size());
-			}
-			
+			System.out.println("Person found: " + pers.getPersonnummer() + " - " + pers.getNavn() + ": "
+					+ pers.getAdresselinje_1() + pers.getPostnummer() + " number of accounts: " + pers.getKonto().size());
 		} catch (NullPointerException e) {
-			System.out.println("ERROR, could not find person with this personnummer");
+			System.out.println("Error, could not find person with this personnummer");
 		} catch (Exception e) {
-			System.out.println("ERROR, something went wrong: ");
+			System.out.println("Error, something went wrong: ");
 			e.printStackTrace();
 		}
 	}
@@ -114,18 +106,7 @@ public class PersonTest extends TestCase {
 	public void list() throws Exception {
 		List<Person> list = personer.list();
 		for (Person pers : list) {
-			
-			//if no accounts have been made, secure against nullpointerexception
-			if(pers.getKonto() == null) {
-				System.out.println("Listing: " + pers.getPersonnummer() + " - " + pers.getNavn() + ": "
-						+ pers.getAdresselinje_1() + pers.getPostnummer() + " - Number of accounts: 0");
-			} else {
-				System.out.println("Listing: " + pers.getPersonnummer() + " - " + pers.getNavn() + ": "
-						+ pers.getAdresselinje_1() + pers.getPostnummer() + " - Number of accounts: " + pers.getKonto().size());
-			}
-			
-			
-			System.out.println("" + pers.getPersonnummer() + " - " + pers.getNavn() + ": "
+			System.out.println("Listing : " + pers.getPersonnummer() + " - " + pers.getNavn() + ": "
 					+ pers.getAdresselinje_1() + pers.getPostnummer());
 		}
 	}

@@ -62,16 +62,14 @@ public class KontoTest extends TestCase {
 			Konto k = new Konto(ove, "Forbrukskonto", "5000", d);
 			kontoer.add(k);
 			
-			//query a person (Knut) from database and create three accounts:
+			//query a person (Knut) from database and create two accounts:
 			personnummer = "33332223344";
 			Person knut = personer.find(personnummer);
 			d = new Date();
-			k = new Konto(knut, "Gjeldskonto", "19999", d);
+			k = new Konto(ove, "Forbrukskonto", "5000", d);
 			kontoer.add(k);
-			k = new Konto(knut, "Midtlivskrisekonto", "200000", d);
-			kontoer.add(k);	
-			k = new Konto(knut, "Luksuskonto", "999999", d);
-			kontoer.add(k);	
+			kontoer.add(k);
+			
 		} 
 		finally{
 		}

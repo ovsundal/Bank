@@ -52,7 +52,7 @@ public class KontoTest extends TestCase {
 	
 	public void addKonto() throws Exception {
 		try{
-			//query a person (Ove) from database and create one account
+			//query a person (Ove) from database
 			String personnummer = "01020304056";
 			Person ove = personer.find(personnummer);
 			
@@ -61,17 +61,6 @@ public class KontoTest extends TestCase {
 			//add an account to person
 			Konto k = new Konto(ove, "Forbrukskonto", "5000", d);
 			kontoer.add(k);
-			
-			//query a person (Knut) from database and create three accounts:
-			personnummer = "33332223344";
-			Person knut = personer.find(personnummer);
-			d = new Date();
-			k = new Konto(knut, "Gjeldskonto", "19999", d);
-			kontoer.add(k);
-			k = new Konto(knut, "Midtlivskrisekonto", "200000", d);
-			kontoer.add(k);	
-			k = new Konto(knut, "Luksuskonto", "999999", d);
-			kontoer.add(k);	
 		} 
 		finally{
 		}
@@ -80,7 +69,7 @@ public class KontoTest extends TestCase {
 	public void list() throws Exception {
 		List<Konto> list = kontoer.list();
 		for(Konto kon : list) {
-			System.out.println("Listing : " + kon.getOwner().getNavn() + " - " + kon.getNavn() + " - " + kon.getSaldo() + " - " + kon.getDato_opprettet());
+			System.out.println("Listing : " + kon.getNavn() + " - " + kon.getSaldo() + " - " + kon.getDato_opprettet());
 		}
 	}
 	

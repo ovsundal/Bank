@@ -98,14 +98,4 @@ public class Person implements Serializable {
 	public void setPoststed(String poststed) {
 		Poststed = poststed;
 	}
-
-	public List<Konto> getKonto() {
-		return konto;
-	}
-
-	public void setKonto(List<Konto> konto) {
-		this.konto = konto;
-	}
-	
-	
 }

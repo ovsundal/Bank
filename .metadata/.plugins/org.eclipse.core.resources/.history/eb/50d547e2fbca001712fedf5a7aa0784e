@@ -76,10 +76,10 @@ public class PersonTest extends TestCase {
 			//if no accounts have been made, secure against nullpointerexception
 			if(pers.getKonto() == null) {
 				System.out.println("Person found: " + pers.getPersonnummer() + " - " + pers.getNavn() + ": "
-						+ pers.getAdresselinje_1() + pers.getPostnummer() + " - Number of accounts: 0");
+						+ pers.getAdresselinje_1() + pers.getPostnummer() + " number of accounts: 0");
 			} else {
 				System.out.println("Person found: " + pers.getPersonnummer() + " - " + pers.getNavn() + ": "
-						+ pers.getAdresselinje_1() + pers.getPostnummer() + " - Number of accounts: " + pers.getKonto().size());
+						+ pers.getAdresselinje_1() + pers.getPostnummer() + " number of accounts: " + pers.getKonto().size());
 			}
 			
 		} catch (NullPointerException e) {
@@ -114,18 +114,7 @@ public class PersonTest extends TestCase {
 	public void list() throws Exception {
 		List<Person> list = personer.list();
 		for (Person pers : list) {
-			
-			//if no accounts have been made, secure against nullpointerexception
-			if(pers.getKonto() == null) {
-				System.out.println("Listing: " + pers.getPersonnummer() + " - " + pers.getNavn() + ": "
-						+ pers.getAdresselinje_1() + pers.getPostnummer() + " - Number of accounts: 0");
-			} else {
-				System.out.println("Listing: " + pers.getPersonnummer() + " - " + pers.getNavn() + ": "
-						+ pers.getAdresselinje_1() + pers.getPostnummer() + " - Number of accounts: " + pers.getKonto().size());
-			}
-			
-			
-			System.out.println("" + pers.getPersonnummer() + " - " + pers.getNavn() + ": "
+			System.out.println("Listing : " + pers.getPersonnummer() + " - " + pers.getNavn() + ": "
 					+ pers.getAdresselinje_1() + pers.getPostnummer());
 		}
 	}
