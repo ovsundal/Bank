@@ -59,8 +59,26 @@ public class PersonTest extends TestCase {
 		finally{
 		}
 	}
-
 	
+	/**
+	 * Retrieve a person from database using personnummer as identifier
+	 * @throws Exception
+	 */
+	public void findPerson() {
+		
+		try {
+			Person pers = personer.find("01020304056");
+			System.out.println("Person found: " + pers.getPersonnummer() + " -" + 
+					pers.getNavn() + ": "+ pers.getAdresselinje_1() + pers.getPostnummer());
+		} catch (NullPointerException e) {
+			System.out.println("Error, could not find person with this personnummer");
+		}
+		catch(Exception e ) {
+			System.out.println("Error, something went wrong: ");
+			e.printStackTrace();
+		}
+	}
+
 	public void list() throws Exception {
 		List<Person> list = personer.list();
 		for(Person pers : list) {

@@ -2,14 +2,16 @@ package entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity(name = "Person")
 @Table(name = "Person")
 public class Person implements Serializable {
 	
-	@OneToOne(mappedBy="owner")
-	private Konto konto;
+	@OneToMany(mappedBy="owner")
+	private List<Konto> konto;
 
 	@Id
 	@GeneratedValue

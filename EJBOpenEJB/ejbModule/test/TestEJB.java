@@ -12,8 +12,12 @@ public class TestEJB {
 		System.out.println("Creating 3 persons...");
 		addPersons();
 		
-		System.out.println("Creating 0 accounts for person 1, 1 account for person 2, 2 accounts for person 3:");
-		createAccounts();
+//		System.out.println("Creating 0 accounts for person 1, 1 account for person 2, 2 accounts for person 3:");
+//		createAccounts();
+		
+		System.out.println("Searching for a person based on personnummer (01020304056): ");
+		findPerson();
+		
 		
 		
 		
@@ -43,7 +47,7 @@ public class TestEJB {
 		
 		try {
 			pt.addPersons();
-			System.out.println("3 persons were added to database:");
+			System.out.println("Three persons were added to database:");
 			System.out.println("------------------------------------");
 			pt.list();
 			System.out.println("------------------------------------");
@@ -63,7 +67,18 @@ public class TestEJB {
 			System.out.println("Error, could not create accounts");
 			e.printStackTrace();
 		}
-		
+	}
+	
+	private static void findPerson() {
+		try {
+			pt.findPerson();
+			System.out.println("------------------------------------");
+		} catch(NullPointerException e) {
+			System.out.println("Error, could not find any persons");
+		}
+		catch(Exception e) {
+			System.out.println("Error, could not find person");
+		}
 	}
 
 	public static void doTest() throws Exception {
