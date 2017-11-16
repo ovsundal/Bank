@@ -10,9 +10,12 @@ import entity.Person;
 
 @Local
 public interface KontoerLocal {
-	
-	public void createAccountAndPerson(String navn, String saldo, Date dato, Person p);
 
+	/**
+	 * Create an account
+	 * @param k
+	 * @throws Exception
+	 */
 	public void add(Konto k) throws Exception;
 	public void remove(Konto k) throws Exception;
 	public List <Konto> list() throws Exception;

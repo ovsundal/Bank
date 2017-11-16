@@ -17,27 +17,25 @@ public class Konto implements Serializable {
 	@Id
 	@GeneratedValue
 	private int id;
-	@Column(name = "Navn")
+	@Column(name = "Navn", length = 30)
 	private String Navn;
-	@Column(name = "Saldo")
+	@Column(name = "Saldo",length = 20)
 	private String Saldo;
 	@Column(name = "Dato")
-	private Date Dato;
+	private Date Dato_opprettet;
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name="OWNER_ID")
 	private Person owner;
 	
-	//Constructors
-	public Konto() {
-	}
+	public Konto() {}
 
-	public Konto(String navn, String saldo, Date dato, Person p) {
+	public Konto(Person p, String navn, String saldo, Date dato) {
 		
+		setOwner(p);
 		setNavn(navn);
 		setSaldo(saldo);
-		setDato(dato);
-		setOwner(p);
+		setDato_opprettet(dato);
 	}
 	
 	public Person getOwner() {
@@ -72,13 +70,17 @@ public class Konto implements Serializable {
 		Saldo = saldo;
 	}
 
-	public Date getDato() {
-		return Dato;
+	public Date getDato_opprettet() {
+		return Dato_opprettet;
 	}
 
-	public void setDato(Date dato) {
-		Dato = dato;
+	public void setDato_opprettet(Date dato_opprettet) {
+		Dato_opprettet = dato_opprettet;
 	}
+	
+	
+
+
 	
 	
 	

@@ -106,7 +106,7 @@ public class PersonTest extends TestCase {
 	public void list() throws Exception {
 		List<Person> list = personer.list();
 		for (Person pers : list) {
-			System.out.println("Listing : " + pers.getPersonnummer() + " -" + pers.getNavn() + ": "
+			System.out.println("Listing : " + pers.getPersonnummer() + " - " + pers.getNavn() + ": "
 					+ pers.getAdresselinje_1() + pers.getPostnummer());
 		}
 	}
