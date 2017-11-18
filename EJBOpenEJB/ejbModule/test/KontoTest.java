@@ -81,7 +81,7 @@ public class KontoTest extends TestCase {
 		List<Konto> list = kontoer.list();
 		System.out.println("List has " + list.size() + " entries");
 		for(Konto kon : list) {
-			System.out.println("Listing : " + kon.getOwner().getNavn() + " - " + kon.getNavn() + " - " + kon.getSaldo() + " - " + kon.getDato_opprettet());
+			System.out.println("Listing : " + kon.toString());
 		}
 	}
 	
@@ -91,12 +91,10 @@ public class KontoTest extends TestCase {
 			for(Konto kon : list) {
 				if(kon.getId() > 0) {
 					kontoer.remove(kon);
-					System.out.println("Deleting ... : "+ kon.getDato_opprettet() + " - " + 
-					kon.getNavn() + ": "+ kon.getSaldo());
+					System.out.println("Deleting ... : "+ kon.toString());
 					}
 				else {
-					System.out.println("Delete failed ... : "+ kon.getDato_opprettet() + " - " + 
-							kon.getNavn() + ": "+ kon.getSaldo());
+					System.out.println("Delete failed ... : "+ kon.toString());
 					}
 			}
 		}

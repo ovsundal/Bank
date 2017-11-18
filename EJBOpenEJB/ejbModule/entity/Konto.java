@@ -39,6 +39,14 @@ public class Konto implements Serializable {
 		setDato_opprettet(dato);
 	}
 	
+	
+	
+	@Override
+	public String toString() {
+		return "Konto [id=" + id + ", Navn=" + Navn + ", Saldo=" + Saldo + ", Dato_opprettet=" + Dato_opprettet
+				+ ", owner=" + owner + "]";
+	}
+
 	public Person getOwner() {
 		return owner;
 	}

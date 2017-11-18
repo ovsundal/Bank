@@ -26,7 +26,7 @@ public class TestEJB {
 		
 //		//tests from Kontoer-bean
 		System.out.println("Creating 1 account for ove and 3 accounts for Knut using Kontoer-bean from KontoTest:");
-//		createAccounts();
+		createAccounts();
 //		
 //		System.out.println("Person list should now be updated with account numbers ( Ove: 1, Knut: 3): ");
 //		listPersons();

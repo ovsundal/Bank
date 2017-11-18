@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Table(name = "Person")
 public class Person implements Serializable {
 	
-	@OneToMany(mappedBy="owner", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="owner", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private Collection<Konto> konto = new ArrayList<>();
 
 	@Id
