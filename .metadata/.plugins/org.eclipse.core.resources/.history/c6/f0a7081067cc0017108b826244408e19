@@ -105,6 +105,7 @@ public class TestEJB {
 	private static void createAccounts() {
 		try {
 			kt.addKonto();
+			System.out.println("Accounts created: ");
 			kt.list();
 			System.out.println("------------------------------------");
 		} catch (Exception e) {
@@ -115,7 +116,6 @@ public class TestEJB {
 	
 	private static void getBalance() {
 		kt.getBalance();
-		System.out.println("------------------------------------");
 	}
 	
 

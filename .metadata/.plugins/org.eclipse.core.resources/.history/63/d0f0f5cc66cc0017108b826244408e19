@@ -79,6 +79,7 @@ public class KontoTest extends TestCase {
 	
 	public void list() throws Exception {
 		List<Account> list = accounts.list();
+		System.out.println("List has " + list.size() + " entries");
 		for(Account kon : list) {
 			System.out.println("Listing : " + kon.toString());
 		}
@@ -99,20 +100,5 @@ public class KontoTest extends TestCase {
 		}
 		finally {
 		}
-	}
-
-	public void getBalance() {
-		
-		List<Account> list;
-		try {
-			list = accounts.list();
-			for(Account acc : list) {
-				System.out.println("Balance: " + acc.getBalance() + " for account: " + acc.toString());
-			}
-		} catch (Exception e) {
-			System.out.println("ERROR, could not get balance");
-			e.printStackTrace();
-		}
-		
 	}
 }

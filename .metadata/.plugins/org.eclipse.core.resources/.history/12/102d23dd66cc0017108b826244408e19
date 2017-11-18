@@ -31,9 +31,6 @@ public class TestEJB {
 		System.out.println("Person list should now be updated with account numbers ( Ove: 1, Knut: 3): ");
 		listPersons();
 		
-		System.out.println("Get the current balance for all the four accounts: " );
-		getBalance();
-		
 		
 		
 		
@@ -50,8 +47,6 @@ public class TestEJB {
 		
 	}
 	
-	
-
 	public static void setupTests() throws Exception {
 
 		pt = new PersonTest();
@@ -105,6 +100,7 @@ public class TestEJB {
 	private static void createAccounts() {
 		try {
 			kt.addKonto();
+			System.out.println("Accounts created: ");
 			kt.list();
 			System.out.println("------------------------------------");
 		} catch (Exception e) {
@@ -113,12 +109,8 @@ public class TestEJB {
 		}
 	}
 	
-	private static void getBalance() {
-		kt.getBalance();
-		System.out.println("------------------------------------");
-	}
-	
 
+	
 	public static void cleanUpTests() throws Exception {
 		System.out.println("Cleaning up tests..");
 		pt.remove();

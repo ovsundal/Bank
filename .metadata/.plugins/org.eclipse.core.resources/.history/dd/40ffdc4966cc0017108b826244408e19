@@ -64,6 +64,7 @@ public class Accounts implements AccountsRemote, AccountsLocal {
      */
 	@Override
 	public int getBalance(Account k) throws Exception {
-		return k.getBalance();
+		//continue here
+		return 0;
 	}
 }
