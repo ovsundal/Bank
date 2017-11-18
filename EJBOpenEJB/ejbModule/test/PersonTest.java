@@ -12,7 +12,7 @@ public class PersonTest extends TestCase {
 	Context context;
 	@EJB
 	// Enheten vi opererer på
-	PersonsRemote personer;
+	PersonsRemote persons;
 
 	public void setUp() throws Exception {
 		Properties p = new Properties();
@@ -25,7 +25,7 @@ public class PersonTest extends TestCase {
 		p.put("Unmanaged_BankDBDataSource.JdbcUrl", "jdbc:hsqldb:file:data/bankdb/hsqldb");
 		p.put("Unmanaged_BankDBDataSource.JtaManaged", "false");
 		context = new InitialContext(p);
-		personer = (PersonsRemote) context.lookup("PersonsRemote");
+		persons = (PersonsRemote) context.lookup("PersonsRemote");
 	}
 
 	@Override
@@ -33,11 +33,11 @@ public class PersonTest extends TestCase {
 	}
 
 	public void test() throws Exception {
-		List<Person> list = personer.list();
+		List<Person> list = persons.list();
 		int assertsize = list.size();
 		assertEquals("List.size()", assertsize, list.size());
 		addPersons();
-		list = personer.list();
+		list = persons.list();
 		assertEquals("List.size()", assertsize + 4, list.size());
 		list();
 	}
@@ -52,13 +52,13 @@ public class PersonTest extends TestCase {
 			// Calendar c = Calendar.getInstance();
 			// c.set(1988, 00, 00, 01, 01, 01);
 			Person p = new Person("01020304056", "Ove Sundal", "Tastatunet 22", "", "4027", "Stavanger");
-			personer.add(p);
+			persons.add(p);
 
 			p = new Person("12345678910", "Kristin Hagen", "Tastatunet 22", "", "8515", "Narvik");
-			personer.add(p);
+			persons.add(p);
 
 			p = new Person("33332223344", "Knut Lurendreier", "Luregaten 22", "Trikseveien 14", "7815", "Lureland");
-			personer.add(p);
+			persons.add(p);
 		} finally {
 		}
 	}
@@ -71,7 +71,7 @@ public class PersonTest extends TestCase {
 	public void findPerson(String personnummer) {
 
 		try {
-			Person pers = personer.find(personnummer);
+			Person pers = persons.find(personnummer);
 			
 			System.out.println(pers.toString());
 			
@@ -90,8 +90,8 @@ public class PersonTest extends TestCase {
 
 		Person p;
 		try {
-			p = personer.find(personnummer);
-			personer.remove(p);
+			p = persons.find(personnummer);
+			persons.remove(p);
 		} catch (Exception e) {
 			System.out.println("Error, could not delete person with personnummer " + personnummer );
 			e.printStackTrace();
@@ -105,7 +105,7 @@ public class PersonTest extends TestCase {
 	 * @throws Exception
 	 */
 	public void list() throws Exception {
-		List<Person> list = personer.list();
+		List<Person> list = persons.list();
 		
 		for (Person pers : list) {
 			System.out.println(pers.toString());		
@@ -119,10 +119,10 @@ public class PersonTest extends TestCase {
 	 */
 	public void remove() throws Exception {
 		try {
-			List<Person> list = personer.list();
+			List<Person> list = persons.list();
 			for (Person pers : list) {
 				if (pers.getId() > 0) {
-					personer.remove(pers);
+					persons.remove(pers);
 					System.out.println("Deleting ... : " + pers.getPersonId() + " -" + pers.getName() + ": "
 							+ pers.getAddress_1() + pers.getAreaCode());
 				} else {

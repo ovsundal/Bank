@@ -40,3 +40,6 @@
 1511007235283	Rename method 'setSaldo'
 1511007262326	Rename method 'getDato_opprettet'
 1511007272026	Rename method 'setDato_opprettet'
+1511007414824	Rename field 'kontoer'
+1511007420406	Rename field 'personer'
+1511007457474	Rename field 'personer'
