@@ -62,8 +62,44 @@ public class Accounts implements AccountsRemote, AccountsLocal {
     /**
      * Method for viewing current balance
      */
+  //todo: necessary to send whole account?
 	@Override
-	public int getBalance(Account k) throws Exception {
-		return k.getBalance();
+	@SuppressWarnings("unchecked")
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public int getAccountBalance(int accountId) throws Exception {
+		
+		try {
+			Query query = entityManager.createQuery("SELECT a.balance from Account as a WHERE a.id LIKE :id")
+					.setParameter("id", accountId);
+			int balance = (int) query.getSingleResult();
+			return balance;
+		} catch (Exception e) {
+			System.out.println("ERROR, could not access database: ");
+			e.printStackTrace();
+		}
+		//todo: er det akseptabelt å returnere -1 hvis ikke kontotilgang? Kan en konto være negativ?
+		return -1;
 	}
-}
+
+	@Override
+	public String depositMoney(Account k, int amount) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/**
+	 * Method for depositing money
+	 */
+//	@Override
+//	public String depositMoney(Account k, int amount) throws Exception {
+//		
+//		//check against depositing a negative value
+//		if(amount <= 0) {
+//			return "You cannot deposit a negative amount. Process aborted.";
+//		}
+		
+		
+		
+		
+	}
+

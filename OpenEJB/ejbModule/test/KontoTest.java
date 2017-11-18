@@ -107,7 +107,7 @@ public class KontoTest extends TestCase {
 		try {
 			list = accounts.list();
 			for(Account acc : list) {
-				System.out.println("Balance: " + acc.getBalance() + " for account: " + acc.toString());
+				System.out.println("Balance: " + accounts.getAccountBalance(acc.getId()) + " for account: " + acc.toString());
 			}
 		} catch (Exception e) {
 			System.out.println("ERROR, could not get balance");
