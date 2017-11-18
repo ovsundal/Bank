@@ -1,8 +1,0 @@
-package sessionsBeans;
-
-import javax.ejb.Remote;
-
-@Remote
-public interface KundeImportRemote {
-	public void newKunde(Person p) throws Exception;
-}
