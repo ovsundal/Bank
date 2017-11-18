@@ -15,17 +15,17 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
 import javax.persistence.Query;
 
-import entity.Konto;
+import entity.Account;
 import entity.Person;
 
 /**
- * Session Bean implementation class Kontoer
+ * Session Bean implementation class Accounts
  */
 @TransactionManagement(value=TransactionManagementType.CONTAINER)
 @TransactionAttribute(value= TransactionAttributeType.SUPPORTS)
-@Stateless(name= "Kontoer")
+@Stateless(name= "Accounts")
 @LocalBean
-public class Kontoer implements KontoerRemote, KontoerLocal {
+public class Accounts implements AccountsRemote, AccountsLocal {
 	@PersistenceContext(unitName = "bankdb-unit", type = PersistenceContextType.TRANSACTION)
 	
 	private EntityManager entityManager;
@@ -33,13 +33,13 @@ public class Kontoer implements KontoerRemote, KontoerLocal {
 	@EJB(name="Personer", beanInterface=PersonsLocal.class)
 	PersonsLocal personerBean;
 
-    public Kontoer() {}
+    public Accounts() {}
     
     /**
      * Create an account and assign it to a Person owner
      */
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void add(Konto k) throws Exception {
+	public void add(Account k) throws Exception {
 
     	entityManager.persist(k);
 	}
@@ -48,17 +48,17 @@ public class Kontoer implements KontoerRemote, KontoerLocal {
     
 
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void remove(Konto k) throws Exception {
+	public void remove(Account k) throws Exception {
     	entityManager.remove(entityManager.merge(k));
 		
 	}
     
     @SuppressWarnings("unchecked")
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public List<Konto> list() throws Exception {
+	public List<Account> list() throws Exception {
     	//bruker Java Persistence Query Language, ikke SQL
-    			Query query = entityManager.createQuery("SELECT k from Konto as k");
-    			List <Konto> l = query.getResultList();
+    			Query query = entityManager.createQuery("SELECT k from Account as k");
+    			List <Account> l = query.getResultList();
     			return l;
 	}
 }

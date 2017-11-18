@@ -12,8 +12,10 @@ import javax.persistence.*;
 @Table(name = "Person")
 public class Person implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+
 	@OneToMany(mappedBy="owner", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-	private Collection<Konto> accounts = new ArrayList<>();
+	private Collection<Account> accounts = new ArrayList<>();
 
 	@Id
 	@GeneratedValue
@@ -31,7 +33,7 @@ public class Person implements Serializable {
 	@Column(name = "area", length = 35)
 	private String area;
 
-	/*** Konstruktører*/
+	/*** Constructors*/
 	public Person () {}
 
 	public Person(String Personnummer, String Navn, String Adresselinje_1,String Adresselinje_2, String Postnummer, String Poststed) {
@@ -43,14 +45,12 @@ public class Person implements Serializable {
 		setAreaCode(Postnummer);
 		setArea(Poststed);
 		}
-	
-	
 
 	@Override
 	public String toString() {
-		return "Person [kontoer=" + accounts.size() + ", id=" + id + ", personId=" + personId + ", name=" + name
-				+ ", address_1=" + address_1 + ", address_2=" + address_2 + ", areaCode="
-				+ areaCode + ", area=" + area + "]";
+		return "Person [accounts=" + accounts.size() + ", id=" + id + ", personId=" + personId + ", name=" + name
+				+ ", address_1=" + address_1 + ", address_2=" + address_2 + ", areaCode=" + areaCode + ", area=" + area
+				+ "]";
 	}
 
 	public String getPersonId() {
@@ -109,12 +109,12 @@ public class Person implements Serializable {
 		this.area = area;
 	}
 
-	public Collection<Konto> getAccounts() {
+	public Collection<Account> getAccounts() {
 		return accounts;
 	}
 
-	public void setAccounts(List<Konto> konto) {
-		this.accounts = konto;
+	public void setAccounts(List<Account> account) {
+		this.accounts = account;
 	}
 	
 	

@@ -9,17 +9,17 @@ import javax.ejb.EJB;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 
-import entity.Konto;
+import entity.Account;
 import entity.Person;
 import junit.framework.TestCase;
-import sessionsBeans.KontoerRemote;
+import sessionsBeans.AccountsRemote;
 import sessionsBeans.PersonsRemote;
 
 public class KontoTest extends TestCase {
 	Context context;
 	@EJB
 	// Enheten vi opererer på
-	KontoerRemote kontoer;
+	AccountsRemote kontoer;
 	PersonsRemote personer;
 	
 	public void setUp() throws Exception {
@@ -33,7 +33,7 @@ public class KontoTest extends TestCase {
 		p.put("Unmanaged_BankDBDataSource.JdbcUrl","jdbc:hsqldb:file:data/bankdb/hsqldb");
 		p.put("Unmanaged_BankDBDataSource.JtaManaged","false");
 		context= new InitialContext(p);
-		kontoer= (KontoerRemote)context.lookup("KontoerRemote");
+		kontoer= (AccountsRemote)context.lookup("AccountsRemote");
 		personer = (PersonsRemote)context.lookup("PersonsRemote");
 	}
 	
@@ -41,7 +41,7 @@ public class KontoTest extends TestCase {
 	public void tearDown() throws Exception {}
 	
 //	public void test() throws Exception {
-//		List<Konto> list = kontoer.list();
+//		List<Account> list = kontoer.list();
 //		int assertsize = list.size();
 //		assertEquals( "List.size()", assertsize, list.size());
 //		addKonto();
@@ -59,18 +59,18 @@ public class KontoTest extends TestCase {
 			Date d = new Date();
 			
 			//add an account to person
-			Konto k = new Konto(ove, "Forbrukskonto", "5000", d);
+			Account k = new Account(ove, "Forbrukskonto", "5000", d);
 			kontoer.add(k);
 			
 			//query a person (Knut) from database and create three accounts:
 			personnummer = "33332223344";
 			Person knut = personer.find(personnummer);
 			d = new Date();
-			k = new Konto(knut, "Gjeldskonto", "19999", d);
+			k = new Account(knut, "Gjeldskonto", "19999", d);
 			kontoer.add(k);
-			k = new Konto(knut, "Midtlivskrisekonto", "200000", d);
+			k = new Account(knut, "Midtlivskrisekonto", "200000", d);
 			kontoer.add(k);	
-			k = new Konto(knut, "Luksuskonto", "999999", d);
+			k = new Account(knut, "Luksuskonto", "999999", d);
 			kontoer.add(k);	
 		} 
 		finally{
@@ -78,17 +78,17 @@ public class KontoTest extends TestCase {
 	}
 	
 	public void list() throws Exception {
-		List<Konto> list = kontoer.list();
+		List<Account> list = kontoer.list();
 		System.out.println("List has " + list.size() + " entries");
-		for(Konto kon : list) {
+		for(Account kon : list) {
 			System.out.println("Listing : " + kon.toString());
 		}
 	}
 	
 	public void remove() throws Exception {
 		try{
-			List<Konto> list = kontoer.list();
-			for(Konto kon : list) {
+			List<Account> list = kontoer.list();
+			for(Account kon : list) {
 				if(kon.getId() > 0) {
 					kontoer.remove(kon);
 					System.out.println("Deleting ... : "+ kon.toString());

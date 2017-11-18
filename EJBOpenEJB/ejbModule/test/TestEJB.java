@@ -24,8 +24,8 @@ public class TestEJB {
 		System.out.println("Should now be 2 persons in database listing from Personer-bean from PersonTest:");
 		listPersons();
 		
-//		//tests from Kontoer-bean
-		System.out.println("Creating 1 account for ove and 3 accounts for Knut using Kontoer-bean from KontoTest:");
+//		//tests from Accounts-bean
+		System.out.println("Creating 1 account for ove and 3 accounts for Knut using Accounts-bean from KontoTest:");
 		createAccounts();
 		
 		System.out.println("Person list should now be updated with account numbers ( Ove: 1, Knut: 3): ");
