@@ -14,9 +14,6 @@ public class Person implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
-	@OneToMany(mappedBy="owner", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-	private Collection<Account> accounts = new ArrayList<>();
-
 	@Id
 	@GeneratedValue
 	private int id;
@@ -32,6 +29,9 @@ public class Person implements Serializable {
 	private String areaCode;
 	@Column(name = "area", length = 35)
 	private String area;
+	
+	@OneToMany(mappedBy="owner", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	private Collection<Account> accounts = new ArrayList<>();
 
 	/*** Constructors*/
 	public Person () {}

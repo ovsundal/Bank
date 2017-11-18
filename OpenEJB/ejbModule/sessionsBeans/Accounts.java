@@ -44,9 +44,6 @@ public class Accounts implements AccountsRemote, AccountsLocal {
     	entityManager.persist(k);
 	}
     
-    
-    
-
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void remove(Account k) throws Exception {
     	entityManager.remove(entityManager.merge(k));
@@ -60,5 +57,14 @@ public class Accounts implements AccountsRemote, AccountsLocal {
     			Query query = entityManager.createQuery("SELECT k from Account as k");
     			List <Account> l = query.getResultList();
     			return l;
+	}
+
+    /**
+     * Method for viewing current balance
+     */
+	@Override
+	public int getBalance(Account k) throws Exception {
+		//continue here
+		return 0;
 	}
 }

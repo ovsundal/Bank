@@ -59,18 +59,18 @@ public class KontoTest extends TestCase {
 			Date d = new Date();
 			
 			//add an account to person
-			Account k = new Account(ove, "Forbrukskonto", "5000", d);
+			Account k = new Account(ove, "Forbrukskonto", 5000, d);
 			accounts.add(k);
 			
 			//query a person (Knut) from database and create three accounts:
 			personnummer = "33332223344";
 			Person knut = persons.find(personnummer);
 			d = new Date();
-			k = new Account(knut, "Gjeldskonto", "19999", d);
+			k = new Account(knut, "Gjeldskonto", 19999, d);
 			accounts.add(k);
-			k = new Account(knut, "Midtlivskrisekonto", "200000", d);
+			k = new Account(knut, "Midtlivskrisekonto", 200000, d);
 			accounts.add(k);	
-			k = new Account(knut, "Luksuskonto", "999999", d);
+			k = new Account(knut, "Luksuskonto", 999999, d);
 			accounts.add(k);	
 		} 
 		finally{

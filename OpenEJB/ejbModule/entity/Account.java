@@ -22,7 +22,7 @@ public class Account implements Serializable {
 	@Column(name = "name", length = 30)
 	private String name;
 	@Column(name = "balance",length = 20)
-	private String balance;
+	private int balance;
 	@Column(name = "dateCreated")
 	private Date dateCreated;
 	
@@ -33,11 +33,11 @@ public class Account implements Serializable {
 	
 	public Account() {}
 
-	public Account(Person p, String navn, String saldo, Date dato) {
+	public Account(Person p, String navn, int balance, Date dato) {
 		
 		setOwner(p);
 		setName(navn);
-		setBalance(saldo);
+		setBalance(balance);
 		setDateCreated(dato);
 	}
 	
@@ -73,11 +73,11 @@ public class Account implements Serializable {
 		this.name = name;
 	}
 
-	public String getBalance() {
+	public int getBalance() {
 		return balance;
 	}
 
-	public void setBalance(String balance) {
+	public void setBalance(int balance) {
 		this.balance = balance;
 	}
 
