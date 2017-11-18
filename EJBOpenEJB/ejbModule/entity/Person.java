@@ -2,6 +2,7 @@ package entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -11,8 +12,8 @@ import javax.persistence.*;
 @Table(name = "Person")
 public class Person implements Serializable {
 	
-	@OneToMany(mappedBy="owner")
-	private List<Konto> konto = new ArrayList<>();
+	@OneToMany(mappedBy="owner", fetch=FetchType.EAGER)
+	private Collection<Konto> konto = new ArrayList<>();
 
 	@Id
 	@GeneratedValue
@@ -42,6 +43,15 @@ public class Person implements Serializable {
 		setPostnummer(Postnummer);
 		setPoststed(Poststed);
 		}
+	
+	
+
+	@Override
+	public String toString() {
+		return "Person [kontoer=" + konto.size() + ", id=" + id + ", Personnummer=" + Personnummer + ", Navn=" + Navn
+				+ ", Adresselinje_1=" + Adresselinje_1 + ", Adresselinje_2=" + Adresselinje_2 + ", Postnummer="
+				+ Postnummer + ", Poststed=" + Poststed + "]";
+	}
 
 	public String getPersonnummer() {
 		return Personnummer;
@@ -99,7 +109,7 @@ public class Person implements Serializable {
 		Poststed = poststed;
 	}
 
-	public List<Konto> getKonto() {
+	public Collection<Konto> getKonto() {
 		return konto;
 	}
 

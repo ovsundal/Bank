@@ -79,6 +79,7 @@ public class KontoTest extends TestCase {
 	
 	public void list() throws Exception {
 		List<Konto> list = kontoer.list();
+		System.out.println("List has " + list.size() + " entries");
 		for(Konto kon : list) {
 			System.out.println("Listing : " + kon.getOwner().getNavn() + " - " + kon.getNavn() + " - " + kon.getSaldo() + " - " + kon.getDato_opprettet());
 		}

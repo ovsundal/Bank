@@ -115,18 +115,7 @@ public class PersonTest extends TestCase {
 		List<Person> list = personer.list();
 		for (Person pers : list) {
 			
-			//if no accounts have been made, secure against nullpointerexception
-			if(pers.getKonto() == null) {
-				System.out.println("Listing: " + pers.getPersonnummer() + " - " + pers.getNavn() + ": "
-						+ pers.getAdresselinje_1() + pers.getPostnummer() + " - Number of accounts: 0");
-			} else {
-				System.out.println("Listing: " + pers.getPersonnummer() + " - " + pers.getNavn() + ": "
-						+ pers.getAdresselinje_1() + pers.getPostnummer() + " - Number of accounts: " + pers.getKonto().size());
-			}
-			
-			
-			System.out.println("" + pers.getPersonnummer() + " - " + pers.getNavn() + ": "
-					+ pers.getAdresselinje_1() + pers.getPostnummer());
+			System.out.println(pers.toString());		
 		}
 	}
 
