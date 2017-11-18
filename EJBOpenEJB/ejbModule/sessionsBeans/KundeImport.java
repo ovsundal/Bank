@@ -16,7 +16,7 @@ import entity.Person;
  */
 @Stateless
 @LocalBean
-@EJB(name="Personer", beanInterface = PersonerLocal.class)
+@EJB(name="Personer", beanInterface = PersonsLocal.class)
 public class KundeImport implements KundeImportRemote {
 	@PersistenceContext (unitName = "bankdb-unit")
 	private EntityManager entityManager;
@@ -29,7 +29,7 @@ public class KundeImport implements KundeImportRemote {
     
     public void newKunde(Person p) throws Exception {
     	Context ctx = new InitialContext();
-    	PersonerLocal personerSessionBean = (PersonerLocal)ctx.lookup("java:comp/env/Personer");
+    	PersonsLocal personerSessionBean = (PersonsLocal)ctx.lookup("java:comp/env/Personer");
     	personerSessionBean.add(p);
     }
 

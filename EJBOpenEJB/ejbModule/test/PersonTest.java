@@ -12,7 +12,7 @@ public class PersonTest extends TestCase {
 	Context context;
 	@EJB
 	// Enheten vi opererer på
-	PersonerRemote personer;
+	PersonsRemote personer;
 
 	public void setUp() throws Exception {
 		Properties p = new Properties();
@@ -25,7 +25,7 @@ public class PersonTest extends TestCase {
 		p.put("Unmanaged_BankDBDataSource.JdbcUrl", "jdbc:hsqldb:file:data/bankdb/hsqldb");
 		p.put("Unmanaged_BankDBDataSource.JtaManaged", "false");
 		context = new InitialContext(p);
-		personer = (PersonerRemote) context.lookup("PersonerRemote");
+		personer = (PersonsRemote) context.lookup("PersonsRemote");
 	}
 
 	@Override
@@ -73,14 +73,7 @@ public class PersonTest extends TestCase {
 		try {
 			Person pers = personer.find(personnummer);
 			
-			//if no accounts have been made, secure against nullpointerexception
-			if(pers.getKonto() == null) {
-				System.out.println("Person found: " + pers.getPersonnummer() + " - " + pers.getNavn() + ": "
-						+ pers.getAdresselinje_1() + pers.getPostnummer() + " - Number of accounts: 0");
-			} else {
-				System.out.println("Person found: " + pers.getPersonnummer() + " - " + pers.getNavn() + ": "
-						+ pers.getAdresselinje_1() + pers.getPostnummer() + " - Number of accounts: " + pers.getKonto().size());
-			}
+			System.out.println(pers.toString());
 			
 		} catch (NullPointerException e) {
 			System.out.println("ERROR, could not find person with this personnummer");
@@ -113,8 +106,8 @@ public class PersonTest extends TestCase {
 	 */
 	public void list() throws Exception {
 		List<Person> list = personer.list();
+		
 		for (Person pers : list) {
-			
 			System.out.println(pers.toString());		
 		}
 	}
@@ -130,11 +123,11 @@ public class PersonTest extends TestCase {
 			for (Person pers : list) {
 				if (pers.getId() > 0) {
 					personer.remove(pers);
-					System.out.println("Deleting ... : " + pers.getPersonnummer() + " -" + pers.getNavn() + ": "
-							+ pers.getAdresselinje_1() + pers.getPostnummer());
+					System.out.println("Deleting ... : " + pers.getPersonId() + " -" + pers.getName() + ": "
+							+ pers.getAddress_1() + pers.getAreaCode());
 				} else {
-					System.out.println("Delete failed ... : " + pers.getPersonnummer() + " -" + pers.getNavn() + ": "
-							+ pers.getAdresselinje_1() + pers.getPostnummer());
+					System.out.println("Delete failed ... : " + pers.getPersonId() + " -" + pers.getName() + ": "
+							+ pers.getAddress_1() + pers.getAreaCode());
 				}
 			}
 		} finally {

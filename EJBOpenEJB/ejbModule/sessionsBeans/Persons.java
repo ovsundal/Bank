@@ -7,12 +7,12 @@ import javax.persistence.*;
 /**
  * Session Bean implementation class Personer
  */
-@Stateful(name= "Personer")
-public class Personer implements PersonerRemote, PersonerLocal {
+@Stateful(name= "Persons")
+public class Persons implements PersonsRemote, PersonsLocal {
 	@PersistenceContext(unitName = "bankdb-unit", type = PersistenceContextType.TRANSACTION)
 	private EntityManager entityManager;
 	
-	public Personer() {}
+	public Persons() {}
 	
 	/**
 	 * Add a new person to the database
@@ -51,10 +51,9 @@ public class Personer implements PersonerRemote, PersonerLocal {
 		try {
 			String pnummer = personnummer;
 			//todo: protect against SQL injection
-			Query query = entityManager.createQuery("SELECT p from Person as p WHERE p.Personnummer LIKE :personnummer")
+			Query query = entityManager.createQuery("SELECT p from Person as p WHERE p.personId LIKE :personnummer")
 					.setParameter("personnummer", personnummer);
 			p = (Person) query.getSingleResult();
-			System.out.println("This guy was found: " + p.getNavn());
 			return p;
 		} catch(NoResultException ex) {
 			System.out.println("Could not find any results with this personnummer");

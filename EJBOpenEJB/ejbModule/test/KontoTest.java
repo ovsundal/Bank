@@ -13,14 +13,14 @@ import entity.Konto;
 import entity.Person;
 import junit.framework.TestCase;
 import sessionsBeans.KontoerRemote;
-import sessionsBeans.PersonerRemote;
+import sessionsBeans.PersonsRemote;
 
 public class KontoTest extends TestCase {
 	Context context;
 	@EJB
 	// Enheten vi opererer på
 	KontoerRemote kontoer;
-	PersonerRemote personer;
+	PersonsRemote personer;
 	
 	public void setUp() throws Exception {
 		Properties p = new Properties();
@@ -34,7 +34,7 @@ public class KontoTest extends TestCase {
 		p.put("Unmanaged_BankDBDataSource.JtaManaged","false");
 		context= new InitialContext(p);
 		kontoer= (KontoerRemote)context.lookup("KontoerRemote");
-		personer = (PersonerRemote)context.lookup("PersonerRemote");
+		personer = (PersonsRemote)context.lookup("PersonsRemote");
 	}
 	
 	@Override

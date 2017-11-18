@@ -30,8 +30,8 @@ public class Kontoer implements KontoerRemote, KontoerLocal {
 	
 	private EntityManager entityManager;
 	
-	@EJB(name="Personer", beanInterface=PersonerLocal.class)
-	PersonerLocal personerBean;
+	@EJB(name="Personer", beanInterface=PersonsLocal.class)
+	PersonsLocal personerBean;
 
     public Kontoer() {}
     

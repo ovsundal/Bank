@@ -13,52 +13,52 @@ import javax.persistence.*;
 public class Person implements Serializable {
 	
 	@OneToMany(mappedBy="owner", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-	private Collection<Konto> konto = new ArrayList<>();
+	private Collection<Konto> accounts = new ArrayList<>();
 
 	@Id
 	@GeneratedValue
 	private int id;
-	@Column (name = "Personnummer", length = 11)
-	private String Personnummer;
-	@Column(name = "Navn", length = 30)
-	private String Navn;
-	@Column(name = "Adresselinje_1", length = 30)
-	private String Adresselinje_1;
-	@Column(name = "Adresselinje_2", length = 30)
-	private String Adresselinje_2;
-	@Column(name = "Postnummer", length = 4)
-	private String Postnummer;
-	@Column(name = "Poststed", length = 35)
-	private String Poststed;
+	@Column (name = "personId", length = 11)
+	private String personId;
+	@Column(name = "name", length = 30)
+	private String name;
+	@Column(name = "address_1", length = 30)
+	private String address_1;
+	@Column(name = "address_2", length = 30)
+	private String address_2;
+	@Column(name = "areaCode", length = 4)
+	private String areaCode;
+	@Column(name = "area", length = 35)
+	private String area;
 
 	/*** Konstruktører*/
 	public Person () {}
 
 	public Person(String Personnummer, String Navn, String Adresselinje_1,String Adresselinje_2, String Postnummer, String Poststed) {
 		
-		setPersonnummer(Personnummer);
-		setNavn(Navn);
-		setAdresselinje_1(Adresselinje_1);
-		setAdresselinje_2(Adresselinje_2);
-		setPostnummer(Postnummer);
-		setPoststed(Poststed);
+		setPersonId(Personnummer);
+		setName(Navn);
+		setAddress_1(Adresselinje_1);
+		setAddress_2(Adresselinje_2);
+		setAreaCode(Postnummer);
+		setArea(Poststed);
 		}
 	
 	
 
 	@Override
 	public String toString() {
-		return "Person [kontoer=" + konto.size() + ", id=" + id + ", Personnummer=" + Personnummer + ", Navn=" + Navn
-				+ ", Adresselinje_1=" + Adresselinje_1 + ", Adresselinje_2=" + Adresselinje_2 + ", Postnummer="
-				+ Postnummer + ", Poststed=" + Poststed + "]";
+		return "Person [kontoer=" + accounts.size() + ", id=" + id + ", personId=" + personId + ", name=" + name
+				+ ", address_1=" + address_1 + ", address_2=" + address_2 + ", areaCode="
+				+ areaCode + ", area=" + area + "]";
 	}
 
-	public String getPersonnummer() {
-		return Personnummer;
+	public String getPersonId() {
+		return personId;
 	}
 
-	public void setPersonnummer(String personnummer) {
-		Personnummer = personnummer;
+	public void setPersonId(String personId) {
+		this.personId = personId;
 	}
 
 	public int getId() {
@@ -69,52 +69,52 @@ public class Person implements Serializable {
 		this.id = id;
 	}
 
-	public String getNavn() {
-		return Navn;
+	public String getName() {
+		return name;
 	}
 
-	public void setNavn(String navn) {
-		Navn = navn;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getAdresselinje_1() {
-		return Adresselinje_1;
+	public String getAddress_1() {
+		return address_1;
 	}
 
-	public void setAdresselinje_1(String adresselinje_1) {
-		Adresselinje_1 = adresselinje_1;
+	public void setAddress_1(String address_1) {
+		this.address_1 = address_1;
 	}
 
-	public String getAdresselinje_2() {
-		return Adresselinje_2;
+	public String getAddress_2() {
+		return address_2;
 	}
 
-	public void setAdresselinje_2(String adresselinje_2) {
-		Adresselinje_2 = adresselinje_2;
+	public void setAddress_2(String address_2) {
+		this.address_2 = address_2;
 	}
 
-	public String getPostnummer() {
-		return Postnummer;
+	public String getAreaCode() {
+		return areaCode;
 	}
 
-	public void setPostnummer(String postnummer) {
-		Postnummer = postnummer;
+	public void setAreaCode(String areaCode) {
+		this.areaCode = areaCode;
 	}
 
-	public String getPoststed() {
-		return Poststed;
+	public String getArea() {
+		return area;
 	}
 
-	public void setPoststed(String poststed) {
-		Poststed = poststed;
+	public void setArea(String area) {
+		this.area = area;
 	}
 
-	public Collection<Konto> getKonto() {
-		return konto;
+	public Collection<Konto> getAccounts() {
+		return accounts;
 	}
 
-	public void setKonto(List<Konto> konto) {
-		this.konto = konto;
+	public void setAccounts(List<Konto> konto) {
+		this.accounts = konto;
 	}
 	
 	
