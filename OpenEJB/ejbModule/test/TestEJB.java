@@ -4,6 +4,7 @@ public class TestEJB {
 	
 	static PersonTest pt;
 	static KontoTest kt;
+	static CardTest ct;
 	
 	public static void main(String[] args) throws Exception {
 
@@ -25,15 +26,14 @@ public class TestEJB {
 		listPersons();
 		
 //		//tests from Accounts-bean
-		System.out.println("Creating 1 account for ove and 3 accounts for Knut using Accounts-bean from KontoTest:");
+		System.out.println("Creating 1 account for ove and 3 accounts (all empty) for Knut using Accounts-bean from KontoTest:");
 		createAccounts();
 		
 		System.out.println("Person list should now be updated with account numbers ( Ove: 1, Knut: 3): ");
 		listPersons();
-		
-		System.out.println("Get the current balance for all the four accounts: " );
-		getBalance();
-		
+
+		System.out.println("Add a card to two of the accounts");
+		addCard();
 		
 		
 		
@@ -51,14 +51,15 @@ public class TestEJB {
 	}
 	
 	
-
 	public static void setupTests() throws Exception {
 
 		pt = new PersonTest();
 		kt = new KontoTest();
+		ct = new CardTest();
 		System.out.println("Setting up remote beans...");
 		pt.setUp();
 		kt.setUp();
+		ct.setUp();
 	}
 
 	private static void addPersons() {
@@ -115,6 +116,11 @@ public class TestEJB {
 	
 	private static void getBalance() {
 		kt.getBalance();
+		System.out.println("------------------------------------");
+	}
+	
+	private static void addCard() {
+		ct.addCard();
 		System.out.println("------------------------------------");
 	}
 	

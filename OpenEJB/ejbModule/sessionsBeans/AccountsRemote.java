@@ -14,5 +14,4 @@ public interface AccountsRemote {
 	public void remove(Account k) throws Exception;
 	public List <Account> list() throws Exception;
 	public int getAccountBalance(int accountId) throws Exception;
-	public String depositMoney(Account k, int amount) throws Exception;
 }

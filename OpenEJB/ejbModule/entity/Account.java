@@ -26,10 +26,13 @@ public class Account implements Serializable {
 	@Column(name = "dateCreated")
 	private Date dateCreated;
 	
-	//add cascade , cascade = CascadeType.ALL
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="OWNER_ID")
 	private Person owner;
+	
+	@OneToOne(mappedBy="account", cascade = CascadeType.ALL,
+			fetch = FetchType.LAZY)
+	private Card card;
 	
 	public Account() {}
 
@@ -40,13 +43,11 @@ public class Account implements Serializable {
 		setBalance(balance);
 		setDateCreated(dato);
 	}
-	
-	
-	
+
 	@Override
 	public String toString() {
 		return "Account [id=" + id + ", name=" + name + ", balance=" + balance + ", dateCreated=" + dateCreated
-				+ ", owner=" + owner + "]";
+				+ ", owner=" + owner + ", card=" + card + "]";
 	}
 
 	public Person getOwner() {

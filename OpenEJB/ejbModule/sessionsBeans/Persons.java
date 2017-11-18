@@ -20,6 +20,7 @@ public class Persons implements PersonsRemote, PersonsLocal {
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void add(Person person) throws Exception {
 		entityManager.persist(person);
+		entityManager.flush();
 		}
 	/**
 	 * Remove a person from the database
@@ -27,6 +28,7 @@ public class Persons implements PersonsRemote, PersonsLocal {
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void remove(Person person) throws Exception {
 		entityManager.remove(entityManager.merge(person));
+		entityManager.flush();
 		}
 	/**
 	 * Lists all persons in the database. Only used for testing

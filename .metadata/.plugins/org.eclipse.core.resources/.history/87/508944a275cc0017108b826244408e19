@@ -1,0 +1,121 @@
+package sessionsBeans;
+
+import java.util.Date;
+import java.util.List;
+
+import javax.ejb.EJB;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
+import javax.persistence.Query;
+
+import entity.Account;
+import entity.Person;
+
+/**
+ * Session Bean implementation class Accounts
+ */
+@TransactionManagement(value=TransactionManagementType.CONTAINER)
+@TransactionAttribute(value= TransactionAttributeType.SUPPORTS)
+@Stateless(name= "Accounts")
+@LocalBean
+public class Accounts implements AccountsRemote, AccountsLocal {
+	
+	@PersistenceContext(unitName = "bankdb-unit", type = PersistenceContextType.TRANSACTION)
+	private EntityManager entityManager;
+	//Use a separate entitymanager for UPDATE queries due to potential synchronization issues (http://www.objectdb.com/java/jpa/query/jpql/update)
+	@PersistenceContext(unitName = "bankdb-unit", type = PersistenceContextType.TRANSACTION)
+	private EntityManager entityManagerForUpdates;
+	
+	@EJB(name="Personer", beanInterface=PersonsLocal.class)
+	PersonsLocal personerBean;
+
+    public Accounts() {}
+    
+    /**
+     * Create an account and assign it to a Person owner
+     */
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void add(Account k) throws Exception {
+
+    	entityManager.persist(k);
+	}
+    
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void remove(Account k) throws Exception {
+    	entityManager.remove(entityManager.merge(k));
+		
+	}
+    
+    @SuppressWarnings("unchecked")
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public List<Account> list() throws Exception {
+    	//bruker Java Persistence Query Language, ikke SQL
+    			Query query = entityManager.createQuery("SELECT k from Account as k");
+    			List <Account> l = query.getResultList();
+    			return l;
+	}
+
+    /**
+     * Method for viewing current balance
+     */
+  //todo: necessary to send whole account?
+	@Override
+	@SuppressWarnings("unchecked")
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public int getAccountBalance(int accountId) throws Exception {
+		//todo: tilstrekkelig beskyttelse med setParameter?
+		try {
+			Query query = entityManager.createQuery("SELECT a.balance from Account as a WHERE a.id LIKE :id")
+					.setParameter("id", accountId);
+			int balance = (int) query.getSingleResult();
+			return balance;
+		} catch (Exception e) {
+			System.out.println("ERROR, could not access database: ");
+			e.printStackTrace();
+		}
+		//todo: er det akseptabelt å returnere -1 hvis ikke kontotilgang? Kan en konto være negativ?
+		return -1;
+	}
+
+	@Override
+	//todo: tilstrekkelig med beskyttelse (negative summer) i client app?
+	public String depositMoney(int accountId, int amount) throws Exception {
+		
+		String dbResult = "";
+		System.out.println("From depositMoney method in db: accountId" + accountId + " amount: " + amount);
+		try {
+			Query query = entityManagerForUpdates.createQuery("UPDATE Account SET Account.balance = Account.balance + :amount WHERE Account.id = :accountId")
+					.setParameter("amount", amount)
+					.setParameter("accountId", accountId);
+			dbResult = (String) query.getSingleResult();
+			System.out.println("Result from db: " + dbResult);
+		} catch (Exception e) {
+			System.out.println("ERROR, could not deposit money");
+			e.printStackTrace();
+		}
+		return dbResult;
+	}
+
+	/**
+	 * Method for depositing money
+	 */
+//	@Override
+//	public String depositMoney(Account k, int amount) throws Exception {
+//		
+//		//check against depositing a negative value
+//		if(amount <= 0) {
+//			return "You cannot deposit a negative amount. Process aborted.";
+//		}
+		
+		
+		
+		
+	}
+

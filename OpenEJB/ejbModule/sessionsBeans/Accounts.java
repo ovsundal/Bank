@@ -21,53 +21,56 @@ import entity.Person;
 /**
  * Session Bean implementation class Accounts
  */
-@TransactionManagement(value=TransactionManagementType.CONTAINER)
-@TransactionAttribute(value= TransactionAttributeType.SUPPORTS)
-@Stateless(name= "Accounts")
+@TransactionManagement(value = TransactionManagementType.CONTAINER)
+@TransactionAttribute(value = TransactionAttributeType.SUPPORTS)
+@Stateless(name = "Accounts")
 @LocalBean
 public class Accounts implements AccountsRemote, AccountsLocal {
+
 	@PersistenceContext(unitName = "bankdb-unit", type = PersistenceContextType.TRANSACTION)
-	
 	private EntityManager entityManager;
-	
-	@EJB(name="Personer", beanInterface=PersonsLocal.class)
+
+	@EJB(name = "Personer", beanInterface = PersonsLocal.class)
 	PersonsLocal personerBean;
 
-    public Accounts() {}
-    
-    /**
-     * Create an account and assign it to a Person owner
-     */
-    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public Accounts() {
+	}
+
+	/**
+	 * Create an account and assign it to a Person owner
+	 */
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void add(Account k) throws Exception {
 
-    	entityManager.persist(k);
-	}
-    
-    @TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void remove(Account k) throws Exception {
-    	entityManager.remove(entityManager.merge(k));
-		
-	}
-    
-    @SuppressWarnings("unchecked")
-    @TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public List<Account> list() throws Exception {
-    	//bruker Java Persistence Query Language, ikke SQL
-    			Query query = entityManager.createQuery("SELECT k from Account as k");
-    			List <Account> l = query.getResultList();
-    			return l;
+		entityManager.persist(k);
+		entityManager.flush();
 	}
 
-    /**
-     * Method for viewing current balance
-     */
-  //todo: necessary to send whole account?
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void remove(Account k) throws Exception {
+		entityManager.remove(entityManager.merge(k));
+		entityManager.flush();
+
+	}
+
+	@SuppressWarnings("unchecked")
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public List<Account> list() throws Exception {
+		// bruker Java Persistence Query Language, ikke SQL
+		Query query = entityManager.createQuery("SELECT k from Account as k");
+		List<Account> l = query.getResultList();
+		return l;
+	}
+
+	/**
+	 * Method for viewing current balance
+	 */
+	// todo: necessary to send whole account?
 	@Override
 	@SuppressWarnings("unchecked")
-    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public int getAccountBalance(int accountId) throws Exception {
-		
+		// todo: tilstrekkelig beskyttelse med setParameter?
 		try {
 			Query query = entityManager.createQuery("SELECT a.balance from Account as a WHERE a.id LIKE :id")
 					.setParameter("id", accountId);
@@ -77,29 +80,8 @@ public class Accounts implements AccountsRemote, AccountsLocal {
 			System.out.println("ERROR, could not access database: ");
 			e.printStackTrace();
 		}
-		//todo: er det akseptabelt å returnere -1 hvis ikke kontotilgang? Kan en konto være negativ?
+		// todo: er det akseptabelt å returnere -1 hvis ikke kontotilgang? Kan
+		// en konto være negativ?
 		return -1;
 	}
-
-	@Override
-	public String depositMoney(Account k, int amount) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/**
-	 * Method for depositing money
-	 */
-//	@Override
-//	public String depositMoney(Account k, int amount) throws Exception {
-//		
-//		//check against depositing a negative value
-//		if(amount <= 0) {
-//			return "You cannot deposit a negative amount. Process aborted.";
-//		}
-		
-		
-		
-		
-	}
-
+}

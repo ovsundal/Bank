@@ -3,7 +3,8 @@
 		<jta-data-source>BankDBDatasource</jta-data-source>
 		<non-jta-data-source>Unmanaged_BankDBDataSource</non-jta-data-source>
 		<class>entity.Person</class>
-		<class>entity.Konto</class>
+		<class>entity.Account</class>
+		<class>entity.Card</class>
 		<properties>
 			<property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)" />
 		</properties>

@@ -18,7 +18,6 @@ import sessionsBeans.PersonsRemote;
 public class KontoTest extends TestCase {
 	Context context;
 	@EJB
-	// Enheten vi opererer på
 	AccountsRemote accounts;
 	PersonsRemote persons;
 	
@@ -40,16 +39,6 @@ public class KontoTest extends TestCase {
 	@Override
 	public void tearDown() throws Exception {}
 	
-//	public void test() throws Exception {
-//		List<Account> list = accounts.list();
-//		int assertsize = list.size();
-//		assertEquals( "List.size()", assertsize, list.size());
-//		addKonto();
-//		list = accounts.list();
-//		assertEquals( "List.size()", assertsize + 1, list.size());
-//		list();
-//	}
-	
 	public void addKonto() throws Exception {
 		try{
 			//query a person (Ove from database and create one account
@@ -59,18 +48,18 @@ public class KontoTest extends TestCase {
 			Date d = new Date();
 			
 			//add an account to person
-			Account k = new Account(ove, "Forbrukskonto", 5000, d);
+			Account k = new Account(ove, "Forbrukskonto", 0, d);
 			accounts.add(k);
 			
 			//query a person (Knut) from database and create three accounts:
 			personnummer = "33332223344";
 			Person knut = persons.find(personnummer);
 			d = new Date();
-			k = new Account(knut, "Gjeldskonto", 19999, d);
+			k = new Account(knut, "Gjeldskonto", 0, d);
 			accounts.add(k);
-			k = new Account(knut, "Midtlivskrisekonto", 200000, d);
+			k = new Account(knut, "Midtlivskrisekonto", 0, d);
 			accounts.add(k);	
-			k = new Account(knut, "Luksuskonto", 999999, d);
+			k = new Account(knut, "Luksuskonto", 0, d);
 			accounts.add(k);	
 		} 
 		finally{
@@ -100,12 +89,14 @@ public class KontoTest extends TestCase {
 		finally {
 		}
 	}
-
+	
+	/**
+	 * Returns the balance of all created accounts
+	 */
 	public void getBalance() {
-		
-		List<Account> list;
+
 		try {
-			list = accounts.list();
+			 List<Account> list = accounts.list();
 			for(Account acc : list) {
 				System.out.println("Balance: " + accounts.getAccountBalance(acc.getId()) + " for account: " + acc.toString());
 			}
@@ -113,6 +104,5 @@ public class KontoTest extends TestCase {
 			System.out.println("ERROR, could not get balance");
 			e.printStackTrace();
 		}
-		
 	}
 }
