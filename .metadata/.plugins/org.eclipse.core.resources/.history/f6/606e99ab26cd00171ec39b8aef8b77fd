@@ -48,7 +48,7 @@ public class MiniBankTest extends TestCase {
 			
 			List<Account> list = accounts.list();
 			for(Account acc : list) {
-				minibank.deposit(acc.getId(), moneyForDeposit);
+				minibank.deposit(acc, moneyForDeposit);
 				moneyForDeposit += 2000;
 			}
 			

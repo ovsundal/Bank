@@ -33,12 +33,15 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 		try {
 			acc = accountsBean.get(accountId);
 			acc.setBalance(acc.getBalance() + amount);
+			
 			entityManager.flush();
 			acc = accountsBean.get(accountId);
 		} catch (Exception e) {
 			System.out.println("ERROR, could not get account from database. Money was not deposited");
 			e.printStackTrace();
 		}
+		
+		
 	}
 
 	@Override

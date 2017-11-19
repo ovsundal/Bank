@@ -39,6 +39,8 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 			System.out.println("ERROR, could not get account from database. Money was not deposited");
 			e.printStackTrace();
 		}
+		
+		
 	}
 
 	@Override

@@ -47,8 +47,8 @@ public class TestEJB {
 		//tests from minibank-bean
 		System.out.println("--Depositing money into accounts--");
 		depositMoney();
-		System.out.println("Accounts should now have money:");
-		listAccounts();
+//		System.out.println("Accounts should now have money:");
+//		listAccounts();
 		
 		
 		

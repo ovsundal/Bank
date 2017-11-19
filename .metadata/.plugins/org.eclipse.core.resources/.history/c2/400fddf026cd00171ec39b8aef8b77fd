@@ -3,9 +3,6 @@ package sessionsBeans;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
 
 import entity.Account;
 
@@ -15,9 +12,6 @@ import entity.Account;
 @Stateless
 @LocalBean
 public class MiniBank implements MiniBankRemote, MiniBankLocal {
-	
-	@PersistenceContext(unitName = "bankdb-unit", type = PersistenceContextType.TRANSACTION)
-	private EntityManager entityManager;
 	
 	@EJB(name = "Accounts", beanInterface = AccountsLocal.class)
 	AccountsLocal accountsBean;
@@ -32,13 +26,14 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 		Account acc;
 		try {
 			acc = accountsBean.get(accountId);
-			acc.setBalance(acc.getBalance() + amount);
-			entityManager.flush();
-			acc = accountsBean.get(accountId);
 		} catch (Exception e) {
-			System.out.println("ERROR, could not get account from database. Money was not deposited");
+			System.out.println("ERROR, could not get account from database");
 			e.printStackTrace();
 		}
+		
+		System.out.println("current balance of account" + acc.getBalance() + " - Adding " + amount + " to the account");
+		acc.setBalance(acc.getBalance() + amount);
+		System.out.println("Deposit complete. Balance is now: " + acc);
 	}
 
 	@Override
