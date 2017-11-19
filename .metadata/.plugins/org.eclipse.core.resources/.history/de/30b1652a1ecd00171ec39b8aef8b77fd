@@ -33,7 +33,7 @@ public class TestEJB {
 		listPersons();
 		
 		//tests from Card-bean
-		System.out.println("Add a card to two accounts. List cards:");
+		System.out.println("Add a card to an account. List card:");
 		addCard();
 		listCards();
 		

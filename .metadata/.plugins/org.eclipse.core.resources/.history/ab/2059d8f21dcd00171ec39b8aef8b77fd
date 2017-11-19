@@ -45,13 +45,11 @@ public class CardTest extends TestCase {
 			List<Account> list = accounts.list();
 
 			Account acc = list.get(0);
-			Account acc2 = list.get(3);
 
 			Card c = new Card("0000", true, acc);
-			Card c2 = new Card("1111", true, acc2);
 
 			cards.add(c);
-			cards.add(c2);
+			cards.add(c);
 
 		} catch (Exception e) {
 			System.out.println("ERROR, could not add card to account");

@@ -51,7 +51,6 @@ public class CardTest extends TestCase {
 			Card c2 = new Card("1111", true, acc2);
 
 			cards.add(c);
-			cards.add(c2);
 
 		} catch (Exception e) {
 			System.out.println("ERROR, could not add card to account");

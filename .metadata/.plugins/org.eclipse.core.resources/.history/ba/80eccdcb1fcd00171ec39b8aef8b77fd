@@ -1,0 +1,9 @@
+package sessionsBeans;
+
+import javax.ejb.Remote;
+
+@Remote
+public interface MiniBankRemote {
+
+	public String deposit(Account acc, int amount);
+}

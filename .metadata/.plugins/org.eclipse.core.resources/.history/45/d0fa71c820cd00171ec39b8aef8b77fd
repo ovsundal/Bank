@@ -1,0 +1,11 @@
+package sessionsBeans;
+
+import javax.ejb.Local;
+
+import entity.Account;
+
+@Local
+public interface MiniBankLocal {
+
+	public String deposit(Account acc, int amount);
+}
