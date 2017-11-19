@@ -1,6 +1,8 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.*;
@@ -30,9 +32,14 @@ public class Account implements Serializable {
 	@JoinColumn(name="OWNER_ID")
 	private Person owner;
 	
-	@OneToOne(mappedBy="account", cascade = CascadeType.ALL,
-			fetch = FetchType.LAZY)
+//	@OneToOne(mappedBy="account", cascade = CascadeType.ALL,
+//			fetch = FetchType.LAZY)
+//	private Card card = new Card();
+	
+	
+	@OneToOne(mappedBy="")
 	private Card card;
+	
 	
 	public Account() {}
 
@@ -47,7 +54,7 @@ public class Account implements Serializable {
 	@Override
 	public String toString() {
 		return "Account [id=" + id + ", name=" + name + ", balance=" + balance + ", dateCreated=" + dateCreated
-				+ ", owner=" + owner + ", card=" + card + "]";
+				+ ", owner=" + owner.getId() + ", card=" + card + "]";
 	}
 
 	public Person getOwner() {

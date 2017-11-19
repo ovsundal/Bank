@@ -14,15 +14,16 @@ import javax.persistence.*;
 public class Card implements Serializable {
 
 	@Id
+	@GeneratedValue
 	private int id;
 	@Column(name = "pin", length = 4)
 	private String pin;
 	@Column(name = "isCardActive")
 	private boolean isCardActive;
 	
-	@OneToOne(fetch = FetchType.LAZY)
-	@MapsId
-	private Account account;
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name="CARD_ID")
+	private Account owner;
 	
 	public Card(){}
 
@@ -35,7 +36,7 @@ public class Card implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Card [id=" + id + ", pin=" + pin + ", isCardActive=" + isCardActive + ", account=" + account + "]";
+		return "Card [id=" + id + ", pin=" + pin + ", isCardActive=" + isCardActive + ", owner=" + owner.getId() + "]";
 	}
 
 	public int getId() {
@@ -63,11 +64,11 @@ public class Card implements Serializable {
 	}
 
 	public Account getAccount() {
-		return account;
+		return owner;
 	}
 
 	public void setAccount(Account account) {
-		this.account = account;
+		this.owner = account;
 	};
 	
 }

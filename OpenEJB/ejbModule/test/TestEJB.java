@@ -31,9 +31,14 @@ public class TestEJB {
 		
 		System.out.println("Person list should now be updated with account numbers ( Ove: 1, Knut: 3): ");
 		listPersons();
-
-		System.out.println("Add a card to two of the accounts");
+		
+		//tests from Card-bean
+		System.out.println("Add a card to an account. List card:");
 		addCard();
+		listCards();
+		
+		System.out.println("Cards generated belongs to an account: ");
+		listAccounts();
 		
 		
 		
@@ -50,7 +55,7 @@ public class TestEJB {
 		
 	}
 	
-	
+
 	public static void setupTests() throws Exception {
 
 		pt = new PersonTest();
@@ -114,6 +119,16 @@ public class TestEJB {
 		}
 	}
 	
+	private static void listAccounts() {
+		try {
+			kt.list();
+			System.out.println("------------------------------------");
+		} catch (Exception e) {
+			System.out.println("Error, could not list accounts from database");
+			e.printStackTrace();
+		}
+	}
+	
 	private static void getBalance() {
 		kt.getBalance();
 		System.out.println("------------------------------------");
@@ -124,14 +139,25 @@ public class TestEJB {
 		System.out.println("------------------------------------");
 	}
 	
+	private static void listCards() {
+		try {
+			ct.list();
+			System.out.println("------------------------------------");
+		} catch (Exception e) {
+			System.out.println("Error, could not list cards from database");
+			e.printStackTrace();
+		}
+	}
+	
 
 	public static void cleanUpTests() throws Exception {
 		System.out.println("Cleaning up tests..");
 		pt.remove();
 		kt.remove();
-		
+		ct.remove();
 		pt.tearDown();
 		kt.tearDown();
+		ct.tearDown();
 		System.out.println("Cleanup complete!");
 	}
 }
