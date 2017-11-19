@@ -1,5 +1,6 @@
 package sessionsBeans;
 
+import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
@@ -11,17 +12,21 @@ import entity.Account;
 @Stateless
 @LocalBean
 public class MiniBank implements MiniBankRemote, MiniBankLocal {
-
+	
+	@EJB(name = "Accounts", beanInterface = AccountsLocal.class)
+	AccountsLocal accountsBean;
     /**
      * Default constructor. 
      */
-    public MiniBank() {
-        // TODO Auto-generated constructor stub
-    }
+    public MiniBank() {}
 
 	@Override
 	public void deposit(Account acc, int amount) {
+	
+		
+		System.out.println("current balance of account" + acc.getBalance() + " - Adding " + amount + " to the account");
 		acc.setBalance(acc.getBalance() + amount);
+		System.out.println("Deposit complete. Balance is now: " + acc);
 	}
 
 	@Override

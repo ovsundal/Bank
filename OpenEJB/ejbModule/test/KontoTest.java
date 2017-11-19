@@ -105,4 +105,18 @@ public class KontoTest extends TestCase {
 			e.printStackTrace();
 		}
 	}
+
+	public void getAccount() {
+		try {
+			 List<Account> list = accounts.list();
+			 Account acc = list.get(0);
+			 System.out.println("Should find this account: " + acc.toString());
+			 
+			 Account accFound = accounts.get(acc.getId());
+			 System.out.println("Found this account: " + accFound.toString());
+		} catch(Exception e) {
+			System.out.println("ERROR, could not find account using method get from accounts-bean");
+		}
+		
+	}
 }

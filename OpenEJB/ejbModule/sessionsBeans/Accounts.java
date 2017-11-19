@@ -70,7 +70,6 @@ public class Accounts implements AccountsRemote, AccountsLocal {
 	@SuppressWarnings("unchecked")
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public int getAccountBalance(int accountId) throws Exception {
-		// todo: tilstrekkelig beskyttelse med setParameter?
 		try {
 			Query query = entityManager.createQuery("SELECT a.balance from Account as a WHERE a.id LIKE :id")
 					.setParameter("id", accountId);
@@ -83,5 +82,20 @@ public class Accounts implements AccountsRemote, AccountsLocal {
 		// todo: er det akseptabelt å returnere -1 hvis ikke kontotilgang? Kan
 		// en konto være negativ?
 		return -1;
+	}
+
+	@Override
+	public Account get(int accountId) throws Exception {
+		try {
+			Query query = entityManager.createQuery("SELECT a from Account as a WHERE a.id LIKE :id")
+					.setParameter("id", accountId);
+			Account acc = (Account) query.getSingleResult();
+			System.out.println("Returning this account: " + acc);
+			return acc;
+		} catch (Exception e) {
+			System.out.println("ERROR, could not access database and retrieve account: ");
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

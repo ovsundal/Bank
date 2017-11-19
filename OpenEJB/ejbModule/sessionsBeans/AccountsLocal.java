@@ -20,4 +20,5 @@ public interface AccountsLocal {
 	public void remove(Account k) throws Exception;
 	public List <Account> list() throws Exception;
 	public int getAccountBalance(int accountId) throws Exception;
+	public Account get(int accountId) throws Exception;
 }

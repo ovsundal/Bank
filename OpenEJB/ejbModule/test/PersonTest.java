@@ -11,7 +11,6 @@ import sessionsBeans.*;
 public class PersonTest extends TestCase {
 	Context context;
 	@EJB
-	// Enheten vi opererer på
 	PersonsRemote persons;
 
 	public void setUp() throws Exception {

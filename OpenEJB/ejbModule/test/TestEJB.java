@@ -5,6 +5,7 @@ public class TestEJB {
 	static PersonTest pt;
 	static KontoTest kt;
 	static CardTest ct;
+	static MiniBankTest mbt;
 	
 	public static void main(String[] args) throws Exception {
 
@@ -29,6 +30,9 @@ public class TestEJB {
 		System.out.println("Creating 1 account for ove and 3 accounts (all empty) for Knut using Accounts-bean from KontoTest:");
 		createAccounts();
 		
+		System.out.println("Searching for an account using get method. Should return one Account:");
+		getAccount();
+		
 		System.out.println("Person list should now be updated with account numbers ( Ove: 1, Knut: 3): ");
 		listPersons();
 		
@@ -40,14 +44,18 @@ public class TestEJB {
 		System.out.println("Cards generated belongs to an account: ");
 		listAccounts();
 		
+		//tests from minibank-bean
+//		System.out.println("--Depositing money into accounts--");
+//		depositMoney();
+//		System.out.println("Accounts should now have money:");
+//		listAccounts();
+		
+		
 		
 		
 		cleanUpTests();
 		
 		
-		
-		
-//		doTest();
 		
 		
 	
@@ -56,15 +64,20 @@ public class TestEJB {
 	}
 	
 
+	
+
+
 	public static void setupTests() throws Exception {
 
 		pt = new PersonTest();
 		kt = new KontoTest();
 		ct = new CardTest();
+		mbt = new MiniBankTest();
 		System.out.println("Setting up remote beans...");
 		pt.setUp();
 		kt.setUp();
 		ct.setUp();
+		mbt.setUp();
 	}
 
 	private static void addPersons() {
@@ -119,6 +132,12 @@ public class TestEJB {
 		}
 	}
 	
+	private static void getAccount() {
+
+			kt.getAccount();
+			System.out.println("------------------------------------");
+	}
+	
 	private static void listAccounts() {
 		try {
 			kt.list();
@@ -147,6 +166,11 @@ public class TestEJB {
 			System.out.println("Error, could not list cards from database");
 			e.printStackTrace();
 		}
+	}
+	
+	private static void depositMoney() {
+		
+		mbt.depositMoney();
 	}
 	
 
