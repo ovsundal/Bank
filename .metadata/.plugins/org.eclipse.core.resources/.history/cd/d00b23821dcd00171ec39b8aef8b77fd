@@ -37,7 +37,7 @@ public class Account implements Serializable {
 //	private Card card = new Card();
 	
 	
-	@OneToOne(mappedBy="owner")
+	@OneToOne(mappedBy="")
 	private Card card;
 	
 	
