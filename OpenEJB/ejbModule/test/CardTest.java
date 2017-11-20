@@ -46,12 +46,17 @@ public class CardTest extends TestCase {
 
 			Account acc = list.get(0);
 			Account acc2 = list.get(3);
+			
+			//todo:
+			//generate card number
+			
+			//generate random pin
+			String randomPin = String.valueOf((int)(Math.random()*9000) + 1000);
+			
+			//make card with these
+			
+			//return number and pin to user
 
-			Card c = new Card("0000", true, acc);
-			Card c2 = new Card("1111", true, acc2);
-
-			cards.add(c);
-			cards.add(c2);
 
 		} catch (Exception e) {
 			System.out.println("ERROR, could not add card to account");

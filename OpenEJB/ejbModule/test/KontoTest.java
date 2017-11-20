@@ -43,7 +43,7 @@ public class KontoTest extends TestCase {
 		try{
 			//query a person (Ove from database and create one account
 			String personnummer = "01020304056";
-			Person ove = persons.find(personnummer);
+			Person ove = persons.get(personnummer);
 			
 			Date d = new Date();
 			
@@ -53,7 +53,7 @@ public class KontoTest extends TestCase {
 			
 			//query a person (Knut) from database and create three accounts:
 			personnummer = "33332223344";
-			Person knut = persons.find(personnummer);
+			Person knut = persons.get(personnummer);
 			d = new Date();
 			k = new Account(knut, "Gjeldskonto", 0, d);
 			accounts.add(k);

@@ -70,7 +70,7 @@ public class PersonTest extends TestCase {
 	public void findPerson(String personnummer) {
 
 		try {
-			Person pers = persons.find(personnummer);
+			Person pers = persons.get(personnummer);
 			
 			System.out.println(pers.toString());
 			
@@ -89,7 +89,7 @@ public class PersonTest extends TestCase {
 
 		Person p;
 		try {
-			p = persons.find(personnummer);
+			p = persons.get(personnummer);
 			persons.remove(p);
 		} catch (Exception e) {
 			System.out.println("Error, could not delete person with personnummer " + personnummer );

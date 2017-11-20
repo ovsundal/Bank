@@ -1,5 +1,7 @@
 package sessionsBeans;
 
+import java.util.Date;
+
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -10,6 +12,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
 
 import entity.Account;
+import entity.Person;
 
 /**
  * Session Bean implementation class MiniBank
@@ -23,6 +26,9 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 	
 	@EJB(name = "Accounts", beanInterface = AccountsLocal.class)
 	AccountsLocal accountsBean;
+	
+	@EJB(name = "Persons", beanInterface = PersonsLocal.class)
+	PersonsLocal personsBean;
     /**
      * Default constructor. 
      */
@@ -141,5 +147,27 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 		return response;
 	}
 
-
+	@Override
+	@TransactionAttribute(value= TransactionAttributeType.REQUIRES_NEW)
+	public String createAccount(String personId, String accountName, int initialBalance, Date dateCreated) {
+		
+		
+		try {
+			//find person
+			Person p = personsBean.get(personId);
+			
+			//create account
+			Account acc = new Account(p, accountName, initialBalance, dateCreated);
+			accountsBean.add(acc);
+			
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		return null;
+	}
 }
