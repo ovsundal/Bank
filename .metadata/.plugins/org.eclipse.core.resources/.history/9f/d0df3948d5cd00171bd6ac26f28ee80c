@@ -55,9 +55,6 @@ public class TestEJB {
 		System.out.println("Accounts should now have 500 less:");
 		listAccounts();
 		
-		
-		
-		
 		cleanUpTests();
 		
 		

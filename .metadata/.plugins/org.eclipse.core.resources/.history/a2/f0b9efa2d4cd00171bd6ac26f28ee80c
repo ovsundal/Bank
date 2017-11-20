@@ -46,27 +46,11 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 	@Override
 	public String withdraw(int accountId, int amount) {
 		
-		//check that amount to withdraw is not negative
-		if(amount <= 0) {
-			return "You cannot withdraw a negative amount";
-		}
-		
 		try {
-			Account acc;
-			acc = accountsBean.get(accountId);
-			
-			//check that there is enough money on the account
-			if(acc.getBalance() < amount) {
-				return "There is not enough money on the account to perform the transaction";
-			}
-			
-			acc.setBalance(acc.getBalance() - amount);
-			return "You have withdrawn " + amount + " from account " + acc.getName();
-		} catch(Exception e) {
-			System.out.println("Error, could not connect to database, or something else is wrong");
-			e.printStackTrace();
+			acc = accountsBean.get(accountId)
 		}
-		return "";
+	
+		return null;
 	}
 
 

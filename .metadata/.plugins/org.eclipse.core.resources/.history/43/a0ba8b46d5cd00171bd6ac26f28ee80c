@@ -50,11 +50,6 @@ public class TestEJB {
 		System.out.println("Accounts should now have money:");
 		listAccounts();
 		
-		System.out.println("--Withdrawing 500 from all accounts--");
-		withdrawMoney();
-		System.out.println("Accounts should now have 500 less:");
-		listAccounts();
-		
 		
 		
 		
@@ -176,11 +171,6 @@ public class TestEJB {
 	private static void depositMoney() {
 		
 		mbt.depositMoney();
-	}
-	
-	private static void withdrawMoney() {
-		mbt.withdrawMoney();
-		
 	}
 	
 

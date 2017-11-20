@@ -2,4 +2,7 @@
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="java.io.Serializable"/>
 <fullyQualifiedTypeName name="entity.Card"/>
+<fullyQualifiedTypeName name="entity.Account"/>
+<fullyQualifiedTypeName name="junit.framework.TestCase"/>
+<fullyQualifiedTypeName name="sessionsBeans.MiniBankRemote"/>
 </qualifiedTypeNameHistroy>

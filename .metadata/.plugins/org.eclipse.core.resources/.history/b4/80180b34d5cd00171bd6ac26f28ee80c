@@ -59,21 +59,6 @@ public class MiniBankTest extends TestCase {
 		}
 		
 	}
-
-	public void withdrawMoney() {
-		
-		try {
-			int moneyToWithdraw = 500;
-			
-			List<Account> list = accounts.list();
-			for(Account acc : list) {
-				minibank.withdraw(acc.getId(), moneyToWithdraw);
-			}
-		} catch(Exception e) {
-			System.out.println("ERROR, could not withdraw money from accounts in MiniBankTest withdrawMoney()");
-		}
-		
-	}
 	
 	
 	
