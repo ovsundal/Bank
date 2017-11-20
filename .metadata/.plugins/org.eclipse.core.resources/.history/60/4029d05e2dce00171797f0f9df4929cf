@@ -32,7 +32,6 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
      * Used to deposit money into an account
      */
 	@Override
-	@TransactionAttribute(value= TransactionAttributeType.REQUIRES_NEW)
 	public String deposit(int accountId, int amount) {
 		
 		//check that amount to withdraw is not negative
@@ -59,7 +58,6 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 	 * Used to withdraw money from an account
 	 */
 	@Override
-	@TransactionAttribute(value= TransactionAttributeType.REQUIRES_NEW)
 	public String withdraw(int accountId, int amount) {
 		
 		//check that amount to withdraw is not negative
@@ -89,7 +87,6 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 	 * Used to get account balance
 	 */
 	@Override
-	@TransactionAttribute(value= TransactionAttributeType.SUPPORTS)
 	public String getAccountBalance(int accountId) {
 		try {
 			

@@ -89,7 +89,6 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 	 * Used to get account balance
 	 */
 	@Override
-	@TransactionAttribute(value= TransactionAttributeType.SUPPORTS)
 	public String getAccountBalance(int accountId) {
 		try {
 			
