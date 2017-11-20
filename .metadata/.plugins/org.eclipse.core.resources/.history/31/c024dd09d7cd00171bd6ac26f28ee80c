@@ -41,41 +41,25 @@ public class MiniBankTest extends TestCase {
 	/**
 	 * Deposits money in all test accounts
 	 */
-	public void depositMoney(int moneyToDeposit) {
+	public void depositMoney() {
 		
-		try {	
+		try {
+			int moneyForDeposit = 2000;
+			
 			List<Account> list = accounts.list();
 			for(Account acc : list) {
-				minibank.deposit(acc.getId(), moneyToDeposit);
-				moneyToDeposit += 2000;
+				minibank.deposit(acc.getId(), moneyForDeposit);
+				moneyForDeposit += 2000;
 			}
+			
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 	}
-	
-	/**
-	 * Tries to deposit a negative sum
-	 */
-	public void depositNegativeMoney(int moneyToDeposit) {
-		
-		try {	
-			List<Account> list = accounts.list();
-			for(Account acc : list) {
-				minibank.deposit(acc.getId(), moneyToDeposit);
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
-/**
- * Withdraw money
- * @param moneyToWithdraw
- */
+
 	public void withdrawMoney(int moneyToWithdraw) {
 		
 		try {;
@@ -89,7 +73,7 @@ public class MiniBankTest extends TestCase {
 		}
 		
 	}
-
+	
 	
 	
 	

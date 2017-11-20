@@ -27,12 +27,7 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
     public MiniBank() {}
 
 	@Override
-	public String deposit(int accountId, int amount) {
-		
-		//check that amount to withdraw is not negative
-		if(amount <= 0) {
-			return "You cannot deposit a negative amount";
-		}
+	public void deposit(int accountId, int amount) {
 		
 		Account acc;
 		try {
@@ -41,12 +36,11 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 			entityManager.flush();
 			acc = accountsBean.get(accountId);
 			
-			return "You have deposited " + amount + " into account " + acc.getName();
+			System.out.println("You have deposited " + amount + " into account " + acc.getName());
 		} catch (Exception e) {
 			System.out.println("ERROR, could not get account from database. Money was not deposited");
 			e.printStackTrace();
 		}
-		return "";
 	}
 
 	@Override

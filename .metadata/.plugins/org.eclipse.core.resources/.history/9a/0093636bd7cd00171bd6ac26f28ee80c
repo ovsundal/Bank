@@ -7,6 +7,6 @@ import entity.Account;
 @Local
 public interface MiniBankLocal {
 
-	public String deposit(int accountId, int amount);
+	public void deposit(int accountId, int amount);
 	public String withdraw(int accountId, int amount);
 }

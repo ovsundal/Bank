@@ -198,6 +198,7 @@ public class TestEJB {
 	
 	private static void depositNegativeMoney(int amount) {
 		mbt.depositNegativeMoney(amount);
+		
 	}
 	
 	private static void withdrawMoney(int amount) {

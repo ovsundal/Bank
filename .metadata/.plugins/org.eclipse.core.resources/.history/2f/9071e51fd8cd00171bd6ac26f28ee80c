@@ -90,6 +90,11 @@ public class MiniBankTest extends TestCase {
 		
 	}
 
+public void depositNegativeMoney(int amount) {
+	// TODO Auto-generated method stub
+	
+}
+	
 	
 	
 	

@@ -46,12 +46,8 @@ public class TestEJB {
 		
 		//tests from minibank-bean
 		System.out.println("--Depositing money into accounts--");
-		depositMoney(2000);
+		depositMoney();
 		System.out.println("Accounts should now have money:");
-		listAccounts();
-		System.out.println("--Try to deposit a negative amount of money into accounts--");
-		depositNegativeMoney(-500);
-		System.out.println("Accounts should be unchanged:");
 		listAccounts();
 		
 		System.out.println("--Withdrawing 500 NOK from all accounts--");
@@ -82,12 +78,6 @@ public class TestEJB {
 	
 
 	
-
-
-
-
-
-
 
 
 	public static void setupTests() throws Exception {
@@ -191,13 +181,9 @@ public class TestEJB {
 		}
 	}
 	
-	private static void depositMoney(int amount) {
+	private static void depositMoney() {
 		
-		mbt.depositMoney(amount);
-	}
-	
-	private static void depositNegativeMoney(int amount) {
-		mbt.depositNegativeMoney(amount);
+		mbt.depositMoney();
 	}
 	
 	private static void withdrawMoney(int amount) {

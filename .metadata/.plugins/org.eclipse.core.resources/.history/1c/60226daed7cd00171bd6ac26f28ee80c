@@ -50,8 +50,8 @@ public class TestEJB {
 		System.out.println("Accounts should now have money:");
 		listAccounts();
 		System.out.println("--Try to deposit a negative amount of money into accounts--");
-		depositNegativeMoney(-500);
-		System.out.println("Accounts should be unchanged:");
+		depositMoney(-500);
+		System.out.println("Accounts should now have money:");
 		listAccounts();
 		
 		System.out.println("--Withdrawing 500 NOK from all accounts--");
@@ -82,12 +82,6 @@ public class TestEJB {
 	
 
 	
-
-
-
-
-
-
 
 
 	public static void setupTests() throws Exception {
@@ -194,10 +188,6 @@ public class TestEJB {
 	private static void depositMoney(int amount) {
 		
 		mbt.depositMoney(amount);
-	}
-	
-	private static void depositNegativeMoney(int amount) {
-		mbt.depositNegativeMoney(amount);
 	}
 	
 	private static void withdrawMoney(int amount) {

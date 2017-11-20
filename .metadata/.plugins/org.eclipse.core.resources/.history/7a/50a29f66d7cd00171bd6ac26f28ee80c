@@ -27,7 +27,7 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
     public MiniBank() {}
 
 	@Override
-	public String deposit(int accountId, int amount) {
+	public void deposit(int accountId, int amount) {
 		
 		//check that amount to withdraw is not negative
 		if(amount <= 0) {
@@ -46,7 +46,6 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 			System.out.println("ERROR, could not get account from database. Money was not deposited");
 			e.printStackTrace();
 		}
-		return "";
 	}
 
 	@Override
