@@ -67,11 +67,6 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 			return "You cannot withdraw a negative amount";
 		}
 		
-		//check that the amount is dividable by 100
-		if(amount % 100 != 0) {
-			return "Amount must be a whole 100 (f.e. 100, 1000, 3200)";
-		}
-		
 		try {
 			Account acc;
 			acc = accountsBean.get(accountId);
