@@ -69,7 +69,6 @@ public class TestEJB {
 		
 		System.out.println("Transfer 1000 NOK from account 4 to account 1:");
 		transferMoney(1000);
-		listAccounts();
 		
 		cleanUpTests();
 		
