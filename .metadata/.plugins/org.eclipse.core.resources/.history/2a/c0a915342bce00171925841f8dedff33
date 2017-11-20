@@ -67,7 +67,7 @@ public class MinibankTest extends TestCase {
 				minibank.deposit(acc.getId(), moneyToDeposit);
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			System.out.println("ERROR thrown in depositNegativeMoney method in MinibankTest");
 			e.printStackTrace();
 		}
 		
@@ -89,7 +89,6 @@ public class MinibankTest extends TestCase {
 		}
 		
 	}
-	
 	/**
 	 * Transfer 1000 NOK from account 4 to account 1
 	 * @param amount
@@ -100,7 +99,7 @@ public class MinibankTest extends TestCase {
 			List<Account> list = accounts.list();
 			minibank.transfer(list.get(3).getId(), list.get(0).getId(), amount);
 		} catch (Exception e) {
-			System.out.println("ERROR, could not transfer money in MiniBankTest, method transferMoney()");
+			System.out.println("ERROR, could not transfer money in MinibankTest, method transferMoney()");
 			e.printStackTrace();
 		}
 	}
