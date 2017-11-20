@@ -82,7 +82,7 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 	}
 
 	/**
-	 * Used to get account balance
+	 * Used to get account balance. This assumes that an account
 	 */
 	@Override
 	public String getAccountBalance(int accountId) {

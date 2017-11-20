@@ -26,9 +26,6 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
      */
     public MiniBank() {}
 
-    /**
-     * Used to deposit money into an account
-     */
 	@Override
 	public String deposit(int accountId, int amount) {
 		
@@ -52,9 +49,6 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 		return "";
 	}
 
-	/**
-	 * Used to withdraw money from an account
-	 */
 	@Override
 	public String withdraw(int accountId, int amount) {
 		
@@ -77,21 +71,6 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 		} catch(Exception e) {
 			System.out.println("Error, could not connect to database, or something else is wrong");
 			e.printStackTrace();
-		}
-		return "";
-	}
-
-	/**
-	 * Used to get account balance
-	 */
-	@Override
-	public String getAccountBalance(int accountId) {
-		try {
-			
-			int balance = accountsBean.getAccountBalance(accountId);
-			return "Balance: " + String.valueOf(balance);
-		} catch (Exception e) {
-			System.out.println("ERROR, could not connect to database, or something else is wrong");
 		}
 		return "";
 	}

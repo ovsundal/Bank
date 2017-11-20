@@ -9,4 +9,5 @@ public interface MiniBankRemote {
 
 	public String deposit(int accountId, int amount);
 	public String withdraw(int accountId, int amount);
+	public String getAccountBalance(int accountId);
 }
