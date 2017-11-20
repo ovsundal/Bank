@@ -54,17 +54,9 @@ public class TestEJB {
 		withdrawMoney(500);
 		System.out.println("Accounts should now have 500 NOK less:");
 		listAccounts();
-		
-		System.out.println("--Try to withdraw 5000 NOK (should only work for the last two of the accounts)--");
+		System.out.println("Try to withdraw 5000 NOK (should only work for the last two of the accounts):");
 		withdrawMoney(5000);
 		listAccounts();
-		
-		System.out.println("--Try to withdraw -1000 NOK (negative amount, should not work for any account)--");
-		withdrawMoney(-1000);
-		listAccounts();
-		
-		
-		
 		
 		cleanUpTests();
 		

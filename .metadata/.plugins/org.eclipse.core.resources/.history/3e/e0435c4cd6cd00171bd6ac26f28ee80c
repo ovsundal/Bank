@@ -60,7 +60,7 @@ public class TestEJB {
 		listAccounts();
 		
 		System.out.println("--Try to withdraw -1000 NOK (negative amount, should not work for any account)--");
-		withdrawMoney(-1000);
+		withdrawMoney(5000);
 		listAccounts();
 		
 		

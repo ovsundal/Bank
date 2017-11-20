@@ -60,9 +60,10 @@ public class MiniBankTest extends TestCase {
 		
 	}
 
-	public void withdrawMoney(int moneyToWithdraw) {
+	public void withdrawMoney() {
 		
-		try {;
+		try {
+			int moneyToWithdraw = 500;
 			
 			List<Account> list = accounts.list();
 			for(Account acc : list) {
