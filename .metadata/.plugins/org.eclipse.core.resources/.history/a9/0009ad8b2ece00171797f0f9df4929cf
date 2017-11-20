@@ -59,10 +59,6 @@ public class TestEJB {
 		System.out.println("Accounts should now have 500 NOK less:");
 		listAccounts();
 		
-		System.out.println("--Try to withdraw 235 NOK (non-divisable by 100). Should not work, balance should be equal to above");
-		withdrawMoney(235);
-		listAccounts();
-		
 		System.out.println("--Try to withdraw 5000 NOK (should only work for the last two of the accounts)--");
 		withdrawMoney(5000);
 		listAccounts();
