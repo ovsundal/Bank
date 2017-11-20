@@ -13,7 +13,7 @@ import sessionsBeans.AccountsRemote;
 import sessionsBeans.MiniBankRemote;
 import sessionsBeans.PersonsRemote;
 
-public class MinibankTest extends TestCase {
+public class MiniBankTest extends TestCase {
 
 	Context context;
 	@EJB
@@ -78,7 +78,7 @@ public class MinibankTest extends TestCase {
  */
 	public void withdrawMoney(int moneyToWithdraw) {
 		
-		try {;
+		try {
 			
 			List<Account> list = accounts.list();
 			for(Account acc : list) {
@@ -89,6 +89,20 @@ public class MinibankTest extends TestCase {
 		}
 		
 	}
+
+	/**
+	 * Try to transfer a negative sum from account 2 to 3
+	 * @param amount
+	 */
+public void transferNegativeMoney(int amount) {
+	
+	List<Account> list = accounts.list();
+	try {
+		minibank.transfer(list.get(1).getId(), list.get(2).getId(), amount)
+	} catch(Exception e) {
+		System.out.println("ERROR, cannot transfer money in MiniBankTest transferNegativeMoney()");
+	}
+}
 
 	
 	

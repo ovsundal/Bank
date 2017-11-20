@@ -5,7 +5,7 @@ public class TestEJB {
 	static PersonTest pt;
 	static KontoTest kt;
 	static CardTest ct;
-	static MinibankTest mbt;
+	static MiniBankTest mbt;
 	
 	public static void main(String[] args) throws Exception {
 
@@ -67,8 +67,8 @@ public class TestEJB {
 		withdrawMoney(-1000);
 		listAccounts();
 		
-		
-		
+		System.out.println("Try to transfer a negative amount from account 2 to 3. Nothing should happen:");
+		transferNegativeMoney(-50);
 		
 		cleanUpTests();
 		
@@ -87,15 +87,12 @@ public class TestEJB {
 
 
 
-
-
-
 	public static void setupTests() throws Exception {
 
 		pt = new PersonTest();
 		kt = new KontoTest();
 		ct = new CardTest();
-		mbt = new MinibankTest();
+		mbt = new MiniBankTest();
 		System.out.println("Setting up remote beans...");
 		pt.setUp();
 		kt.setUp();
@@ -202,6 +199,11 @@ public class TestEJB {
 	
 	private static void withdrawMoney(int amount) {
 		mbt.withdrawMoney(amount);
+		
+	}
+	
+	private static void transferMoney(int amount) {
+		mbt.transferMoney(amount);
 		
 	}
 	

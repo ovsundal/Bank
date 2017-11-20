@@ -5,7 +5,7 @@ public class TestEJB {
 	static PersonTest pt;
 	static KontoTest kt;
 	static CardTest ct;
-	static MinibankTest mbt;
+	static MiniBankTest mbt;
 	
 	public static void main(String[] args) throws Exception {
 
@@ -95,7 +95,7 @@ public class TestEJB {
 		pt = new PersonTest();
 		kt = new KontoTest();
 		ct = new CardTest();
-		mbt = new MinibankTest();
+		mbt = new MiniBankTest();
 		System.out.println("Setting up remote beans...");
 		pt.setUp();
 		kt.setUp();

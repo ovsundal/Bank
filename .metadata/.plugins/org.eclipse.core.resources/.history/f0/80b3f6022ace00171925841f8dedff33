@@ -3,8 +3,6 @@ package sessionsBeans;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
@@ -96,40 +94,6 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 			System.out.println("ERROR, could not connect to database, or something else is wrong");
 		}
 		return "";
-	}
-	
-	@Override
-	@TransactionAttribute(value= TransactionAttributeType.REQUIRES_NEW)
-	public String transfer(int fromAccId, int toAccId, int amount) {
-		
-		String response = "Error, cannot transfer a negative amount";
-		
-		if(amount <= 0) {
-			return response;
-		}
-		
-		try {
-			Account fromAcc = accountsBean.get(fromAccId);
-			
-			//abort if account does not have enough funds 
-			if(fromAcc.getBalance() < amount) {
-				response = "Insufficient funds for transfer. Aborted";
-				return response;
-			}
-			
-			Account toAcc = accountsBean.get(toAccId);
-			
-			fromAcc.setBalance(fromAcc.getBalance() - amount);
-			//add response to log here
-			toAcc.setBalance(toAcc.getBalance() + amount);
-			//add response to log here
-			response = "Transferred " + amount + " from account: " + fromAcc.getName() + " to account " + toAcc.getName();
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return response;
 	}
 
 

@@ -5,6 +5,8 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
@@ -14,7 +16,9 @@ import entity.Account;
 /**
  * Session Bean implementation class MiniBank
  */
-@Stateless
+@Stateless(mappedName="MiniBank")
+//@TransactionManagement(value=TransactionManagementType.CONTAINER)
+@TransactionAttribute(value= TransactionAttributeType.SUPPORTS)
 @LocalBean
 public class MiniBank implements MiniBankRemote, MiniBankLocal {
 	
@@ -28,17 +32,14 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
      */
     public MiniBank() {}
 
-    /**
-     * Used to deposit money into an account
-     */
 	@Override
+	@TransactionAttribute(value= TransactionAttributeType.REQUIRES_NEW)
 	public String deposit(int accountId, int amount) {
 		
 		//check that amount to withdraw is not negative
 		if(amount <= 0) {
 			return "You cannot deposit a negative amount";
 		}
-		
 		Account acc;
 		try {
 			acc = accountsBean.get(accountId);
@@ -54,10 +55,8 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 		return "";
 	}
 
-	/**
-	 * Used to withdraw money from an account
-	 */
 	@Override
+	@TransactionAttribute(value= TransactionAttributeType.REQUIRES_NEW)
 	public String withdraw(int accountId, int amount) {
 		
 		//check that amount to withdraw is not negative
@@ -83,10 +82,8 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 		return "";
 	}
 
-	/**
-	 * Used to get account balance
-	 */
 	@Override
+	@TransactionAttribute(value= TransactionAttributeType.SUPPORTS)
 	public String getAccountBalance(int accountId) {
 		try {
 			
@@ -97,7 +94,7 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 		}
 		return "";
 	}
-	
+
 	@Override
 	@TransactionAttribute(value= TransactionAttributeType.REQUIRES_NEW)
 	public String transfer(int fromAccId, int toAccId, int amount) {

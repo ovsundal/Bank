@@ -13,7 +13,7 @@ import sessionsBeans.AccountsRemote;
 import sessionsBeans.MiniBankRemote;
 import sessionsBeans.PersonsRemote;
 
-public class MinibankTest extends TestCase {
+public class MiniBankTest extends TestCase {
 
 	Context context;
 	@EJB
