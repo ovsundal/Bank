@@ -9,7 +9,6 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 
 import entity.Account;
-import entity.Card;
 import entity.Person;
 import junit.framework.TestCase;
 import sessionsBeans.AccountsRemote;
@@ -122,11 +121,6 @@ public class MinibankTest extends TestCase {
 			System.out.println("ERROR, could not create account in MinibankTest, createAccount()");
 			e.printStackTrace();
 		}
-	}
-
-	public void validateTrueCardNumber() {
-		
-
 	}
 
 	

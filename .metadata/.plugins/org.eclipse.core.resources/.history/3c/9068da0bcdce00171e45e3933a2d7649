@@ -44,11 +44,8 @@ public class TestEJB {
 		System.out.println("Cards generated belongs to an account: ");
 		listAccounts();
 		
-		System.out.println("Real card numbers passes validation: ");
+		System.out.println("Card number passes validation: ");
 		validateTrueCardNumber();
-		
-		System.out.println("False card numbers does not pass validation: ");
-		validateFalseCardNumber();
 		
 		//tests from minibank-bean
 		System.out.println("--Depositing money into accounts--");
@@ -207,12 +204,7 @@ public class TestEJB {
 	
 	private static void validateTrueCardNumber() {
 		ct.validateTrueCardNumber();
-		System.out.println("------------------------------------");
-	}
-	
-	private static void validateFalseCardNumber() {
-		ct.validateFalseCardNumber();
-		System.out.println("------------------------------------");
+		
 	}
 	
 	private static void listCards() {

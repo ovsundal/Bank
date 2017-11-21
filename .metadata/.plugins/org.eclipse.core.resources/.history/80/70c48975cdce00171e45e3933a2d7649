@@ -10,7 +10,6 @@ import javax.naming.InitialContext;
 import entity.Account;
 import entity.Card;
 import entity.Person;
-import entity.RandomCreditCardNumberGenerator;
 import junit.framework.TestCase;
 import sessionsBeans.AccountsRemote;
 import sessionsBeans.CardsRemote;
@@ -95,27 +94,10 @@ public class CardTest extends TestCase {
 				System.out.println(cards.validateCard(c.getCardNumber()));
 			}
 		} catch (Exception e) {
-			System.out.println("ERROR, could not validate card in validateTrueCardNumber CardTest");
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		
-	}
-
-	public void validateFalseCardNumber() {
-		List<Card> list;
-		try {
-			list = cards.list();
-			
-			//replace existing card number with a new
-			for (Card c : list) {
-				c.setCardNumber(RandomCreditCardNumberGenerator.generateMasterCardNumber());
-				System.out.println(cards.validateCard(c.getCardNumber()));
-			}
-		} catch (Exception e) {
-			System.out.println("ERROR, could not validate card in validateFalseCardNumber CardTest");
-			e.printStackTrace();
-		}
 		
 	}
 

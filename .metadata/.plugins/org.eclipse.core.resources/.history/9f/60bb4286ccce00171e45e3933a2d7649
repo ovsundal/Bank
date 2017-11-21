@@ -44,12 +44,6 @@ public class TestEJB {
 		System.out.println("Cards generated belongs to an account: ");
 		listAccounts();
 		
-		System.out.println("Real card numbers passes validation: ");
-		validateTrueCardNumber();
-		
-		System.out.println("False card numbers does not pass validation: ");
-		validateFalseCardNumber();
-		
 		//tests from minibank-bean
 		System.out.println("--Depositing money into accounts--");
 		depositMoney(2000);
@@ -85,7 +79,9 @@ public class TestEJB {
 		createAccount();
 		System.out.println("Should now have a crypto-account");
 		listAccounts();
-
+		
+		System.out.println("Validate card number. This should be true:");
+		validateTrueCardNumber();
 		
 		
 		
@@ -102,16 +98,6 @@ public class TestEJB {
 	
 
 	
-
-
-
-
-
-
-
-
-
-
 
 
 	public static void setupTests() throws Exception {
@@ -205,16 +191,6 @@ public class TestEJB {
 		System.out.println("------------------------------------");
 	}
 	
-	private static void validateTrueCardNumber() {
-		ct.validateTrueCardNumber();
-		System.out.println("------------------------------------");
-	}
-	
-	private static void validateFalseCardNumber() {
-		ct.validateFalseCardNumber();
-		System.out.println("------------------------------------");
-	}
-	
 	private static void listCards() {
 		try {
 			ct.list();
@@ -248,7 +224,6 @@ public class TestEJB {
 		mbt.createAccount();
 		
 	}
-	
 	
 
 	public static void cleanUpTests() throws Exception {

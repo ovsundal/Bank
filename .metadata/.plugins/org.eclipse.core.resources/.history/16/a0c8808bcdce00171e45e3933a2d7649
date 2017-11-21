@@ -95,7 +95,7 @@ public class CardTest extends TestCase {
 				System.out.println(cards.validateCard(c.getCardNumber()));
 			}
 		} catch (Exception e) {
-			System.out.println("ERROR, could not validate card in validateTrueCardNumber CardTest");
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -113,7 +113,7 @@ public class CardTest extends TestCase {
 				System.out.println(cards.validateCard(c.getCardNumber()));
 			}
 		} catch (Exception e) {
-			System.out.println("ERROR, could not validate card in validateFalseCardNumber CardTest");
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
