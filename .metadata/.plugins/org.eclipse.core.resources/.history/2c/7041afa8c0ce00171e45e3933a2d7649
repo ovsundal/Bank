@@ -14,5 +14,4 @@ public interface MiniBankLocal {
 	public String getAccountBalance(int accountId);
 	public String transfer(int fromAccId, int toAccId, int amount);
 	public String createAccount(String personId, String accountName, int initialBalance, Date dateCreated);
-	public boolean validateCardNumber(String cardNumber);
 }

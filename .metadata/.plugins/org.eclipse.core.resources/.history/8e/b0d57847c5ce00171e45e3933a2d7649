@@ -23,19 +23,18 @@ import entity.Person;
 public class Cards implements CardsRemote, CardsLocal {
 	@PersistenceContext(unitName = "bankdb-unit", type = PersistenceContextType.TRANSACTION)
 	private EntityManager entityManager;
+	
+    /**
+     * Default constructor. 
+     */
+    public Cards() {}
 
-	/**
-	 * Default constructor.
-	 */
-	public Cards() {
-	}
-
-	/**
+    /**
 	 * Add a card to the account
 	 */
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void add(Card card) throws Exception {
-		// bruke merge her?
+		//bruke merge her?
 		entityManager.persist(card);
 		entityManager.flush();
 	}
@@ -45,10 +44,10 @@ public class Cards implements CardsRemote, CardsLocal {
 	 */
 	@SuppressWarnings("unchecked")
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public List<Card> list() throws Exception {
-		// bruker Java Persistence Query Language, ikke SQL
+	public List <Card> list() throws Exception {
+		//bruker Java Persistence Query Language, ikke SQL
 		Query query = entityManager.createQuery("SELECT c from Card as c");
-		List<Card> l = query.getResultList();
+		List <Card> l = query.getResultList();
 		return l;
 	}
 
@@ -61,23 +60,29 @@ public class Cards implements CardsRemote, CardsLocal {
 
 	@Override
 	public boolean validateCard(String cardNumber) {
-
-		boolean isValid = false;
+		
+		Person p = null;
+		
 		try {
+			String pnummer = personnummer;
+			//todo: protect against SQL injection
 			Query query = entityManager.createQuery("SELECT c from Card as c WHERE c.cardNumber LIKE :cardNumber")
 					.setParameter("cardNumber", cardNumber);
-
-			if (query.getSingleResult() != null) {
-				isValid = true;
-				return isValid;
-			}
-		} catch (NoResultException ex) {
-			System.out.println("Could not find any results with this card number");
-		} catch (Exception e) {
+			p = (Person) query.getSingleResult();
+			return p;
+		} catch(NoResultException ex) {
+			System.out.println("Could not find any results with this personnummer");
+		} catch(Exception e) {
 			System.out.println("Error, something went wrong");
 			e.printStackTrace();
 		}
-		return isValid;
+		return p;
+		
+		
+		
+		// TODO Auto-generated method stub
+		return false;
 	}
-
+	
+	
 }

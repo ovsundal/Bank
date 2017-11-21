@@ -2,16 +2,15 @@ package sessionsBeans;
 
 import java.util.List;
 
-import javax.ejb.Remote;
+import javax.ejb.Local;
 
 import entity.Account;
 import entity.Card;
 
-@Remote
-public interface CardsRemote {
+@Local
+public interface CardsLocal {
 
 	public void add(Card c) throws Exception;
 	public List <Card> list() throws Exception;
 	public void remove(Card c);
-	public boolean validateCard(String cardNumber);
 }

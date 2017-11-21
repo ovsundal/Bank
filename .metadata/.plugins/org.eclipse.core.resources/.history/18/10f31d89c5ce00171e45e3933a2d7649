@@ -179,7 +179,7 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 	@Override
 	@TransactionAttribute(value= TransactionAttributeType.REQUIRES_NEW)
 	public boolean validateCardNumber(String cardNumber) {
-	
-		return cardsBean.validateCard(cardNumber);
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

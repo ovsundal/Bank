@@ -53,6 +53,15 @@ public class CardTest extends TestCase {
 			 	
 			 cards.add(c);		
 			 cards.add(c2);
+			
+			//todo:
+			//generate card number
+			
+	
+			//make card with these
+			
+			//return number and pin to user
+
 
 		} catch (Exception e) {
 			System.out.println("ERROR, could not add card to account");

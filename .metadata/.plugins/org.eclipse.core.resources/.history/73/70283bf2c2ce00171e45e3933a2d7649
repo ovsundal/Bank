@@ -2,7 +2,11 @@ package sessionsBeans;
 
 import java.util.Date;
 
-import javax.ejb.*;
+import javax.ejb.EJB;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
@@ -16,8 +20,6 @@ import entity.Person;
  */
 @Stateless
 @LocalBean
-@TransactionManagement(value=TransactionManagementType.CONTAINER)
-@TransactionAttribute(value= TransactionAttributeType.SUPPORTS)
 public class MiniBank implements MiniBankRemote, MiniBankLocal {
 	
 	@PersistenceContext(unitName = "bankdb-unit", type = PersistenceContextType.TRANSACTION)
@@ -177,9 +179,8 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 	}
 
 	@Override
-	@TransactionAttribute(value= TransactionAttributeType.REQUIRES_NEW)
 	public boolean validateCardNumber(String cardNumber) {
-	
-		return cardsBean.validateCard(cardNumber);
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

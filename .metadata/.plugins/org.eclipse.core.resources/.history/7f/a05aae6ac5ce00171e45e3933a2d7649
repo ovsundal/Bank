@@ -71,6 +71,7 @@ public class Cards implements CardsRemote, CardsLocal {
 				isValid = true;
 				return isValid;
 			}
+
 		} catch (NoResultException ex) {
 			System.out.println("Could not find any results with this card number");
 		} catch (Exception e) {
