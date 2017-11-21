@@ -34,27 +34,13 @@ public class Card implements Serializable {
 		Random rand = new Random();
 		String pin = String.valueOf(rand.nextInt(10000));
 		setPin(pin);
-		
-		//generate random card number
-		String cardNumber = RandomCreditCardNumberGenerator.generateMasterCardNumber();
-		setCardNumber(cardNumber);
 
 		setAccount(account);
 	}
 
-	
-
 	@Override
 	public String toString() {
-		return "Card [id=" + id + ", pin=" + pin + ", cardNumber=" + cardNumber + ", owner=" + owner.getId() + "]";
-	}
-
-	public String getCardNumber() {
-		return cardNumber;
-	}
-
-	public void setCardNumber(String cardNumber) {
-		this.cardNumber = cardNumber;
+		return "Card [id=" + id + ", pin=" + pin + ", owner=" + owner.getId() + "]";
 	}
 
 	public int getId() {

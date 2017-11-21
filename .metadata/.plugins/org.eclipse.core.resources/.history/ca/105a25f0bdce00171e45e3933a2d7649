@@ -42,11 +42,9 @@ public class Card implements Serializable {
 		setAccount(account);
 	}
 
-	
-
 	@Override
 	public String toString() {
-		return "Card [id=" + id + ", pin=" + pin + ", cardNumber=" + cardNumber + ", owner=" + owner.getId() + "]";
+		return "Card [id=" + id + ", pin=" + pin + ", owner=" + owner.getId() + "]";
 	}
 
 	public String getCardNumber() {
