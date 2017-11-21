@@ -42,6 +42,8 @@ public class Card implements Serializable {
 		setAccount(account);
 	}
 
+	
+
 	@Override
 	public String toString() {
 		return "Card [id=" + id + ", pin=" + pin + ", cardNumber=" + cardNumber + ", owner=" + owner.getId() + "]";
@@ -77,11 +79,6 @@ public class Card implements Serializable {
 
 	public void setAccount(Account account) {
 		this.owner = account;
-	}
-
-	public String greet() {
-		
-		return "New card generated for account " + getAccount().toString() + "\nNew card number: " + cardNumber + "\nNew pin: " + pin;
 	};
 	
 }

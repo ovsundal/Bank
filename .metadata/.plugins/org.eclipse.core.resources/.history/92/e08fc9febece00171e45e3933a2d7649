@@ -75,17 +75,6 @@ public class TestEJB {
 		transferMoney(1000);
 		listAccounts();
 		
-		System.out.println("--Create a new account to ove using MiniBank-bean createAccount--");
-		createAccount();
-		System.out.println("Should now have a crypto-account");
-		listAccounts();
-		
-		
-		
-		
-		
-		
-		
 		cleanUpTests();
 		
 		
@@ -98,6 +87,23 @@ public class TestEJB {
 	
 
 	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	public static void setupTests() throws Exception {
@@ -217,11 +223,6 @@ public class TestEJB {
 
 	private static void transferMoney(int amount) {
 		mbt.transferMoney(amount);
-		
-	}
-	
-	private static void createAccount() {
-		mbt.createAccount();
 		
 	}
 	

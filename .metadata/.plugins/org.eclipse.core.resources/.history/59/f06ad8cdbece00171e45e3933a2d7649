@@ -33,7 +33,6 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 	
 	@EJB(name = "Cards", beanInterface = CardsLocal.class)
 	CardsLocal cardsBean;
-	
     /**
      * Default constructor. 
      */
@@ -167,14 +166,16 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 			
 			//create card
 			Card card = new Card(acc);
-			cardsBean.add(card);
-			return card.greet();
+			cardsBeans.
+			
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		return "Error, could not create account";
+		
+		
+		return null;
 	}
 }

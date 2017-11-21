@@ -114,12 +114,8 @@ public class MinibankTest extends TestCase {
 	public void createAccount() {
 		
 		try {
-			//create account with oves personId
-			String response = minibank.createAccount("01020304056", "Cryptokonto", 400, new Date());
-			System.out.println(response);
-		} catch(Exception e) {
-			System.out.println("ERROR, could not create account in MinibankTest, createAccount()");
-			e.printStackTrace();
+			Person p = persons.get("01020304056");
+			minibank.createAccount(p.getId(), "Cryptokonto", 400, new Date());
 		}
 	}
 

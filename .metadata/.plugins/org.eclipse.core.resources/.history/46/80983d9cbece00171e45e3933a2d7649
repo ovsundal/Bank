@@ -12,7 +12,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
 
 import entity.Account;
-import entity.Card;
 import entity.Person;
 
 /**
@@ -30,10 +29,6 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 	
 	@EJB(name = "Persons", beanInterface = PersonsLocal.class)
 	PersonsLocal personsBean;
-	
-	@EJB(name = "Cards", beanInterface = CardsLocal.class)
-	CardsLocal cardsBean;
-	
     /**
      * Default constructor. 
      */
@@ -165,16 +160,14 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 			Account acc = new Account(p, accountName, initialBalance, dateCreated);
 			accountsBean.add(acc);
 			
-			//create card
-			Card card = new Card(acc);
-			cardsBean.add(card);
-			return card.greet();
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		return "Error, could not create account";
+		
+		
+		return null;
 	}
 }

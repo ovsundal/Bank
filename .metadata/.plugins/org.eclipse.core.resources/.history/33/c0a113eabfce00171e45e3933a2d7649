@@ -75,10 +75,10 @@ public class TestEJB {
 		transferMoney(1000);
 		listAccounts();
 		
-		System.out.println("--Create a new account to ove using MiniBank-bean createAccount--");
+		System.out.println("Create a new account to ove using MiniBank-bean createAccount:");
 		createAccount();
-		System.out.println("Should now have a crypto-account");
-		listAccounts();
+		
+		
 		
 		
 		

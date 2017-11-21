@@ -1,6 +1,5 @@
 package test;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
@@ -9,7 +8,6 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 
 import entity.Account;
-import entity.Person;
 import junit.framework.TestCase;
 import sessionsBeans.AccountsRemote;
 import sessionsBeans.MiniBankRemote;
@@ -114,13 +112,9 @@ public class MinibankTest extends TestCase {
 	public void createAccount() {
 		
 		try {
-			//create account with oves personId
-			String response = minibank.createAccount("01020304056", "Cryptokonto", 400, new Date());
-			System.out.println(response);
-		} catch(Exception e) {
-			System.out.println("ERROR, could not create account in MinibankTest, createAccount()");
-			e.printStackTrace();
+			Person p = personsbeans.ge
 		}
+		
 	}
 
 	

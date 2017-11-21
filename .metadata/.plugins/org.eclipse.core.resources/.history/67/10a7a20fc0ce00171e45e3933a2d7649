@@ -168,7 +168,7 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 			//create card
 			Card card = new Card(acc);
 			cardsBean.add(card);
-			return card.greet();
+			return card.toString();
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
