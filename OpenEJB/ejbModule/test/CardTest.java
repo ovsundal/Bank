@@ -47,12 +47,17 @@ public class CardTest extends TestCase {
 			Account acc = list.get(0);
 			Account acc2 = list.get(3);
 			
+			  
+			Card c = new Card(acc);		
+			Card c2 = new Card(acc2);		
+			 	
+			 cards.add(c);		
+			 cards.add(c2);
+			
 			//todo:
 			//generate card number
 			
-			//generate random pin
-			String randomPin = String.valueOf((int)(Math.random()*9000) + 1000);
-			
+	
 			//make card with these
 			
 			//return number and pin to user

@@ -1,6 +1,7 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.Random;
 
 import javax.persistence.*;
 
@@ -18,8 +19,6 @@ public class Card implements Serializable {
 	private int id;
 	@Column(name = "pin", length = 4)
 	private String pin;
-	@Column(name = "isCardActive")
-	private boolean isCardActive;
 	
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name="CARD_ID")
@@ -27,16 +26,19 @@ public class Card implements Serializable {
 	
 	public Card(){}
 
-	public Card(String pin, boolean isCardActive, Account account) {
+	public Card(Account account) {
 
+		//generate random pin
+		Random rand = new Random();
+		String pin = String.valueOf(rand.nextInt(10000));
 		setPin(pin);
-		setCardActive(isCardActive);
+
 		setAccount(account);
 	}
 
 	@Override
 	public String toString() {
-		return "Card [id=" + id + ", pin=" + pin + ", isCardActive=" + isCardActive + ", owner=" + owner.getId() + "]";
+		return "Card [id=" + id + ", pin=" + pin + ", owner=" + owner.getId() + "]";
 	}
 
 	public int getId() {
@@ -53,14 +55,6 @@ public class Card implements Serializable {
 
 	public void setPin(String pin) {
 		this.pin = pin;
-	}
-
-	public boolean isCardActive() {
-		return isCardActive;
-	}
-
-	public void setCardActive(boolean isCardActive) {
-		this.isCardActive = isCardActive;
 	}
 
 	public Account getAccount() {
