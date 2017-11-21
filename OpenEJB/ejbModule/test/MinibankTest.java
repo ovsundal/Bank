@@ -124,10 +124,7 @@ public class MinibankTest extends TestCase {
 		}
 	}
 
-	public void validateTrueCardNumber() {
-		
 
-	}
 
 	
 	

@@ -92,7 +92,7 @@ public class CardTest extends TestCase {
 			list = cards.list();
 			
 			for (Card c : list) {
-				System.out.println(cards.validateCard(c.getCardNumber()));
+				System.out.println(cards.validateCardNumber(c.getCardNumber()));
 			}
 		} catch (Exception e) {
 			System.out.println("ERROR, could not validate card in validateTrueCardNumber CardTest");
@@ -110,10 +110,40 @@ public class CardTest extends TestCase {
 			//replace existing card number with a new
 			for (Card c : list) {
 				c.setCardNumber(RandomCreditCardNumberGenerator.generateMasterCardNumber());
-				System.out.println(cards.validateCard(c.getCardNumber()));
+				System.out.println(cards.validateCardNumber(c.getCardNumber()));
 			}
 		} catch (Exception e) {
-			System.out.println("ERROR, could not validate card in validateFalseCardNumber CardTest");
+			System.out.println("ERROR, could not validate card number in validateFalseCardNumber CardTest");
+			e.printStackTrace();
+		}
+		
+	}
+
+	public void validateTruePin() {
+		List<Card> list;
+		try {
+			list = cards.list();
+			for (Card c : list) {
+				System.out.println(cards.validatePin(c.getCardNumber(), c.getPin()));
+			}
+		} catch (Exception e) {
+			System.out.println("ERROR, could not validate pin in validateTruePin CardTest");
+			e.printStackTrace();
+		}
+		
+	}
+
+	public void validateFalsePin() {
+		List<Card> list;
+		try {
+			list = cards.list();
+			for (Card c : list) {
+				//replace existing pin with a new
+				c.setPin(Card.generateRandomPin());
+				System.out.println(cards.validatePin(c.getCardNumber(), c.getPin()));
+			}
+		} catch (Exception e) {
+			System.out.println("ERROR, could not validate pin in validateTruePin CardTest");
 			e.printStackTrace();
 		}
 		

@@ -16,4 +16,5 @@ public interface MiniBankRemote {
 	public String transfer(int fromAccId, int toAccId, int amount);
 	public String createAccount(String personId, String accountName, int initialBalance, Date dateCreated);
 	public boolean validateCardNumber(String cardNumber);
+	public boolean validatePin(String cardNumber, String pin);
 }

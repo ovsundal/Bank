@@ -46,9 +46,15 @@ public class TestEJB {
 		
 		System.out.println("Real card numbers passes validation: ");
 		validateTrueCardNumber();
-		
+
 		System.out.println("False card numbers does not pass validation: ");
 		validateFalseCardNumber();
+		
+		System.out.println("Real card numbers with correct pin will pass pin-validation: ");
+		validateTruePin();
+		
+		System.out.println("Real card numbers with false pin will NOT pass pin-validation: ");
+		validateFalsePin();
 		
 		//tests from minibank-bean
 		System.out.println("--Depositing money into accounts--");
@@ -102,10 +108,6 @@ public class TestEJB {
 	
 
 	
-
-
-
-
 
 
 
@@ -215,6 +217,17 @@ public class TestEJB {
 		System.out.println("------------------------------------");
 	}
 	
+	private static void validateTruePin() {
+		ct.validateTruePin();
+		System.out.println("------------------------------------");
+	}
+	
+	private static void validateFalsePin() {
+		ct.validateFalsePin();
+		System.out.println("------------------------------------");
+		
+	}
+	
 	private static void listCards() {
 		try {
 			ct.list();
@@ -236,18 +249,17 @@ public class TestEJB {
 	
 	private static void withdrawMoney(int amount) {
 		mbt.withdrawMoney(amount);
-		
 	}
 
 	private static void transferMoney(int amount) {
-		mbt.transferMoney(amount);
-		
+		mbt.transferMoney(amount);	
 	}
 	
 	private static void createAccount() {
 		mbt.createAccount();
-		
 	}
+	
+
 	
 	
 

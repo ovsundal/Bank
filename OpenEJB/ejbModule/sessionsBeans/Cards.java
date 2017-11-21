@@ -60,7 +60,8 @@ public class Cards implements CardsRemote, CardsLocal {
 	}
 
 	@Override
-	public boolean validateCard(String cardNumber) {
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public boolean validateCardNumber(String cardNumber) {
 
 		boolean isValid = false;
 		try {
@@ -73,6 +74,29 @@ public class Cards implements CardsRemote, CardsLocal {
 			}
 		} catch (NoResultException ex) {
 			System.out.println("Could not find any results with this card number");
+		} catch (Exception e) {
+			System.out.println("Error, something went wrong");
+			e.printStackTrace();
+		}
+		return isValid;
+	}
+
+	@Override
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public boolean validatePin(String cardNumber, String pin) {
+		
+		boolean isValid = false;
+		try {
+			Query query = entityManager.createQuery("SELECT c from Card as c WHERE c.cardNumber LIKE :cardNumber AND c.pin LIKE :pin")
+					.setParameter("cardNumber", cardNumber)
+					.setParameter("pin", pin);
+
+			if (query.getSingleResult() != null) {
+				isValid = true;
+				return isValid;
+			}
+		} catch (NoResultException ex) {
+			System.out.println("Could not find any results with this combination of card number and pin");
 		} catch (Exception e) {
 			System.out.println("Error, something went wrong");
 			e.printStackTrace();

@@ -13,5 +13,7 @@ public interface CardsRemote {
 	public void add(Card c) throws Exception;
 	public List <Card> list() throws Exception;
 	public void remove(Card c);
-	public boolean validateCard(String cardNumber);
+	public boolean validateCardNumber(String cardNumber);
+	public boolean validatePin(String cardNumber, String pin);
+	
 }

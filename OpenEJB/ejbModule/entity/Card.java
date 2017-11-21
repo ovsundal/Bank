@@ -29,11 +29,9 @@ public class Card implements Serializable {
 	public Card(){}
 
 	public Card(Account account) {
-
+		
 		//generate random pin
-		Random rand = new Random();
-		String pin = String.valueOf(rand.nextInt(10000));
-		setPin(pin);
+		setPin(generateRandomPin());
 		
 		//generate random card number
 		String cardNumber = RandomCreditCardNumberGenerator.generateMasterCardNumber();
@@ -83,5 +81,12 @@ public class Card implements Serializable {
 		
 		return "New card generated for account " + getAccount().toString() + "\nNew card number: " + cardNumber + "\nNew pin: " + pin;
 	};
+	
+	public static String generateRandomPin() {
+		
+		Random rand = new Random();
+		String pin = String.valueOf(rand.nextInt(10000));
+		return pin;
+	}
 	
 }
