@@ -66,21 +66,7 @@ public class LogTest extends TestCase {
 			System.out.println("ERROR, could not show log from showWithdrawMoneyLog in LogTest");
 			e.printStackTrace();
 		}
-	}
-	
-	public void showTransferMoneyLog() {
-		try {
-			List<Log> list = logs.list();
-			for (Log l : list) {
-				if ("transferFrom".equals(l.getAction()) || ("transferTo".equals(l.getAction()))) {
-					System.out.println(l.toString());
-				}
-			}
-		} catch (Exception e) {
-			System.out.println("ERROR, could not show log from showWithdrawMoneyLog in LogTest");
-			e.printStackTrace();
-		}
-		
+
 	}
 
 	/**
@@ -102,7 +88,5 @@ public class LogTest extends TestCase {
 		} finally {
 		}
 	}
-
-
 
 }

@@ -24,44 +24,31 @@ public class Log implements Serializable {
 	private int amount;
 	@Column(name = "thisAccountId", nullable = false)
 	private int thisAccountId;
-	@Column(name = "otherAccount", nullable = true)
-	private int otherAccountId;
 
 	public Log() {
 	}
 
-	//used for deposit and withdrawal
 	public Log(Date date, String action, int amount, int thisAccountId) {
+		super();
 		this.date = date;
 		this.action = action;
 		this.amount = amount;
 		this.thisAccountId = thisAccountId;
-	}
-	
-	//used for transfers
-	public Log(Date date, String action, int amount, int thisAccountId, int otherAccountId) {
-		this.date = date;
-		this.action = action;
-		this.amount = amount;
-		this.thisAccountId = thisAccountId;
-		this.otherAccountId = otherAccountId;
 	}
 
 	@Override
 	public String toString() {
-	
+		
+		//hotfix to make eclipse recognize a string 
+//		String deposit = "deposit";
+		
+		
 		if("deposit".equals(action)) {
 			return "(logId: " + id + ") Date: " + date + " - Deposited " + amount;
 		} else if("withdraw".equals(action)) {
 			return "(logId: " + id + ") Date: " + date + " - Withdrew " + amount;
-		} else if("transferFrom".equals(action)){
-			return "(logId: " + id + ") Date: " + date + " - Transfer " + amount + " from this account: " + thisAccountId + " to this account: " + otherAccountId;
-		} else if("transferTo".equals(action)) {
-			return "(logId: " + id + ") Date: " + date + " - Transfer " + amount + " to this account: " + thisAccountId + " from this account: " + otherAccountId;
-		} else {
-			return "ERROR, unclassified log event displayed";
 		}
-		
+		return "WRONG";
 	}
 
 	public int getAmount() {

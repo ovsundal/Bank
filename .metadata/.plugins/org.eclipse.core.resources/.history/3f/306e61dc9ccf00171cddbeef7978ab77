@@ -118,6 +118,12 @@ public class TestEJB {
 	}
 	
 
+	
+
+
+
+
+
 
 
 
@@ -273,12 +279,6 @@ public class TestEJB {
 
 	private static void transferMoney(int amount) {
 		mbt.transferMoney(amount);	
-	}
-	
-	private static void displayLoggedTransferEvents() {
-		lt.showTransferMoneyLog();
-		System.out.println("------------------------------------");
-		
 	}
 	
 	private static void createAccount() {

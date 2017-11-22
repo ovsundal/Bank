@@ -151,21 +151,22 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 			Account toAcc = accountsBean.get(toAccId);
 			
 			fromAcc.setBalance(fromAcc.getBalance() - amount);
-			toAcc.setBalance(toAcc.getBalance() + amount);
 			
-			//create log of transfer from event
+			//create log of event 
 			Log transferFromLog = new Log(new Date(), "transferFrom", amount, fromAcc.getId(), toAcc.getId());
 			logsBean.add(transferFromLog);
 			
-			//create log of transfer to event 
-			Log transferToLog = new Log(new Date(), "transferTo", amount, toAcc.getId(), fromAcc.getId());
+			//add response to log here
+			toAcc.setBalance(toAcc.getBalance() + amount);
+			//create log of event 
+			Log transferToLog = new Log(new Date(), "transferFrom", amount, toAcc.getId(), fromAcc.getId());
 			logsBean.add(transferToLog);
 			
-			//output this to user
+			//add response to log here
 			response = "Transferred " + amount + " from account: " + fromAcc.getName() + " to account " + toAcc.getName();
 			
 		} catch (Exception e) {
-			System.out.println("ERROR, could not perform transfer:");
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return response;

@@ -158,7 +158,7 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 			logsBean.add(transferFromLog);
 			
 			//create log of transfer to event 
-			Log transferToLog = new Log(new Date(), "transferTo", amount, toAcc.getId(), fromAcc.getId());
+			Log transferToLog = new Log(new Date(), "transferFrom", amount, toAcc.getId(), fromAcc.getId());
 			logsBean.add(transferToLog);
 			
 			//output this to user

@@ -95,9 +95,6 @@ public class TestEJB {
 		transferMoney(1000);
 		listAccounts();
 		
-		System.out.println("Transfer from account 4 to account 1 is reflected in the log:");
-		displayLoggedTransferEvents();
-		
 		System.out.println("--Create a new account to ove using MiniBank-bean createAccount--");
 		createAccount();
 		System.out.println("Should now have a crypto-account");
@@ -117,6 +114,12 @@ public class TestEJB {
 		
 	}
 	
+
+	
+
+
+
+
 
 
 
@@ -273,12 +276,6 @@ public class TestEJB {
 
 	private static void transferMoney(int amount) {
 		mbt.transferMoney(amount);	
-	}
-	
-	private static void displayLoggedTransferEvents() {
-		lt.showTransferMoneyLog();
-		System.out.println("------------------------------------");
-		
 	}
 	
 	private static void createAccount() {

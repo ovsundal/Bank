@@ -55,11 +55,9 @@ public class Log implements Serializable {
 		} else if("withdraw".equals(action)) {
 			return "(logId: " + id + ") Date: " + date + " - Withdrew " + amount;
 		} else if("transferFrom".equals(action)){
-			return "(logId: " + id + ") Date: " + date + " - Transfer " + amount + " from this account: " + thisAccountId + " to this account: " + otherAccountId;
-		} else if("transferTo".equals(action)) {
-			return "(logId: " + id + ") Date: " + date + " - Transfer " + amount + " to this account: " + thisAccountId + " from this account: " + otherAccountId;
+			return "logId: " + id + ") Date: " + date + " - Transfer " + amount + " from this account: " + thisAccountId;
 		} else {
-			return "ERROR, unclassified log event displayed";
+			
 		}
 		
 	}
