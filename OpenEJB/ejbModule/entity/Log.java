@@ -22,6 +22,8 @@ public class Log implements Serializable {
 	private String action;
 	@Column(name = "amount", nullable = false)
 	private int amount;
+	@Column(name = "balance", nullable = false)
+	private int balance;
 	@Column(name = "thisAccountId", nullable = false)
 	private int thisAccountId;
 	@Column(name = "otherAccount", nullable = true)
@@ -31,37 +33,54 @@ public class Log implements Serializable {
 	}
 
 	//used for deposit and withdrawal
-	public Log(Date date, String action, int amount, int thisAccountId) {
+	public Log(Date date, String action, int amount, int balance, int thisAccountId) {
 		this.date = date;
 		this.action = action;
 		this.amount = amount;
 		this.thisAccountId = thisAccountId;
+		this.balance = balance;
 	}
 	
 	//used for transfers
-	public Log(Date date, String action, int amount, int thisAccountId, int otherAccountId) {
+	public Log(Date date, String action, int amount, int balance, int thisAccountId, int otherAccountId) {
 		this.date = date;
 		this.action = action;
 		this.amount = amount;
 		this.thisAccountId = thisAccountId;
 		this.otherAccountId = otherAccountId;
+		this.balance = balance;
 	}
 
 	@Override
 	public String toString() {
 	
 		if("deposit".equals(action)) {
-			return "(logId: " + id + " - From account: " + thisAccountId + " ) Date: " + date + " - Deposited " + amount;
+			return "(logId: " + id + " - From account: " + thisAccountId + " ) Date: " + date + " - Deposited " + amount + " - Balance of account after transaction: " + balance;
 		} else if("withdraw".equals(action)) {
-			return "(logId: " + id + " - From account: " + thisAccountId + ") Date: " + date + " - Withdrew " + amount;
+			return "(logId: " + id + " - From account: " + thisAccountId + ") Date: " + date + " - Withdrew " + amount + " - Balance of account after transaction: " + balance;
 		} else if("transferFrom".equals(action)){
-			return "(logId: " + id + " - From account: " + thisAccountId + ") Date: " + date + " - Transfer " + amount + " from this account: " + thisAccountId + " to this account: " + otherAccountId;
+			return "(logId: " + id + " - From account: " + thisAccountId + ") Date: " + date + " - Transfer " + amount + " - Balance of account after transaction: " + balance + " from this account: " + thisAccountId + " to this account: " + otherAccountId;
 		} else if("transferTo".equals(action)) {
-			return "(logId: " + id + " - From account: " + thisAccountId + ") Date: " + date + " - Transfer " + amount + " to this account: " + thisAccountId + " from this account: " + otherAccountId;
+			return "(logId: " + id + " - From account: " + thisAccountId + ") Date: " + date + " - Transfer " + amount + " - Balance of account after transaction: " + balance + " to this account: " + thisAccountId + " from this account: " + otherAccountId;
 		} else {
 			return "ERROR, unclassified log event displayed";
 		}
-		
+	}
+	
+	public String getAccountBalance() {
+	
+		return "";
+	}
+	
+
+	
+
+	public int getBalance() {
+		return balance;
+	}
+
+	public void setBalance(int balance) {
+		this.balance = balance;
 	}
 
 	public int getAmount() {

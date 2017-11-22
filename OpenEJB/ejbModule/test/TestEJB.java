@@ -106,6 +106,8 @@ public class TestEJB {
 		System.out.println("Display all logs affecting a single account: ");
 		listSingleAccount();
 		
+		System.out.println("Show balance history of a single account: ");
+		showAccountBalance();
 		
 		cleanUpTests();
 		
@@ -286,6 +288,12 @@ public class TestEJB {
 	private static void listSingleAccount() {
 		
 		lt.listAllTransactionsInSingleAccount();
+		System.out.println("------------------------------------");
+	}
+	
+	private static void showAccountBalance() {
+		lt.showAccountBalance();
+		
 	}
 	
 	public static void cleanUpTests() throws Exception {

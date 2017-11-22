@@ -56,12 +56,13 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 		Account acc;
 		try {
 			acc = accountsBean.get(accountId);
-			acc.setBalance(acc.getBalance() + amount);
+			int newBalance = acc.getBalance() + amount;
+			acc.setBalance(newBalance);
 			entityManager.flush();
 			acc = accountsBean.get(accountId);
 			
 			//create log of event 
-			Log l = new Log(new Date(), "deposit", amount, acc.getId());
+			Log l = new Log(new Date(), "deposit", amount, newBalance, acc.getId());
 			logsBean.add(l);
 			
 			return "You have deposited " + amount + " into account " + acc.getName();
@@ -97,11 +98,11 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 			if(acc.getBalance() < amount) {
 				return "There is not enough money on the account to perform the transaction";
 			}
-			
-			acc.setBalance(acc.getBalance() - amount);
+			int newBalance = acc.getBalance() - amount;
+			acc.setBalance(newBalance);
 			
 			//create log of event 
-			Log l = new Log(new Date(), "withdraw", amount, acc.getId());
+			Log l = new Log(new Date(), "withdraw", amount, newBalance, acc.getId());
 			logsBean.add(l);
 			
 			return "You have withdrawn " + amount + " from account " + acc.getName();
@@ -150,15 +151,18 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 			
 			Account toAcc = accountsBean.get(toAccId);
 			
-			fromAcc.setBalance(fromAcc.getBalance() - amount);
-			toAcc.setBalance(toAcc.getBalance() + amount);
+			int newBalanceForFromAccount = fromAcc.getBalance() - amount;
+			int newBalanceForToAccount = fromAcc.getBalance() + amount;
+			
+			fromAcc.setBalance(newBalanceForFromAccount);
+			toAcc.setBalance(newBalanceForToAccount);
 			
 			//create log of transfer from event
-			Log transferFromLog = new Log(new Date(), "transferFrom", amount, fromAcc.getId(), toAcc.getId());
+			Log transferFromLog = new Log(new Date(), "transferFrom", amount, newBalanceForFromAccount, fromAcc.getId(), toAcc.getId());
 			logsBean.add(transferFromLog);
 			
 			//create log of transfer to event 
-			Log transferToLog = new Log(new Date(), "transferTo", amount, toAcc.getId(), fromAcc.getId());
+			Log transferToLog = new Log(new Date(), "transferTo", amount, newBalanceForToAccount, toAcc.getId(), fromAcc.getId());
 			logsBean.add(transferToLog);
 			
 			//output this to user

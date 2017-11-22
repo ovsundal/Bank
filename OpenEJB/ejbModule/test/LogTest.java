@@ -1,5 +1,9 @@
 package test;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
@@ -122,6 +126,40 @@ public class LogTest extends TestCase {
 			System.out.println("ERROR, could not show log from listAllTransactionsInSingleAccount in LogTest");
 			e.printStackTrace();
 		}
+		
+	}
+
+	public void showAccountBalance() {
+		
+//		List<Account> list;
+//		
+//		try {
+//			list = accounts.list();
+//			int accountId = list.get(0).getId();
+//			
+//			SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+//			
+//			
+//			
+//			//date from 
+//			LocalDate dateF = LocalDate.of( 2017,01,01);
+//			LocalDate dateT = LocalDate.of( 2018,01,01);
+//			
+//			Date dateFrom = Date.from(dateF.atStartOfDay(ZoneId.systemDefault()).toInstant());
+//			Date dateTo = Date.from(dateT.atStartOfDay(ZoneId.systemDefault()).toInstant());
+//			
+//			List<Log> listOfLogs = logs.getAccountBalance(accountId, dateFrom, dateTo);
+//			
+//			for (Log l : listOfLogs) {
+//				System.out.println(l.getAccountBalance());
+//			}
+//			
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+		
 		
 	}
 

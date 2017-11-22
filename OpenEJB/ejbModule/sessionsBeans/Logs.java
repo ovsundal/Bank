@@ -1,5 +1,6 @@
 package sessionsBeans;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -54,11 +55,32 @@ public class Logs implements LogsRemote, LogsLocal {
 	}
 
 	@Override
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public List<Log> showLog(int accountId) {
 		
 		try {
 			Query query = entityManager.createQuery("SELECT l from Log AS l WHERE l.thisAccountId LIKE :id OR l.otherAccountId LIKE :id")
 					.setParameter("id", accountId);
+			List<Log> l = query.getResultList();
+			return l;
+		} catch (Exception e) {
+			System.out.println("ERROR, could not access database in showLog() ");
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
+
+
+	@Override
+	public List<Log> getAccountBalance(int accountId, Date fromDate, Date toDate) {
+		try {
+			Query query = entityManager.createQuery("SELECT l from Log AS l WHERE l.thisAccountId LIKE :id OR l.otherAccountId LIKE :id WHERE l.date >= :fromDate AND l.date <= :toDate ")
+					.setParameter("id", accountId)
+					.setParameter("fromDate", fromDate)
+					.setParameter("toDate", toDate);
+				
 			List<Log> l = query.getResultList();
 			return l;
 		} catch (Exception e) {
