@@ -275,11 +275,9 @@ public class TestEJB {
 		pt.remove();
 		kt.remove();
 		ct.remove();
-		lt.remove();
 		pt.tearDown();
 		kt.tearDown();
 		ct.tearDown();
-		lt.tearDown();
 		System.out.println("Cleanup complete!");
 	}
 }

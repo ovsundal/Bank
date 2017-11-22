@@ -12,4 +12,5 @@ public interface LogsLocal {
 
 	public void add(Log l);
 	public List<Log> list() throws Exception;
+	public void remove(Log l) throws Exception;
 }
