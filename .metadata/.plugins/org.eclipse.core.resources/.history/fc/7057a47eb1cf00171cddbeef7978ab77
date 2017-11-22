@@ -142,18 +142,16 @@ public class LogTest extends TestCase {
 			
 			
 			//date from 
-			LocalDate dateF = LocalDate.of( 2017,01,01);
-			LocalDate dateT = LocalDate.of( 2020,01,01);
+			LocalDate dateF = LocalDate.of( 2019,01,01);
+			LocalDate dateT = LocalDate.of( 2019,01,01);
 			
 			Date dateFrom = Date.from(dateF.atStartOfDay(ZoneId.systemDefault()).toInstant());
 			Date dateTo = Date.from(dateT.atStartOfDay(ZoneId.systemDefault()).toInstant());
 			
-			List<Log> listOfLogs = logs.showLog(accountId);
+			List<Log> listOfLogs = logs.getAccountBalance(accountId, dateFrom, dateTo);
 			
 			for (Log l : listOfLogs) {
-				if(l.getDate().after(dateFrom) && l.getDate().before(dateTo)) {
-					System.out.println("Showing account balance from " + dateF + " to " + dateT + " " + l.getAccountBalance());
-				}
+				System.out.println("Showing account balance from " + dateF + " to " + dateT + " " + l.getAccountBalance());
 			}
 			
 		} catch (Exception e) {
