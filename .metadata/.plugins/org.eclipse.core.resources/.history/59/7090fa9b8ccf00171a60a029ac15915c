@@ -1,0 +1,31 @@
+package sessionsBeans;
+
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
+
+import entity.Log;
+
+/**
+ * Session Bean implementation class Logs
+ */
+@Stateless
+@LocalBean
+public class Logs implements LogsRemote, LogsLocal {
+	@PersistenceContext(unitName = "bankdb-unit", type = PersistenceContextType.TRANSACTION)
+	private EntityManager entityManager;
+	
+    /**
+     * Default constructor. 
+     */
+    public Logs() {}
+
+	@Override
+	public void add(Log l) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

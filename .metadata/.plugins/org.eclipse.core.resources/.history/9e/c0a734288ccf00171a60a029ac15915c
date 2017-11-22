@@ -1,0 +1,20 @@
+package sessionsBeans;
+
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+
+/**
+ * Session Bean implementation class Logs
+ */
+@Stateless
+@LocalBean
+public class Logs implements LogsRemote, LogsLocal {
+
+    /**
+     * Default constructor. 
+     */
+    public Logs() {
+        // TODO Auto-generated constructor stub
+    }
+
+}
