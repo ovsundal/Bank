@@ -19,6 +19,7 @@ public class KontoTest extends TestCase {
 	Context context;
 	@EJB
 	AccountsRemote accounts;
+	@EJB
 	PersonsRemote persons;
 	
 	public void setUp() throws Exception {

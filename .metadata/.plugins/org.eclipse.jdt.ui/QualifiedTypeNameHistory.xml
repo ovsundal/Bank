@@ -10,4 +10,6 @@
 <fullyQualifiedTypeName name="javax.ejb.TransactionManagement"/>
 <fullyQualifiedTypeName name="entity.Card"/>
 <fullyQualifiedTypeName name="entity.RandomCreditCardNumberGenerator"/>
+<fullyQualifiedTypeName name="sessionsBeans.LogsRemote"/>
+<fullyQualifiedTypeName name="entity.Log"/>
 </qualifiedTypeNameHistroy>

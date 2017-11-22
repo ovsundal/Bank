@@ -59,7 +59,7 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 			acc.setBalance(acc.getBalance() + amount);
 			entityManager.flush();
 			acc = accountsBean.get(accountId);
-			
+			System.out.println("from minibank deposit: " + acc);
 			//create log of event 
 			Log l = new Log(new Date(), "deposit", amount, acc);
 			logsBean.add(l);

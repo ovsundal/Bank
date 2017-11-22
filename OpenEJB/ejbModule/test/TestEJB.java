@@ -6,6 +6,7 @@ public class TestEJB {
 	static KontoTest kt;
 	static CardTest ct;
 	static MinibankTest mbt;
+	static LogTest lt;
 	
 	public static void main(String[] args) throws Exception {
 
@@ -61,6 +62,10 @@ public class TestEJB {
 		depositMoney(2000);
 		System.out.println("Accounts should now have money:");
 		listAccounts();
+		
+		System.out.println("All deposits are reflected in the Log:");
+		displayLoggedDepositEvents();
+		
 		System.out.println("--Try to deposit a negative amount of money into accounts--");
 		depositNegativeMoney(-500);
 		System.out.println("Accounts should be unchanged:");
@@ -111,22 +116,19 @@ public class TestEJB {
 
 
 
-
-
-
-
-
 	public static void setupTests() throws Exception {
-
+		
 		pt = new PersonTest();
 		kt = new KontoTest();
 		ct = new CardTest();
 		mbt = new MinibankTest();
+		lt = new LogTest();
 		System.out.println("Setting up remote beans...");
 		pt.setUp();
 		kt.setUp();
 		ct.setUp();
 		mbt.setUp();
+		lt.setUp();
 	}
 
 	private static void addPersons() {
@@ -241,6 +243,11 @@ public class TestEJB {
 	private static void depositMoney(int amount) {
 		
 		mbt.depositMoney(amount);
+	}
+	
+	private static void displayLoggedDepositEvents() {
+		lt.showDepositMoneyLog();
+		
 	}
 	
 	private static void depositNegativeMoney(int amount) {
