@@ -59,7 +59,6 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 			acc.setBalance(acc.getBalance() + amount);
 			entityManager.flush();
 			acc = accountsBean.get(accountId);
-			
 			//create log of event 
 			Log l = new Log(new Date(), "deposit", amount, acc.getId());
 			logsBean.add(l);
@@ -99,11 +98,6 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 			}
 			
 			acc.setBalance(acc.getBalance() - amount);
-			
-			//create log of event 
-			Log l = new Log(new Date(), "withdraw", amount, acc.getId());
-			logsBean.add(l);
-			
 			return "You have withdrawn " + amount + " from account " + acc.getName();
 		} catch(Exception e) {
 			System.out.println("Error, could not connect to database, or something else is wrong");

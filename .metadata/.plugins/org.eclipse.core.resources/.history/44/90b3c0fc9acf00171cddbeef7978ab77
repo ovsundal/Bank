@@ -38,37 +38,19 @@ public class LogTest extends TestCase {
 	}
 
 	public void showDepositMoneyLog() {
-
-		try {
-			List<Log> list = logs.list();
-			for (Log l : list) {
-				if ("deposit".equals(l.getAction())) {
-					System.out.println(l.toString());
-				}
-			}
-		} catch (Exception e) {
-			System.out.println("ERROR, could not show log from showDepositMoneyLog in LogTest");
-			e.printStackTrace();
-		}
-
-	}
-
-	public void showWithdrawMoneyLog() {
 		
 		try {
 			List<Log> list = logs.list();
 			for (Log l : list) {
-				if ("withdraw".equals(l.getAction())) {
-					System.out.println(l.toString());
-				}
-			}
+				System.out.println(l.toString());
+				}	
 		} catch (Exception e) {
-			System.out.println("ERROR, could not show log from showWithdrawMoneyLog in LogTest");
+			System.out.println("ERROR, could not show log from showDepositMoneyLog in LogTest");
 			e.printStackTrace();
 		}
-
+		
 	}
-
+	
 	/**
 	 * Remove all remaining persons from the database
 	 * 
@@ -89,4 +71,8 @@ public class LogTest extends TestCase {
 		}
 	}
 
+	
+	
+	
+	
 }

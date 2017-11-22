@@ -38,15 +38,8 @@ public class Log implements Serializable {
 
 	@Override
 	public String toString() {
-		
-		//hotfix to make eclipse recognize a string 
-//		String deposit = "deposit";
-		
-		
-		if("deposit".equals(action)) {
+		if(action.equals("\"deposit\"")) {
 			return "(logId: " + id + ") Date: " + date + " - Deposited " + amount;
-		} else if("withdraw".equals(action)) {
-			return "(logId: " + id + ") Date: " + date + " - Withdrew " + amount;
 		}
 		return "WRONG";
 	}

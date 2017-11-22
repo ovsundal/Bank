@@ -9,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity(name = "Log")
+@Entity(name= "Log")
 @Table(name = "Log")
 public class Log implements Serializable {
 
@@ -24,10 +24,9 @@ public class Log implements Serializable {
 	private int amount;
 	@Column(name = "thisAccountId", nullable = false)
 	private int thisAccountId;
-
-	public Log() {
-	}
-
+	
+	public Log() {}
+	
 	public Log(Date date, String action, int amount, int thisAccountId) {
 		super();
 		this.date = date;
@@ -38,17 +37,12 @@ public class Log implements Serializable {
 
 	@Override
 	public String toString() {
-		
-		//hotfix to make eclipse recognize a string 
-//		String deposit = "deposit";
-		
-		
-		if("deposit".equals(action)) {
+		System.out.println("ACTIONS IS " + action);
+		if(String.valueOf(action) == "deposit") {
 			return "(logId: " + id + ") Date: " + date + " - Deposited " + amount;
-		} else if("withdraw".equals(action)) {
-			return "(logId: " + id + ") Date: " + date + " - Withdrew " + amount;
 		}
-		return "WRONG";
+		return "Log [LogEventId=" + id + ", date=" + date + ", Type:" + action + ", amount:" + amount + ", fromAccount="
+				+ thisAccountId + "blablalbalblabl]";
 	}
 
 	public int getAmount() {
@@ -91,4 +85,9 @@ public class Log implements Serializable {
 		this.thisAccountId = thisAccountId;
 	}
 
+	
+	
+	
+	
 }
+

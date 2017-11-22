@@ -54,18 +54,7 @@ public class LogTest extends TestCase {
 	}
 
 	public void showWithdrawMoneyLog() {
-		
-		try {
-			List<Log> list = logs.list();
-			for (Log l : list) {
-				if ("withdraw".equals(l.getAction())) {
-					System.out.println(l.toString());
-				}
-			}
-		} catch (Exception e) {
-			System.out.println("ERROR, could not show log from showWithdrawMoneyLog in LogTest");
-			e.printStackTrace();
-		}
+		// TODO Auto-generated method stub
 
 	}
 

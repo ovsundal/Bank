@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.io.Serializable"/>
 <fullyQualifiedTypeName name="entity.Account"/>
 <fullyQualifiedTypeName name="junit.framework.TestCase"/>
 <fullyQualifiedTypeName name="sessionsBeans.MiniBankRemote"/>
@@ -12,4 +11,5 @@
 <fullyQualifiedTypeName name="entity.RandomCreditCardNumberGenerator"/>
 <fullyQualifiedTypeName name="sessionsBeans.LogsRemote"/>
 <fullyQualifiedTypeName name="entity.Log"/>
+<fullyQualifiedTypeName name="java.io.Serializable"/>
 </qualifiedTypeNameHistroy>

@@ -76,9 +76,6 @@ public class TestEJB {
 		System.out.println("Accounts should now have 500 NOK less:");
 		listAccounts();
 		
-		System.out.println("All withdrawals are reflected in the Log:");
-		displayLoggedWithdrawalEvents();
-		
 		System.out.println("--Try to withdraw 235 NOK (non-divisable by 100). Should not work, balance should be equal to above");
 		withdrawMoney(235);
 		listAccounts();
@@ -116,13 +113,6 @@ public class TestEJB {
 	
 
 	
-
-
-
-
-
-
-
 
 
 
@@ -257,7 +247,7 @@ public class TestEJB {
 	
 	private static void displayLoggedDepositEvents() {
 		lt.showDepositMoneyLog();
-		System.out.println("------------------------------------");
+		
 	}
 	
 	private static void depositNegativeMoney(int amount) {
@@ -266,12 +256,6 @@ public class TestEJB {
 	
 	private static void withdrawMoney(int amount) {
 		mbt.withdrawMoney(amount);
-	}
-	
-	private static void displayLoggedWithdrawalEvents() {
-		lt.showWithdrawMoneyLog();
-		System.out.println("------------------------------------");
-		
 	}
 
 	private static void transferMoney(int amount) {
