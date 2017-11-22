@@ -103,7 +103,7 @@ public class TestEJB {
 		System.out.println("Should now have a crypto-account");
 		listAccounts();
 
-		System.out.println("Display all logs affecting a single account: ");
+		System.out.println("Display all logs of only one account: ");
 		listSingleAccount();
 		
 		

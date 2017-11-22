@@ -72,3 +72,11 @@ public class Logs implements LogsRemote, LogsLocal {
 
 
 
+
+
+
+
+
+
+this.thisAccountId = thisAccountId;
+this.otherAccountId = otherAccountId;

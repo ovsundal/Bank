@@ -103,7 +103,7 @@ public class TestEJB {
 		System.out.println("Should now have a crypto-account");
 		listAccounts();
 
-		System.out.println("Display all logs affecting a single account: ");
+		System.out.println("Display all logs of only one account: ");
 		listSingleAccount();
 		
 		
@@ -117,6 +117,8 @@ public class TestEJB {
 		
 	}
 	
+
+
 
 
 
@@ -281,11 +283,6 @@ public class TestEJB {
 	
 	private static void createAccount() {
 		mbt.createAccount();
-	}
-	
-	private static void listSingleAccount() {
-		
-		lt.listAllTransactionsInSingleAccount();
 	}
 	
 	public static void cleanUpTests() throws Exception {

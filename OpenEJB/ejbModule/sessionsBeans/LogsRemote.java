@@ -13,4 +13,5 @@ public interface LogsRemote {
 	public void add(Log l);
 	public List<Log> list() throws Exception;
 	public void remove(Log l) throws Exception;
+	public List<Log> showLog(int accountId);
 }

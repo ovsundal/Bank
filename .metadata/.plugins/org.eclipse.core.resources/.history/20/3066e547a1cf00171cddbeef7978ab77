@@ -113,13 +113,10 @@ public class LogTest extends TestCase {
 			List<Account> list = accounts.list();
 			
 			int accountId = list.get(0).getId();
-			List<Log> logList = logs.showLog(accountId);
+			logs.showLog(accountId);
 			
-			for (Log l : logList) {
-				System.out.println(l.toString());
-			}
 		} catch (Exception e) {
-			System.out.println("ERROR, could not show log from listAllTransactionsInSingleAccount in LogTest");
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

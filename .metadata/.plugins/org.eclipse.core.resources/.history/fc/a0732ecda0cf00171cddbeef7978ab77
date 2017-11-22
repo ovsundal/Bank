@@ -7,7 +7,6 @@ import javax.ejb.EJB;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 
-import entity.Account;
 import entity.Log;
 import entity.Person;
 import junit.framework.TestCase;
@@ -19,8 +18,6 @@ public class LogTest extends TestCase {
 	Context context;
 	@EJB
 	LogsRemote logs;
-	@EJB
-	AccountsRemote accounts;
 
 	public void setUp() throws Exception {
 		Properties p = new Properties();
@@ -34,7 +31,6 @@ public class LogTest extends TestCase {
 		p.put("Unmanaged_BankDBDataSource.JtaManaged", "false");
 		context = new InitialContext(p);
 		logs = (LogsRemote) context.lookup("LogsRemote");
-		accounts = (AccountsRemote) context.lookup("AccountsRemote");
 	}
 
 	@Override
@@ -105,24 +101,6 @@ public class LogTest extends TestCase {
 			}
 		} finally {
 		}
-	}
-
-	public void listAllTransactionsInSingleAccount() {
-		
-		try {
-			List<Account> list = accounts.list();
-			
-			int accountId = list.get(0).getId();
-			List<Log> logList = logs.showLog(accountId);
-			
-			for (Log l : logList) {
-				System.out.println(l.toString());
-			}
-		} catch (Exception e) {
-			System.out.println("ERROR, could not show log from listAllTransactionsInSingleAccount in LogTest");
-			e.printStackTrace();
-		}
-		
 	}
 
 

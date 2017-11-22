@@ -51,13 +51,13 @@ public class Log implements Serializable {
 	public String toString() {
 	
 		if("deposit".equals(action)) {
-			return "(logId: " + id + " - From account: " + thisAccountId + " ) Date: " + date + " - Deposited " + amount;
+			return "(logId: " + id + ") Date: " + date + " - Deposited " + amount;
 		} else if("withdraw".equals(action)) {
-			return "(logId: " + id + " - From account: " + thisAccountId + ") Date: " + date + " - Withdrew " + amount;
+			return "(logId: " + id + ") Date: " + date + " - Withdrew " + amount;
 		} else if("transferFrom".equals(action)){
-			return "(logId: " + id + " - From account: " + thisAccountId + ") Date: " + date + " - Transfer " + amount + " from this account: " + thisAccountId + " to this account: " + otherAccountId;
+			return "(logId: " + id + ") Date: " + date + " - Transfer " + amount + " from this account: " + thisAccountId + " to this account: " + otherAccountId;
 		} else if("transferTo".equals(action)) {
-			return "(logId: " + id + " - From account: " + thisAccountId + ") Date: " + date + " - Transfer " + amount + " to this account: " + thisAccountId + " from this account: " + otherAccountId;
+			return "(logId: " + id + ") Date: " + date + " - Transfer " + amount + " to this account: " + thisAccountId + " from this account: " + otherAccountId;
 		} else {
 			return "ERROR, unclassified log event displayed";
 		}

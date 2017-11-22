@@ -119,7 +119,7 @@ public class LogTest extends TestCase {
 				System.out.println(l.toString());
 			}
 		} catch (Exception e) {
-			System.out.println("ERROR, could not show log from listAllTransactionsInSingleAccount in LogTest");
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
