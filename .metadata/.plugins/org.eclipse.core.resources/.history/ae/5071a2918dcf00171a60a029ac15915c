@@ -19,33 +19,14 @@ public class Log {
 	private Date date;
 	@Column(name = "action", nullable = false)
 	private String action;
-	@Column(name = "amount", nullable = false)
-	private int amount;
 	@Column(name = "fromAccount", nullable = false)
 	private Account fromAccount;
 	
 	public Log() {}
-	
-	public Log(Date date, String action, int amount, Account fromAccount) {
-		super();
-		this.date = date;
-		this.action = action;
-		this.amount = amount;
-		this.fromAccount = fromAccount;
-	}
 
 	@Override
 	public String toString() {
-		return "Log [id=" + id + ", date=" + date + ", action=" + action + ", amount=" + amount + ", fromAccount="
-				+ fromAccount + "]";
-	}
-
-	public int getAmount() {
-		return amount;
-	}
-
-	public void setAmount(int amount) {
-		this.amount = amount;
+		return "Log [id=" + id + ", date=" + date + ", action=" + action + ", fromAccount=" + fromAccount + "]";
 	}
 
 	public int getId() {

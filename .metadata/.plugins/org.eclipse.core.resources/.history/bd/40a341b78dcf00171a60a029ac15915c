@@ -62,7 +62,7 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 			
 			//create log of event 
 			Log l = new Log(new Date(), "deposit", amount, acc);
-			logsBean.add(l);
+			
 			
 			return "You have deposited " + amount + " into account " + acc.getName();
 		} catch (Exception e) {

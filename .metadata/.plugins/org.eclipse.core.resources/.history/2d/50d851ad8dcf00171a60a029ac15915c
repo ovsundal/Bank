@@ -33,9 +33,6 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 	@EJB(name = "Cards", beanInterface = CardsLocal.class)
 	CardsLocal cardsBean;
 	
-	@EJB(name = "Logs", beanInterface = LogsLocal.class)
-	LogsLocal logsBean;
-	
     /**
      * Default constructor. 
      */
@@ -60,9 +57,9 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 			entityManager.flush();
 			acc = accountsBean.get(accountId);
 			
-			//create log of event 
+			//create log of event
+			//public Log(Date date, String action, int amount, Account fromAccount) 
 			Log l = new Log(new Date(), "deposit", amount, acc);
-			logsBean.add(l);
 			
 			return "You have deposited " + amount + " into account " + acc.getName();
 		} catch (Exception e) {

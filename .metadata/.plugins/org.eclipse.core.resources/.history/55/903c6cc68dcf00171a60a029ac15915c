@@ -23,8 +23,6 @@ public class Logs implements LogsRemote, LogsLocal {
      * Default constructor. 
      */
     public Logs() {}
-    
-    
 
 	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
