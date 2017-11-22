@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="java.io.Serializable"/>
-<fullyQualifiedTypeName name="entity.Card"/>
 <fullyQualifiedTypeName name="entity.Account"/>
 <fullyQualifiedTypeName name="junit.framework.TestCase"/>
 <fullyQualifiedTypeName name="sessionsBeans.MiniBankRemote"/>
+<fullyQualifiedTypeName name="java.util.Random"/>
+<fullyQualifiedTypeName name="entity.Person"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="javax.ejb.TransactionManagement"/>
+<fullyQualifiedTypeName name="entity.Card"/>
+<fullyQualifiedTypeName name="entity.RandomCreditCardNumberGenerator"/>
 </qualifiedTypeNameHistroy>

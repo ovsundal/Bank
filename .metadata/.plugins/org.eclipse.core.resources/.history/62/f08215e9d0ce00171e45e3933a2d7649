@@ -184,7 +184,6 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 	}
 
 	@Override
-	@TransactionAttribute(value= TransactionAttributeType.REQUIRES_NEW)
 	public boolean validatePin(String cardNumber, String pin) {
 		// TODO Auto-generated method stub
 		return cardsBean.validatePin(cardNumber, pin);

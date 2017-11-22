@@ -47,7 +47,7 @@ public class TestEJB {
 		System.out.println("Real card numbers passes validation: ");
 		validateTrueCardNumber();
 
-		System.out.println("False card numbers does NOT pass validation: ");
+		System.out.println("False card numbers does not pass validation: ");
 		validateFalseCardNumber();
 		
 		System.out.println("Real card numbers with correct pin will pass pin-validation: ");
