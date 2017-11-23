@@ -48,8 +48,6 @@ public class PersonTest extends TestCase {
 	 */
 	public void addPersons() throws Exception {
 		try {
-			// Calendar c = Calendar.getInstance();
-			// c.set(1988, 00, 00, 01, 01, 01);
 			Person p = new Person("01020304056", "Ove Sundal", "Tastatunet 22", "", "4027", "Stavanger");
 			persons.add(p);
 

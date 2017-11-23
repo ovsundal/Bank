@@ -15,4 +15,5 @@ public interface AccountsRemote {
 	public List <Account> list() throws Exception;
 	public int getAccountBalance(int accountId) throws Exception;
 	public Account get(int accountId) throws Exception;
+	List<Account> acquireFromPerson(int personId) throws Exception;
 }

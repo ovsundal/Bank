@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 
 import javax.ejb.EJB;
@@ -43,6 +44,7 @@ public class FeedDatabaseWithTestData {
 		cards = (CardsRemote) context.lookup("CardsRemote");
 		accounts = (AccountsRemote) context.lookup("AccountsRemote");
 		persons = (PersonsRemote) context.lookup("PersonsRemote");
+		minibank = (MiniBankRemote) context.lookup("MiniBankRemote");
 	}
 
 	public static void main(String[] args) {
@@ -51,20 +53,33 @@ public class FeedDatabaseWithTestData {
 			setUp();
 
 			// add persons
-			Person p1 = new Person("05118079512", "Ola Nordmann", "Lykkebakken 12", "R101", "4859", "Lykkeland");
-			Person p2 = new Person("13029180123", "Kari Larsen", "Rundetorget 44", "R223", "7047", "Hageland");
-			persons.add(p1);
-			persons.add(p2);
+			Person person1 = new Person("05118079512", "Ola Nordmann", "Lykkebakken 12", "R101", "4859", "Lykkeland");
+			Person person2 = new Person("13029180123", "Kari Larsen", "Rundetorget 44", "R223", "7047", "Hageland");
+			persons.add(person1);
+			persons.add(person2);
+			
+			//get person with id from database
+			String personNumber1 = "05118079512";
+			String personNumber2 = "13029180123";
+			
+			Person p1 = persons.get(personNumber1);
+			Person p2 = persons.get(personNumber2);
 
 			// create old dates for accounts
 			Date date1 = getDate(2011, 04, 12);
 			Date date2 = getDate(2014, 07, 21);
 
 			// add accounts
-			Account a1 = new Account(p1, "Forbrukskonto", 0, date1);
-			Account a2 = new Account(p2, "Feriekonto", 0, date2);
-			accounts.add(a1);
-			accounts.add(a2);
+			Account account1 = new Account(p1, "Forbrukskonto", 0, date1);
+			Account account2 = new Account(p2, "Feriekonto", 0, date2);
+			accounts.add(account1);
+			accounts.add(account2);
+			
+			//get accounts with database id
+			List<Account> a1List = accounts.acquireFromPerson(p1.getId());
+			List<Account> a2List = accounts.acquireFromPerson(p2.getId());
+			Account a1 = a1List.get(0);
+			Account a2 = a2List.get(0);
 			
 			//add cards
 			Card c1 = new Card(a1);
@@ -87,7 +102,7 @@ public class FeedDatabaseWithTestData {
 			Date deposit8 = getDate(2017, 06, 21);
 			
 			//deposit into account 1
-			minibank.deposit(a1.getId(), 1000, deposit1);
+			minibank.deposit(a1.getId(), 1000);
 			minibank.deposit(a1.getId(), 7431, deposit2);
 			minibank.deposit(a1.getId(), 15000, deposit3);
 			minibank.deposit(a1.getId(), 14782, deposit4);
@@ -125,6 +140,8 @@ public class FeedDatabaseWithTestData {
 			//transfer between accounts
 			minibank.transfer(a1.getId(), a2.getId(), 1400, transfer1);
 			minibank.transfer(a2.getId(), a1.getId(), 470, transfer2);
+			
+			System.out.println("Data successfully added to database");
 			
 		} catch (Exception e) {
 			System.out.println("ERROR, could not add testdata");

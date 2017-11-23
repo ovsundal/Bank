@@ -28,7 +28,7 @@ public class Account implements Serializable {
 	@Column(name = "dateCreated")
 	private Date dateCreated;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name="OWNER_ID")
 	private Person owner;
 	

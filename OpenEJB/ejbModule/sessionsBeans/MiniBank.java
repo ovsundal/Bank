@@ -232,7 +232,7 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 			acc.setBalance(newBalance);
 			entityManager.flush();
 			acc = accountsBean.get(accountId);
-
+System.out.println("ACCOUNT FOUND: " + acc);
 			// create log of event
 			Log l = new Log(date, "deposit", amount, newBalance, acc.getId());
 			logsBean.add(l);

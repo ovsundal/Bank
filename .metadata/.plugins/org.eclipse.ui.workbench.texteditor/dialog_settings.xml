@@ -2,16 +2,16 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="WRONG" key="selection"/>
+		<item value="Date" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="date"/>
 			<item value="wrong"/>
 			<item value="log"/>
 			<item value="blabla"/>
-			<item value="date"/>
 			<item value="false card"/>
 			<item value="validateCards"/>
 			<item value="list"/>
