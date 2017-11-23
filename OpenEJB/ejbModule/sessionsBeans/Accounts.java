@@ -16,6 +16,7 @@ import javax.persistence.PersistenceContextType;
 import javax.persistence.Query;
 
 import entity.Account;
+import entity.Log;
 import entity.Person;
 
 /**
@@ -32,6 +33,8 @@ public class Accounts implements AccountsRemote, AccountsLocal {
 
 	@EJB(name = "Personer", beanInterface = PersonsLocal.class)
 	PersonsLocal personerBean;
+	@EJB(name = "Logs", beanInterface = LogsLocal.class)
+	LogsLocal logsBean;
 
 	public Accounts() {
 	}
@@ -44,6 +47,9 @@ public class Accounts implements AccountsRemote, AccountsLocal {
 
 		entityManager.persist(k);
 		entityManager.flush();
+		
+		Log l = new Log(k.getDateCreated(), "create", 0, k.getBalance(), k.getId());
+		logsBean.add(l);
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)

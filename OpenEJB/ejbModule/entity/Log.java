@@ -62,7 +62,10 @@ public class Log implements Serializable {
 			return "(logId: " + id + " - From account: " + thisAccountId + ") Date: " + date + " - Transfer " + amount + " - Balance of account after transaction: " + balance + " from this account: " + thisAccountId + " to this account: " + otherAccountId;
 		} else if("transferTo".equals(action)) {
 			return "(logId: " + id + " - From account: " + thisAccountId + ") Date: " + date + " - Transfer " + amount + " - Balance of account after transaction: " + balance + " to this account: " + thisAccountId + " from this account: " + otherAccountId;
-		} else {
+		} else if("create".equals(action)) {
+			return "(logId: " + id + " - From account: " + thisAccountId + ") ACCOUNT CREATED - Date: " + date + " - Balance of account: " + balance;
+		}
+		else {
 			return "ERROR, unclassified log event displayed";
 		}
 	}

@@ -3,7 +3,6 @@
 	<name>EAPProject</name>
 	<comment></comment>
 	<projects>
-		<project>EJBProject</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

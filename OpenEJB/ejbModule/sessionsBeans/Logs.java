@@ -70,26 +70,6 @@ public class Logs implements LogsRemote, LogsLocal {
 
 		return null;
 	}
-
-//
-//
-//	@Override
-//	public List<Log> getAccountBalance(int accountId, Date fromDate, Date toDate) {
-//		try {
-//			Query query = entityManager.createQuery("SELECT l from Log AS l WHERE l.date >= :fromDate AND l.date <= :toDate AND l.thisAccountId LIKE :id OR l.otherAccountId LIKE :id")
-//					.setParameter("id", accountId)
-//					.setParameter("fromDate", fromDate)
-//					.setParameter("toDate", toDate);
-//				
-//			List<Log> l = query.getResultList();
-//			return l;
-//		} catch (Exception e) {
-//			System.out.println("ERROR, could not access database in showLog() ");
-//			e.printStackTrace();
-//		}
-//
-//		return null;
-//	}
 }
 
 

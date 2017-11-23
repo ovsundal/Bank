@@ -5,11 +5,21 @@
 <fullyQualifiedTypeName name="sessionsBeans.MiniBankRemote"/>
 <fullyQualifiedTypeName name="java.util.Random"/>
 <fullyQualifiedTypeName name="entity.Person"/>
-<fullyQualifiedTypeName name="java.util.Date"/>
 <fullyQualifiedTypeName name="javax.ejb.TransactionManagement"/>
 <fullyQualifiedTypeName name="entity.Card"/>
 <fullyQualifiedTypeName name="entity.RandomCreditCardNumberGenerator"/>
 <fullyQualifiedTypeName name="sessionsBeans.LogsRemote"/>
 <fullyQualifiedTypeName name="entity.Log"/>
 <fullyQualifiedTypeName name="java.io.Serializable"/>
+<fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+<fullyQualifiedTypeName name="java.time.LocalDate"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="java.time.ZoneId"/>
+<fullyQualifiedTypeName name="javax.ejb.EJB"/>
+<fullyQualifiedTypeName name="javax.naming.Context"/>
+<fullyQualifiedTypeName name="javax.ejb.Stateless"/>
+<fullyQualifiedTypeName name="javax.persistence.PersistenceContext"/>
+<fullyQualifiedTypeName name="javax.persistence.EntityManager"/>
+<fullyQualifiedTypeName name="javax.naming.InitialContext"/>
+<fullyQualifiedTypeName name="clientBeans.MiniBankRemote"/>
 </qualifiedTypeNameHistroy>
