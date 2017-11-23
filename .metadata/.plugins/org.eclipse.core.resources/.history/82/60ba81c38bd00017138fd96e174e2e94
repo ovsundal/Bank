@@ -48,7 +48,6 @@ public class Client {
 						System.out.println("Select a task: ");
 						System.out.println("1. View account balance");
 						System.out.println("2. Make a deposit");
-						System.out.println("3. Make a withdrawal");
 
 						int userChoice = sc.nextInt();
 
@@ -57,19 +56,12 @@ public class Client {
 						case 1:
 
 							System.out.println("Balance is: " + minibank.getAccountBalance(accountId));
-							continue;
+							break;
 						case 2:
 							System.out.println("Enter amount to deposit: ");
-							int amountForDeposit = sc.nextInt();
-							minibank.deposit(accountId, amountForDeposit);
-							System.out.println("Deposited " + amountForDeposit + ". New balance is: " + minibank.getAccountBalance(accountId));
-							continue;
-						case 3:
-							System.out.println("Enter amount to withdraw: ");
-							int amountForWithdrawal = sc.nextInt();
-							minibank.withdraw(accountId, amountForWithdrawal);
-							System.out.println("Withdrew " + amountForWithdrawal + ". New balance is: " + minibank.getAccountBalance(accountId));
-							continue;
+							int amount = sc.nextInt();
+							minibank.deposit(accountId, amount);
+							System.out.println("Deposited " + amount + ". New balance is: " + minibank.getAccountBalance(accountId));
 						}
 					}
 
