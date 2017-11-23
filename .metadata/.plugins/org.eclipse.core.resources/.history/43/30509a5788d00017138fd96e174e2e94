@@ -16,68 +16,78 @@ import test.PersonTest;
 public class Client {
 
 	static MiniBankRemote minibank;
-
+	
 	public static void main(String[] args) {
-
+		
 		try {
 			setUpClient();
 		} catch (Exception e) {
 			System.out.println("ERROR, could not connect to remote beans");
 			e.printStackTrace();
 		}
-
+		
 		Scanner sc = new Scanner(System.in);
-
-		while (true) {
-
-			// validate card number and PIN
+		
+		while(true) {
+			
+			//validate card number and PIN
 			System.out.println("*************************************************************");
 			System.out.println("Welcome to HBF MiniBank! Please login using your card number:");
 			String cardNumber = sc.nextLine().trim();
-			if (minibank.validateCardNumber(cardNumber)) {
+			if(minibank.validateCardNumber(cardNumber)) {
 				System.out.println("Enter PIN");
 				String pin = sc.next().trim();
-				if (minibank.validatePin(cardNumber, pin)) {
-					// login successful, get accountId
+				if(minibank.validatePin(cardNumber, pin)) {
+					
+					//get accountId
 					int accountId = minibank.getAccountId(cardNumber);
 					
-					//keep running menu until user logs out
-					while (true) {
-
-						// get account based on card number
-						System.out.println("Select a task: ");
-						System.out.println("1. View account balance");
-						System.out.println("");
-						
-						int userChoice = sc.nextInt();
-
-						
-						
-						
-						
-						
-						
-						switch (userChoice) {
-
-						case 1:
-							System.out.println("Balance is: " + minibank.getAccountBalance(accountId));
+					System.out.println("account id is: " + accountId);
+					
+					//get account based on card number
+					System.out.println("Select a task: ");
+					System.out.println("1. View account balance");
+					int userChoice = sc.nextInt();
+					
+					
+					
+					
+					
+					switch(userChoice) {
+					
+						case 1: System.out.println(minibank.getAccountBalance(accountId));
 							break;
-
-						}
+					
 					}
-
+					
 				}
-
+					
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
 			} else {
 				System.out.println("Could not recognize card number, please try again");
 				continue;
 			}
 		}
-
+		
+		
+		
+		
 	}
-
+	
 	public static void setUpClient() throws Exception {
-
+			
 		Properties p = new Properties();
 		p.put(Context.INITIAL_CONTEXT_FACTORY, "org.apache.openejb.client.RemoteInitialContextFactory");
 		p.put("BankDBDatasource", "new://Resource?type=DataSource");
@@ -89,5 +99,5 @@ public class Client {
 		p.put("Unmanaged_BankDBDataSource.JtaManaged", "false");
 		Context context = new InitialContext(p);
 		minibank = (MiniBankRemote) context.lookup("MiniBankRemote");
-	}
+		}
 }

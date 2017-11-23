@@ -29,6 +29,5 @@ public interface AccountsLocal {
 
 	List<Account> acquireFromPerson(int personId) throws Exception;
 
-	//useless
 	public int getAccountId(String cardNumber);
 }

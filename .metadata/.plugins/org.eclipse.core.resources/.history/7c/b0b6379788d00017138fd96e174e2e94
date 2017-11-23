@@ -47,8 +47,6 @@ public class Client {
 						// get account based on card number
 						System.out.println("Select a task: ");
 						System.out.println("1. View account balance");
-						System.out.println("");
-						
 						int userChoice = sc.nextInt();
 
 						

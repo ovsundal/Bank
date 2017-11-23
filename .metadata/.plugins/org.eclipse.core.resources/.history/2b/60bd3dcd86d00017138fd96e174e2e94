@@ -129,7 +129,7 @@ public class Accounts implements AccountsRemote, AccountsLocal {
 					.setParameter("cardNumber", cardNumber);
 			Account acc = (Account) query.getSingleResult();
 			accountId = acc.getId();
-			System.out.println("FOUND THIS IN DATABASE: " + acc + " from getAccountId in Accounts");
+			System.out.println("FOUND THIS IN DATABASE: " + acc);
 			return accountId;
 		} catch (Exception e) {
 			System.out.println("ERROR, could not access database and retrieve account: ");

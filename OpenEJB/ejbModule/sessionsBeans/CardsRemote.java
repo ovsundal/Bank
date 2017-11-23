@@ -15,5 +15,6 @@ public interface CardsRemote {
 	public void remove(Card c);
 	public boolean validateCardNumber(String cardNumber);
 	public boolean validatePin(String cardNumber, String pin);
+	public int getAccountId(String cardNumber);
 	
 }

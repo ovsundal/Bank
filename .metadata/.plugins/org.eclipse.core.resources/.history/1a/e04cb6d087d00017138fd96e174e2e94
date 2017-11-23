@@ -103,27 +103,4 @@ public class Cards implements CardsRemote, CardsLocal {
 		return isValid;
 	}
 
-	@Override
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public int getAccountId(String cardNumber) {
-		
-		int accountId = -1;
-		
-		try {
-			Query query = entityManager.createQuery("SELECT c from Card as c WHERE c.cardNumber LIKE :cardNumber")
-					.setParameter("cardNumber", cardNumber);
-
-			Card c = (Card) query.getSingleResult();
-			accountId = c.getAccount().getId();
-			return accountId;
-		
-		} catch (NoResultException ex) {
-			System.out.println("Could not find any results with this combination of card number and pin");
-		} catch (Exception e) {
-			System.out.println("Error, something went wrong");
-			e.printStackTrace();
-		}
-		return accountId;
-	}
-
 }

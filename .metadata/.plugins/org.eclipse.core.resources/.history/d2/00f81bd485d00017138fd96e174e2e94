@@ -79,7 +79,7 @@ public class Card implements Serializable {
 
 	public String greet() {
 		
-		return "New card generated for account (" + getAccount().getId() + " - " + getAccount().getName() +  ") Card number: " + cardNumber + " PIN: " + pin;
+		return "New card generated for account " + getAccount().toString() + "\nNew card number: " + cardNumber + "\nNew pin: " + pin;
 	};
 	
 	public static String generateRandomPin() {

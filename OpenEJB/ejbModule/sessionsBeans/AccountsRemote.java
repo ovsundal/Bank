@@ -22,6 +22,7 @@ public interface AccountsRemote {
 
 	List<Account> acquireFromPerson(int personId) throws Exception;
 	
+	//useless
 	public int getAccountId(String cardNumber);
 
 }

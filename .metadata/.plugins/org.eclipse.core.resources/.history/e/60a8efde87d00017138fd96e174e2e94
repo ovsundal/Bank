@@ -325,7 +325,7 @@ System.out.println("ACCOUNT FOUND: " + acc);
 	@TransactionAttribute(value = TransactionAttributeType.REQUIRES_NEW)
 	public int getAccountId(String cardNumber) {
 		
-		return cardsBean.getAccountId(cardNumber);
+		return accountsBean.getAccountId(cardNumber);
 		
 	}
 }
