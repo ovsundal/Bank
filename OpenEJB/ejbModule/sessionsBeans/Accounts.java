@@ -119,4 +119,21 @@ public class Accounts implements AccountsRemote, AccountsLocal {
 		}
 		return null;
 	}
+
+	@Override
+	public int getAccountId(String cardNumber) {
+		
+		int accountId = -1;
+		try {
+			Query query = entityManager.createQuery("SELECT a from Account as a WHERE a.cardNumber LIKE :cardNumber")
+					.setParameter("cardNumber", cardNumber);
+			Account acc = (Account) query.getSingleResult();
+			accountId = acc.getId();
+			return accountId;
+		} catch (Exception e) {
+			System.out.println("ERROR, could not access database and retrieve account: ");
+			e.printStackTrace();
+		}
+		return accountId;
+	}
 }

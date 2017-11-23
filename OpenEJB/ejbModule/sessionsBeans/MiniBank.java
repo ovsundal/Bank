@@ -320,6 +320,12 @@ System.out.println("ACCOUNT FOUND: " + acc);
 		}
 		return response;
 	}
-	
-	
+
+	@Override
+	@TransactionAttribute(value = TransactionAttributeType.REQUIRES_NEW)
+	public int getAccountId(String cardNumber) {
+		
+		return accountsBean.getAccountId(cardNumber);
+		
+	}
 }

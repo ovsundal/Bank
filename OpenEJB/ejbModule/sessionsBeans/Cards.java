@@ -35,7 +35,6 @@ public class Cards implements CardsRemote, CardsLocal {
 	 */
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void add(Card card) throws Exception {
-		// bruke merge her?
 		entityManager.persist(card);
 		entityManager.flush();
 	}

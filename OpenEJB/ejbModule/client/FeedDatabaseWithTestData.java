@@ -86,6 +86,8 @@ public class FeedDatabaseWithTestData {
 			Card c2 = new Card(a2);
 			cards.add(c1);
 			cards.add(c2);
+			System.out.println(c1.greet());
+			System.out.println(c2.greet());
 			
 			//do some deposits, withdrawals and transfers
 			

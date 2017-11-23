@@ -30,14 +30,35 @@ public class Client {
 		
 		while(true) {
 			
+			//validate card number and PIN
 			System.out.println("*************************************************************");
 			System.out.println("Welcome to HBF MiniBank! Please login using your card number:");
 			String cardNumber = sc.nextLine();
-			
 			if(minibank.validateCardNumber(cardNumber)) {
 				System.out.println("Enter PIN");
 				String pin = sc.next();
-				
+				if(minibank.validatePin(cardNumber, pin)) {
+					
+					//get accountId
+					minibank.getAccountId(cardNumber);
+					
+					//get account based on card number
+					System.out.println("Select a task: ");
+					System.out.println("1. View account balance");
+					int userChoice = sc.nextInt();
+					
+					
+					
+					
+					
+					switch(userChoice) {
+					
+					case 1: System.out.println(minibank.getAccountBalance(cardNumber));
+						break;
+					
+					}
+					
+				}
 					
 				
 				
