@@ -119,12 +119,7 @@ public class FeedDatabaseWithTestData {
 			minibank.withdraw(a2.getId(), 1700, withdraw6);
 			
 			//create old dates for transfer 
-			Date transfer1 = getDate(2016, 04, 28);
-			Date transfer2 = getDate(2017, 01, 07);
 			
-			//transfer between accounts
-			minibank.transfer(a1.getId(), a2.getId(), 1400, transfer1);
-			minibank.transfer(a2.getId(), a1.getId(), 470, transfer2);
 			
 		} catch (Exception e) {
 			System.out.println("ERROR, could not add testdata");

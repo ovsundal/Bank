@@ -234,7 +234,7 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 			acc = accountsBean.get(accountId);
 
 			// create log of event
-			Log l = new Log(date, "deposit", amount, newBalance, acc.getId());
+			Log l = new Log(new Date(), "deposit", amount, newBalance, acc.getId());
 			logsBean.add(l);
 
 			return "You have deposited " + amount + " into account " + acc.getName();
@@ -252,73 +252,8 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 	@Override
 	@TransactionAttribute(value = TransactionAttributeType.REQUIRES_NEW)
 	public String withdraw(int accountId, int amount, Date date) {
-	
-				try {
-					Account acc;
-					acc = accountsBean.get(accountId);
-
-					int newBalance = acc.getBalance() - amount;
-					acc.setBalance(newBalance);
-
-					// create log of event
-					Log l = new Log(date, "withdraw", amount, newBalance, acc.getId());
-					logsBean.add(l);
-
-					return "You have withdrawn " + amount + " from account " + acc.getName();
-				} catch (Exception e) {
-					System.out.println("Error, could not connect to database, or something else is wrong");
-					e.printStackTrace();
-				}
-				return "";
-	}
-
-	/**
-	 * Transfer with a user-defined log date. Only used for generating test
-	 * data
-	 */
-	@Override
-	@TransactionAttribute(value = TransactionAttributeType.REQUIRES_NEW)
-	public String transfer(int fromAccId, int toAccId, int amount, Date date) {
-		
-		
-		String response = "Error, cannot transfer a negative amount";
-
-		try {
-			Account fromAcc = accountsBean.get(fromAccId);
-
-			// abort if account does not have enough funds
-			if (fromAcc.getBalance() < amount) {
-				response = "Insufficient funds for transfer. Aborted";
-				return response;
-			}
-
-			Account toAcc = accountsBean.get(toAccId);
-
-			int newBalanceForFromAccount = fromAcc.getBalance() - amount;
-			int newBalanceForToAccount = fromAcc.getBalance() + amount;
-
-			fromAcc.setBalance(newBalanceForFromAccount);
-			toAcc.setBalance(newBalanceForToAccount);
-
-			// create log of transfer from event
-			Log transferFromLog = new Log(new Date(), "transferFrom", amount, newBalanceForFromAccount, fromAcc.getId(),
-					toAcc.getId());
-			logsBean.add(transferFromLog);
-
-			// create log of transfer to event
-			Log transferToLog = new Log(new Date(), "transferTo", amount, newBalanceForToAccount, toAcc.getId(),
-					fromAcc.getId());
-			logsBean.add(transferToLog);
-
-			// output this to user
-			response = "Transferred " + amount + " from account: " + fromAcc.getName() + " to account "
-					+ toAcc.getName();
-
-		} catch (Exception e) {
-			System.out.println("ERROR, could not perform transfer:");
-			e.printStackTrace();
-		}
-		return response;
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

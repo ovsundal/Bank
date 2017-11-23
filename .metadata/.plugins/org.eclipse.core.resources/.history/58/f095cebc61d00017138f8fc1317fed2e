@@ -98,7 +98,7 @@ public class FeedDatabaseWithTestData {
 			minibank.deposit(a2.getId(), 8569, deposit7);
 			minibank.deposit(a2.getId(), 19000, deposit8);
 
-			//create old dates for withdrawals into account 1
+			//create old dates for withdrawls into account 1
 			Date withdraw1 = getDate(2011, 10, 18);
 			Date withdraw2 = getDate(2014, 03, 15);
 			Date withdraw3 = getDate(2015, 07, 07);
@@ -118,13 +118,6 @@ public class FeedDatabaseWithTestData {
 			minibank.withdraw(a2.getId(), 400, withdraw5);
 			minibank.withdraw(a2.getId(), 1700, withdraw6);
 			
-			//create old dates for transfer 
-			Date transfer1 = getDate(2016, 04, 28);
-			Date transfer2 = getDate(2017, 01, 07);
-			
-			//transfer between accounts
-			minibank.transfer(a1.getId(), a2.getId(), 1400, transfer1);
-			minibank.transfer(a2.getId(), a1.getId(), 470, transfer2);
 			
 		} catch (Exception e) {
 			System.out.println("ERROR, could not add testdata");

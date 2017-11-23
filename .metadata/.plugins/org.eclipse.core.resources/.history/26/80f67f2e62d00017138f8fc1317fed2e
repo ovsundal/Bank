@@ -252,7 +252,9 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 	@Override
 	@TransactionAttribute(value = TransactionAttributeType.REQUIRES_NEW)
 	public String withdraw(int accountId, int amount, Date date) {
-	
+		
+		// check that amount to withdraw is not negative
+
 				try {
 					Account acc;
 					acc = accountsBean.get(accountId);
@@ -272,16 +274,14 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 				return "";
 	}
 
-	/**
-	 * Transfer with a user-defined log date. Only used for generating test
-	 * data
-	 */
 	@Override
-	@TransactionAttribute(value = TransactionAttributeType.REQUIRES_NEW)
 	public String transfer(int fromAccId, int toAccId, int amount, Date date) {
-		
-		
 		String response = "Error, cannot transfer a negative amount";
+
+		// abort if amount is negative or 0
+		if (amount <= 0) {
+			return response;
+		}
 
 		try {
 			Account fromAcc = accountsBean.get(fromAccId);
