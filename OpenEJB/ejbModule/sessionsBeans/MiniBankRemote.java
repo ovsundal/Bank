@@ -1,6 +1,7 @@
 package sessionsBeans;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.ejb.Remote;
 
@@ -34,4 +35,9 @@ public interface MiniBankRemote {
 	public String transfer(int fromAccId, int toAccId, int amount, Date date);
 
 	public int getAccountId(String cardNumber);
+	
+	public Person getAccountOwner(int accountId);
+
+	public List<Account> getAccounts(int personId);
+
 }

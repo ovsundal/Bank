@@ -1,7 +1,6 @@
 package sessionsBeans;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.ejb.*;
 import javax.persistence.EntityManager;
@@ -219,7 +218,8 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 	}
 
 	/**
-	 * Deposit with a user-defined log date. Only used for generating test data
+	 * Deposit with a user-defined log date. Only used for generating test
+	 * data
 	 */
 	@Override
 	@TransactionAttribute(value = TransactionAttributeType.REQUIRES_NEW)
@@ -232,7 +232,7 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 			acc.setBalance(newBalance);
 			entityManager.flush();
 			acc = accountsBean.get(accountId);
-			System.out.println("ACCOUNT FOUND: " + acc);
+System.out.println("ACCOUNT FOUND: " + acc);
 			// create log of event
 			Log l = new Log(date, "deposit", amount, newBalance, acc.getId());
 			logsBean.add(l);
@@ -246,38 +246,41 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 	}
 
 	/**
-	 * Withdraw with a user-defined log date. Only used for generating test data
+	 * Withdraw with a user-defined log date. Only used for generating test
+	 * data
 	 */
 	@Override
 	@TransactionAttribute(value = TransactionAttributeType.REQUIRES_NEW)
 	public String withdraw(int accountId, int amount, Date date) {
+	
+				try {
+					Account acc;
+					acc = accountsBean.get(accountId);
 
-		try {
-			Account acc;
-			acc = accountsBean.get(accountId);
+					int newBalance = acc.getBalance() - amount;
+					acc.setBalance(newBalance);
 
-			int newBalance = acc.getBalance() - amount;
-			acc.setBalance(newBalance);
+					// create log of event
+					Log l = new Log(date, "withdraw", amount, newBalance, acc.getId());
+					logsBean.add(l);
 
-			// create log of event
-			Log l = new Log(date, "withdraw", amount, newBalance, acc.getId());
-			logsBean.add(l);
-
-			return "You have withdrawn " + amount + " from account " + acc.getName();
-		} catch (Exception e) {
-			System.out.println("Error, could not connect to database, or something else is wrong");
-			e.printStackTrace();
-		}
-		return "";
+					return "You have withdrawn " + amount + " from account " + acc.getName();
+				} catch (Exception e) {
+					System.out.println("Error, could not connect to database, or something else is wrong");
+					e.printStackTrace();
+				}
+				return "";
 	}
 
 	/**
-	 * Transfer with a user-defined log date. Only used for generating test data
+	 * Transfer with a user-defined log date. Only used for generating test
+	 * data
 	 */
 	@Override
 	@TransactionAttribute(value = TransactionAttributeType.REQUIRES_NEW)
 	public String transfer(int fromAccId, int toAccId, int amount, Date date) {
-
+		
+		
 		String response = "Error, cannot transfer a negative amount";
 
 		try {
@@ -321,29 +324,18 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 	@Override
 	@TransactionAttribute(value = TransactionAttributeType.REQUIRES_NEW)
 	public int getAccountId(String cardNumber) {
-
+		
 		return cardsBean.getAccountId(cardNumber);
-
+		
 	}
 
 	@Override
-	public Person getAccountOwner(int accountId) {
+	public String getAccountOwner(int accountId) {
 		try {
 			Account acc = accountsBean.get(accountId);
-			return acc.getOwner();
+			return acc.getOwner().getPersonId();
 		} catch (Exception e) {
 			System.out.println("Error, could not connect to database");
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	@Override
-	public List<Account> getAccounts(int personId) {
-		try {
-			return accountsBean.acquireFromPerson(personId);
-		} catch (Exception e) {
-			System.out.println("Error, could not retrieve accounts");
 			e.printStackTrace();
 		}
 		return null;

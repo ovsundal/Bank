@@ -1,7 +1,6 @@
 package sessionsBeans;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.ejb.Local;
 
@@ -37,6 +36,4 @@ public interface MiniBankLocal {
 	public int getAccountId(String cardNumber);
 	
 	public Person getAccountOwner(int accountId);
-	
-	public List<Account> getAccounts(int personId);
 }

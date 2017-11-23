@@ -1,12 +1,10 @@
 package sessionsBeans;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.ejb.Local;
 
 import entity.Account;
-import entity.Person;
 
 @Local
 public interface MiniBankLocal {
@@ -35,8 +33,4 @@ public interface MiniBankLocal {
 	public String transfer(int fromAccId, int toAccId, int amount, Date date);
 	
 	public int getAccountId(String cardNumber);
-	
-	public Person getAccountOwner(int accountId);
-	
-	public List<Account> getAccounts(int personId);
 }

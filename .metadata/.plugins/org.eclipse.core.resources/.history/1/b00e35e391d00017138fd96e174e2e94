@@ -52,6 +52,7 @@ public class Client {
 
 						// get account based on card number
 						System.out.println("************************");
+						System.out.println("Select a task: ");
 						System.out.println("1. View account balance");
 						System.out.println("2. Make a deposit");
 						System.out.println("3. Make a withdrawal");
@@ -60,8 +61,7 @@ public class Client {
 						System.out.println("6. List all owned accounts");
 						System.out.println("7. Get account statement");
 						System.out.println("8. Logout");
-						System.out.println("************************\n");
-						System.out.print("Select a task: ");
+
 						int userChoice = sc.nextInt();
 
 						switch (userChoice) {
@@ -95,9 +95,6 @@ public class Client {
 							System.out.println("Your accounts:");
 							//list owned accounts
 							List<Account> accounts = minibank.getAccounts(p.getId());
-							for(Account item : accounts) {
-								System.out.println("Listing : " + item.toString());
-							}
 							continue;
 						case 7:
 							//get account statement

@@ -346,6 +346,5 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 			System.out.println("Error, could not retrieve accounts");
 			e.printStackTrace();
 		}
-		return null;
 	}
 }

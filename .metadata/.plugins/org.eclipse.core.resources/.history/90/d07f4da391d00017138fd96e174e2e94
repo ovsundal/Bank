@@ -1,7 +1,6 @@
 package sessionsBeans;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.ejb.*;
 import javax.persistence.EntityManager;
@@ -333,17 +332,6 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 			return acc.getOwner();
 		} catch (Exception e) {
 			System.out.println("Error, could not connect to database");
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	@Override
-	public List<Account> getAccounts(int personId) {
-		try {
-			return accountsBean.acquireFromPerson(personId);
-		} catch (Exception e) {
-			System.out.println("Error, could not retrieve accounts");
 			e.printStackTrace();
 		}
 		return null;
