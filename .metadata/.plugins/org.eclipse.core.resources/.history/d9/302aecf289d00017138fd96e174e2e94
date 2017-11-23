@@ -40,28 +40,29 @@ public class Client {
 				if (minibank.validatePin(cardNumber, pin)) {
 					// login successful, get accountId
 					int accountId = minibank.getAccountId(cardNumber);
-
-					// keep running menu until user logs out
+					
+					//keep running menu until user logs out
 					while (true) {
 
 						// get account based on card number
 						System.out.println("Select a task: ");
 						System.out.println("1. View account balance");
-						System.out.println("2. Make a deposit");
-
+						System.out.println("");
+						
 						int userChoice = sc.nextInt();
 
+						
+						
+						
+						
+						
+						
 						switch (userChoice) {
 
 						case 1:
-
 							System.out.println("Balance is: " + minibank.getAccountBalance(accountId));
 							break;
-						case 2:
-							System.out.println("Enter amount to deposit: ");
-							int amount = sc.nextInt();
-							minibank.deposit(accountId, amount);
-							System.out.println("Deposited " + amount + ". New balance is: " + minibank.getAccountBalance(accountId));
+
 						}
 					}
 
