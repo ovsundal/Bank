@@ -155,7 +155,7 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 			Account toAcc = accountsBean.get(toAccId);
 
 			int newBalanceForFromAccount = fromAcc.getBalance() - amount;
-			int newBalanceForToAccount = toAcc.getBalance() + amount;
+			int newBalanceForToAccount = fromAcc.getBalance() + amount;
 
 			fromAcc.setBalance(newBalanceForFromAccount);
 			toAcc.setBalance(newBalanceForToAccount);

@@ -86,7 +86,7 @@ public class Card implements Serializable {
 		
 		Random rand = new Random();
 		String pin = String.format("%04d", rand.nextInt(10000));
-//		String pin = String.valueOf(rand.nextInt(10000));
+		String pin = String.valueOf(rand.nextInt(10000));
 		return pin;
 	}
 	
