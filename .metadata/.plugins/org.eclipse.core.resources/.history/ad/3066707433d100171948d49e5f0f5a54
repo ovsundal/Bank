@@ -86,13 +86,7 @@ public class Client {
 						case 3:
 							System.out.print("Enter amount to withdraw: ");
 							int amountForWithdrawal = sc.nextInt();
-
-							//abort if amount is not divisible by 100
-							if(amountForWithdrawal % 100 != 0) {
-								System.out.println("Amount must be rounded to nearest 100. Transaction aborted.");
-								continue;
-							}
-							
+							//todo: must be % 100 = 0
 							minibank.withdraw(accountId, amountForWithdrawal);
 							System.out.println("Withdrew " + amountForWithdrawal + ". New " + minibank.getAccountBalance(accountId));
 							continue;
@@ -136,6 +130,8 @@ public class Client {
 							
 							Calendar calFrom = Calendar.getInstance();
 							calFrom.set(fromYear, fromMonth, fromDay, 0, 0, 0);
+							
+							System.out.println("-------------THIS DATE: " + calFrom.getTime());
 							
 							System.out.println("Get account statement TO WHEN? (ddmmyyyy)");
 							String to = sc.next();
