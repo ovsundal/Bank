@@ -87,10 +87,10 @@ public class Log implements Serializable {
 		}
 	}
 
-//	public String getAccountBalance() {
-//
-//		return "Date: " + date + " - balance: " + balance;
-//	}
+	public String getAccountBalance() {
+
+		return "Date: " + date + " - balance: " + balance;
+	}
 	
 	//getters and setters
 	public int getBalance() {
@@ -140,4 +140,5 @@ public class Log implements Serializable {
 	public void setFromAccount(int thisAccountId) {
 		this.thisAccountId = thisAccountId;
 	}
+
 }

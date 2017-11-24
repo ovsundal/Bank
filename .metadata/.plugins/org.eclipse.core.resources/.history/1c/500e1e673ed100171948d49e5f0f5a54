@@ -187,5 +187,6 @@ public class FeedDatabaseWithTestData {
 			System.out.println("ERROR, could not add testdata. Delete the database and try again");
 			e.printStackTrace();
 		}
+
 	}
 }

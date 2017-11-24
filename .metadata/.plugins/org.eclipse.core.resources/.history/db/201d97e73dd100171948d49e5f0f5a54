@@ -2,6 +2,7 @@ package entity;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,16 +12,7 @@ import javax.persistence.Table;
 
 @Entity(name = "Log")
 @Table(name = "Log")
-/**
- * Class for Log-entity. Stores account creation, deposit, withdrawal and
- * transfers between all accounts
- * 
- * @author Ove
- *
- */
 public class Log implements Serializable {
-
-	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue
@@ -38,11 +30,10 @@ public class Log implements Serializable {
 	@Column(name = "otherAccount", nullable = true)
 	private int otherAccountId;
 
-	//constructors
 	public Log() {
 	}
 
-	// constructs Log-object used for deposit and withdrawals
+	//used for deposit and withdrawal
 	public Log(Calendar date, String action, int amount, int balance, int thisAccountId) {
 		this.date = date;
 		this.action = action;
@@ -50,8 +41,8 @@ public class Log implements Serializable {
 		this.thisAccountId = thisAccountId;
 		this.balance = balance;
 	}
-
-	// constructs Log-object used for transfers
+	
+	//used for transfers
 	public Log(Calendar date, String action, int amount, int balance, int thisAccountId, int otherAccountId) {
 		this.date = date;
 		this.action = action;
@@ -61,38 +52,33 @@ public class Log implements Serializable {
 		this.balance = balance;
 	}
 
-	//return appropriate string depending on what type of transaction event that was done
 	@Override
 	public String toString() {
-
-		if ("deposit".equals(action)) {
-			return "(logId: " + id + " - From account: " + thisAccountId + " ) Date: " + date.getTime()
-					+ " - Deposited " + amount + " - Balance of account after transaction: " + balance;
-		} else if ("withdraw".equals(action)) {
-			return "(logId: " + id + " - From account: " + thisAccountId + ") Date: " + date.getTime() + " - Withdrew "
-					+ amount + " - Balance of account after transaction: " + balance;
-		} else if ("transferFrom".equals(action)) {
-			return "(logId: " + id + " - From account: " + thisAccountId + ") Date: " + date.getTime() + " - Transfer "
-					+ amount + " - Balance of account after transaction: " + balance + " from this account: "
-					+ thisAccountId + " to this account: " + otherAccountId;
-		} else if ("transferTo".equals(action)) {
-			return "(logId: " + id + " - From account: " + thisAccountId + ") Date: " + date.getTime() + " - Transfer "
-					+ amount + " - Balance of account after transaction: " + balance + " to this account: "
-					+ thisAccountId + " from this account: " + otherAccountId;
-		} else if ("create".equals(action)) {
-			return "(logId: " + id + " - From account: " + thisAccountId + ") ACCOUNT CREATED - Date: " + date.getTime()
-					+ " - Balance of account: " + balance;
-		} else {
+	
+		if("deposit".equals(action)) {
+			return "(logId: " + id + " - From account: " + thisAccountId + " ) Date: " + date.getTime() + " - Deposited " + amount + " - Balance of account after transaction: " + balance;
+		} else if("withdraw".equals(action)) {
+			return "(logId: " + id + " - From account: " + thisAccountId + ") Date: " + date.getTime() + " - Withdrew " + amount + " - Balance of account after transaction: " + balance;
+		} else if("transferFrom".equals(action)){
+			return "(logId: " + id + " - From account: " + thisAccountId + ") Date: " + date.getTime() + " - Transfer " + amount + " - Balance of account after transaction: " + balance + " from this account: " + thisAccountId + " to this account: " + otherAccountId;
+		} else if("transferTo".equals(action)) {
+			return "(logId: " + id + " - From account: " + thisAccountId + ") Date: " + date.getTime() + " - Transfer " + amount + " - Balance of account after transaction: " + balance + " to this account: " + thisAccountId + " from this account: " + otherAccountId;
+		} else if("create".equals(action)) {
+			return "(logId: " + id + " - From account: " + thisAccountId + ") ACCOUNT CREATED - Date: " + date.getTime() + " - Balance of account: " + balance;
+		}
+		else {
 			return "ERROR, unclassified log event displayed";
 		}
 	}
-
-//	public String getAccountBalance() {
-//
-//		return "Date: " + date + " - balance: " + balance;
-//	}
 	
-	//getters and setters
+	public String getAccountBalance() {
+	
+		return "Date: " + date + " - balance: " + balance;
+	}
+	
+
+	
+
 	public int getBalance() {
 		return balance;
 	}
@@ -140,4 +126,5 @@ public class Log implements Serializable {
 	public void setFromAccount(int thisAccountId) {
 		this.thisAccountId = thisAccountId;
 	}
+
 }

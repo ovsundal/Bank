@@ -108,9 +108,7 @@ public class Client {
 							continue;
 							// transfer money
 						case 4:
-							System.out.println(doTransfer(p.getId(), accountId));
-							continue;
-							// create new account
+							doTransfer(p.getId(), accountId);
 						case 5:
 							System.out.print("Enter account name: ");
 							String accountName = sc.next();

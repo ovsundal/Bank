@@ -13,13 +13,14 @@ import entity.Log;
 import entity.Person;
 import sessionsBeans.MiniBankRemote;
 
+
 /**
  * This class simulates the minibank a customer interacts with. All remote
- * requests are done using MiniBank class in package sessionsBeans.
+ * requests are done using MiniBank class in package sessionsBeans. 
  * 
- * I am making the assumption that the minibank does NOT have a keyboard capable
- * of typing letters, methods therefore do not have any protection against
- * illegal character injection
+ * I am making the assumption that the minibank does NOT have a keyboard capable of 
+ * typing letters, methods therefore do not have any protection against illegal
+ * character injection
  * 
  * @author Ove
  *
@@ -28,7 +29,6 @@ public class Client {
 
 	static MiniBankRemote minibank;
 	static List<Account> accountList;
-	static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
 
@@ -40,7 +40,7 @@ public class Client {
 			e.printStackTrace();
 		}
 
-		
+		Scanner sc = new Scanner(System.in);
 		boolean loggedIn = false;
 
 		// greetings menu
@@ -80,7 +80,7 @@ public class Client {
 
 						switch (userChoice) {
 
-						// view account balance
+							// view account balance
 						case 1:
 							System.out.println(minibank.getAccountBalance(accountId));
 							continue;
@@ -108,16 +108,32 @@ public class Client {
 							continue;
 							// transfer money
 						case 4:
-							System.out.println(doTransfer(p.getId(), accountId));
+								//get available accounts for transfering
+							System.out.print("Your available accounts are:\n");
+							accountList = getAccountList(p.getId());
+							for (Account item : accountList) {
+								System.out.println("Listing : " + item.toString());
+							}
+							// do transfer
+							System.out.print("Transfer from this account to which? (enter id number of account)");
+							int transferTo = sc.nextInt();
+							//prevent an account to transfer to itself
+							if(transferTo == accountId) {
+								System.out.println("An account cannot transfer to itself. Aborted");
+								continue;
+							}
+							System.out.println("Enter transfer amount; ");
+							int amount = sc.nextInt();
+							System.out.println(minibank.transfer(accountId, transferTo, amount));
 							continue;
-							// create new account
+							//create new account
 						case 5:
 							System.out.print("Enter account name: ");
 							String accountName = sc.next();
 							System.out.println("Account generated"
 									+ minibank.createAccount(p.getPersonId(), accountName, 0, Calendar.getInstance()));
 							continue;
-							// List all accounts owned by person
+							//List all accounts owned by person
 						case 6:
 							System.out.println("Your accounts:\n");
 							accountList = getAccountList(p.getId());
@@ -125,7 +141,7 @@ public class Client {
 								System.out.println("Listing : " + item.toString());
 							}
 							continue;
-							// get account statement
+							//get account statement
 						case 7:
 							// request FROM period
 							System.out.println("Get account statement FROM WHEN? (ddmmyyyy)");
@@ -135,11 +151,11 @@ public class Client {
 							Integer fromYear = Integer.valueOf(from.substring(4));
 							Integer fromMonth = Integer.valueOf(from.substring(2, 4)) - 1;
 							Integer fromDay = Integer.valueOf(from.substring(0, 2));
-
+							
 							Calendar calFrom = Calendar.getInstance();
 							calFrom.set(fromYear, fromMonth, fromDay, 0, 0, 0);
 
-							// request TO period
+							//request TO period
 							System.out.println("Get account statement TO WHEN? (ddmmyyyy)");
 							String to = sc.next();
 
@@ -182,45 +198,8 @@ public class Client {
 		}
 
 	}
-	
-	public static String doTransfer(int personId, int accountId) {
-		// get available accounts for transfering
-		boolean transferWasDone = false;
-		String response = "";
-		System.out.print("Your available accounts are:\n");
-		accountList = getAccountList(personId);
-		for (Account item : accountList) {
-			System.out.println("Listing : " + item.toString());
-		}
-		// do transfer
-		System.out.print("Transfer from this account to which? (enter id number of account)");
-		int transferTo = sc.nextInt();
-		// prevent an account to transfer to itself
-		if (transferTo == accountId) {
-			return "An account cannot transfer to itself. Aborted";
-		}
-		// validate transfer-to account id
-		for (Account item : accountList) {
-			// if found, go ahead with transaction
-			if (transferTo == item.getId()) {
-				System.out.println("Enter transfer amount; ");
-				int amount = sc.nextInt();
-				response = minibank.transfer(accountId, transferTo, amount);
-				transferWasDone = true;
-				break;
-			}
-		}
-		//if used input account was not found, notify user and abort
-		if (!transferWasDone) {
-			return "Error, could not find that account. Try again";
-		} else {
-			return response;
-		}
-	}
-
 	/**
 	 * Returnes all accounts owned by person
-	 * 
 	 * @param personId
 	 * @return
 	 */

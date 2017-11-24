@@ -61,7 +61,6 @@ public class Log implements Serializable {
 		this.balance = balance;
 	}
 
-	//return appropriate string depending on what type of transaction event that was done
 	@Override
 	public String toString() {
 
@@ -87,12 +86,11 @@ public class Log implements Serializable {
 		}
 	}
 
-//	public String getAccountBalance() {
-//
-//		return "Date: " + date + " - balance: " + balance;
-//	}
-	
-	//getters and setters
+	public String getAccountBalance() {
+
+		return "Date: " + date + " - balance: " + balance;
+	}
+
 	public int getBalance() {
 		return balance;
 	}
@@ -140,4 +138,5 @@ public class Log implements Serializable {
 	public void setFromAccount(int thisAccountId) {
 		this.thisAccountId = thisAccountId;
 	}
+
 }

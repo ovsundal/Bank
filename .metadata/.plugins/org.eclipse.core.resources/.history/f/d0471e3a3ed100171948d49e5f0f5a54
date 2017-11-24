@@ -129,40 +129,40 @@ public class LogTest extends TestCase {
 		
 	}
 
-//	public void showAccountBalance() {
-//		
-//		List<Account> list;
-//		
-//		try {
-//			list = accounts.list();
-//			int accountId = list.get(0).getId();
-//			
-//			SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
-//			
-//			
-//			
-//			//date from 
-//			LocalDate dateF = LocalDate.of( 2017,01,01);
-//			LocalDate dateT = LocalDate.of( 2020,01,01);
-//			
-//			Date dateFrom = Date.from(dateF.atStartOfDay(ZoneId.systemDefault()).toInstant());
-//			Date dateTo = Date.from(dateT.atStartOfDay(ZoneId.systemDefault()).toInstant());
-//			
-//			List<Log> listOfLogs = logs.showLog(accountId);
-//			
-//			System.out.println("Showing account balance from " + dateF + " to " + dateT + ":");
-//			for (Log l : listOfLogs) {
-//				if(l.getDate().after(dateFrom) && l.getDate().before(dateTo)) {
-//					System.out.println(l.getAccountBalance());
-//				}
-//			}
-//			
-//		} catch (Exception e) {
-//			System.out.println("ERROR in showAccountBalance, could not get balance list of account");
-//			e.printStackTrace();
-//		}
-//
-//	}
+	public void showAccountBalance() {
+		
+		List<Account> list;
+		
+		try {
+			list = accounts.list();
+			int accountId = list.get(0).getId();
+			
+			SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+			
+			
+			
+			//date from 
+			LocalDate dateF = LocalDate.of( 2017,01,01);
+			LocalDate dateT = LocalDate.of( 2020,01,01);
+			
+			Date dateFrom = Date.from(dateF.atStartOfDay(ZoneId.systemDefault()).toInstant());
+			Date dateTo = Date.from(dateT.atStartOfDay(ZoneId.systemDefault()).toInstant());
+			
+			List<Log> listOfLogs = logs.showLog(accountId);
+			
+			System.out.println("Showing account balance from " + dateF + " to " + dateT + ":");
+			for (Log l : listOfLogs) {
+				if(l.getDate().after(dateFrom) && l.getDate().before(dateTo)) {
+					System.out.println(l.getAccountBalance());
+				}
+			}
+			
+		} catch (Exception e) {
+			System.out.println("ERROR in showAccountBalance, could not get balance list of account");
+			e.printStackTrace();
+		}
+
+	}
 
 
 

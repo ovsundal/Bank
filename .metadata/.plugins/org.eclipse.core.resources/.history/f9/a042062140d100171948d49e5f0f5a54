@@ -28,7 +28,6 @@ public class Client {
 
 	static MiniBankRemote minibank;
 	static List<Account> accountList;
-	static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
 
@@ -40,7 +39,7 @@ public class Client {
 			e.printStackTrace();
 		}
 
-		
+		Scanner sc = new Scanner(System.in);
 		boolean loggedIn = false;
 
 		// greetings menu
@@ -108,9 +107,7 @@ public class Client {
 							continue;
 							// transfer money
 						case 4:
-							System.out.println(doTransfer(p.getId(), accountId));
-							continue;
-							// create new account
+							
 						case 5:
 							System.out.print("Enter account name: ");
 							String accountName = sc.next();
@@ -186,9 +183,8 @@ public class Client {
 	public static String doTransfer(int personId, int accountId) {
 		// get available accounts for transfering
 		boolean transferWasDone = false;
-		String response = "";
 		System.out.print("Your available accounts are:\n");
-		accountList = getAccountList(personId);
+		accountList = getAccountList(p.getId());
 		for (Account item : accountList) {
 			System.out.println("Listing : " + item.toString());
 		}
@@ -197,7 +193,8 @@ public class Client {
 		int transferTo = sc.nextInt();
 		// prevent an account to transfer to itself
 		if (transferTo == accountId) {
-			return "An account cannot transfer to itself. Aborted";
+			System.out.println("An account cannot transfer to itself. Aborted");
+			continue;
 		}
 		// validate transfer-to account id
 		for (Account item : accountList) {
@@ -205,17 +202,17 @@ public class Client {
 			if (transferTo == item.getId()) {
 				System.out.println("Enter transfer amount; ");
 				int amount = sc.nextInt();
-				response = minibank.transfer(accountId, transferTo, amount);
+				System.out.println(minibank.transfer(accountId, transferTo, amount));
 				transferWasDone = true;
 				break;
 			}
 		}
 		//if used input account was not found, notify user and abort
 		if (!transferWasDone) {
-			return "Error, could not find that account. Try again";
-		} else {
-			return response;
+			System.out.println("Error, could not find that account. Try again");
 		}
+		continue;
+		// create new account
 	}
 
 	/**
