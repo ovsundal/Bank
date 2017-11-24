@@ -87,6 +87,11 @@ public class Log implements Serializable {
 		}
 	}
 
+//	public String getAccountBalance() {
+//
+//		return "Date: " + date + " - balance: " + balance;
+//	}
+	
 	//getters and setters
 	public int getBalance() {
 		return balance;

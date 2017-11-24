@@ -40,6 +40,7 @@ public class Client {
 			e.printStackTrace();
 		}
 
+		
 		boolean loggedIn = false;
 
 		// greetings menu
@@ -163,6 +164,7 @@ public class Client {
 								}
 							}
 							continue;
+
 							// logout
 						case 8:
 							System.out.println("Have a nice day!");
@@ -180,7 +182,7 @@ public class Client {
 		}
 
 	}
-
+	
 	public static String doTransfer(int personId, int accountId) {
 		// get available accounts for transfering
 		boolean transferWasDone = false;
@@ -208,7 +210,7 @@ public class Client {
 				break;
 			}
 		}
-		// if used input account was not found, notify user and abort
+		//if used input account was not found, notify user and abort
 		if (!transferWasDone) {
 			return "Error, could not find that account. Try again";
 		} else {

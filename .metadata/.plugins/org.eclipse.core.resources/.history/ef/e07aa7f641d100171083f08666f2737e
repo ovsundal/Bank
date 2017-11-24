@@ -7,7 +7,6 @@ import java.util.Vector;
 
 /**
  * From https://github.com/grahamking/darkcoding-credit-card/blob/master/RandomCreditCardNumberGenerator.java
- * Used for generating a random 12-digit card number
  * See the license below. Obviously, this is not a Javascript credit card number
  * generator. However, The following class is a port of a Javascript credit card
  * number generator.

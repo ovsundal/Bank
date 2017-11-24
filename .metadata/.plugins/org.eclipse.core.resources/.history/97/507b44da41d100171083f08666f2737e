@@ -8,10 +8,6 @@ import java.util.List;
 
 import javax.persistence.*;
 
-/**
- * Class for Person-entity. Has a many-to-one(this) relation with entity class Account
- * @author Ove
- */
 @Entity(name = "Person")
 @Table(name = "Person")
 public class Person implements Serializable {
@@ -37,7 +33,7 @@ public class Person implements Serializable {
 	@OneToMany(mappedBy="owner", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private Collection<Account> accounts = new ArrayList<>();
 
-	//constructors
+	/*** Constructors*/
 	public Person () {}
 
 	public Person(String Personnummer, String Navn, String Adresselinje_1,String Adresselinje_2, String Postnummer, String Poststed) {
@@ -56,8 +52,7 @@ public class Person implements Serializable {
 				+ ", address_1=" + address_1 + ", address_2=" + address_2 + ", areaCode=" + areaCode + ", area=" + area
 				+ "]";
 	}
-	
-	//getters and setters
+
 	public String getPersonId() {
 		return personId;
 	}
