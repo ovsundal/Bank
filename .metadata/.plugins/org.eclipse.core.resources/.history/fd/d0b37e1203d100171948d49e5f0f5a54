@@ -20,7 +20,6 @@ import test.PersonTest;
 public class Client {
 
 	static MiniBankRemote minibank;
-	static List<Account> accountList;
 
 	public static void main(String[] args) {
 
@@ -86,18 +85,8 @@ public class Client {
 							System.out.println("Withdrew " + amountForWithdrawal + ". New balance is: " + minibank.getAccountBalance(accountId));
 							continue;
 						case 4:
-							//list available accounts 
-							System.out.print("Your available accounts are: ");
-							accountList = getAccountList(p.getId());
-							for(Account item : accountList) {
-								System.out.println("Listing : " + item.toString());
-							}
-							//do transfer
-							System.out.print("Transfer from this account to which? (enter id number of account)");
-							int transferTo = sc.nextInt();
-							System.out.println("Enter transfer amount; ");
-							int amount = sc.nextInt();
-							System.out.println(minibank.transfer(accountId, transferTo, amount));
+
+							//transfer
 							continue;
 						case 5:
 							System.out.print("Enter account name: ");
@@ -106,8 +95,8 @@ public class Client {
 							continue;
 						case 6:
 							System.out.println("Your accounts:");
-							accountList = getAccountList(p.getId());
-							for(Account item : accountList) {
+							List<Account> accounts = minibank.getAccounts(p.getId());
+							for(Account item : accounts) {
 								System.out.println("Listing : " + item.toString());
 							}
 							continue;
@@ -115,7 +104,6 @@ public class Client {
 							//get account statement
 							continue;
 						case 8: System.out.println("Have a nice day!");
-							loggedIn = false;
 							break;
 						}
 					}
@@ -128,11 +116,6 @@ public class Client {
 			}
 		}
 
-	}
-	
-	public static List<Account> getAccountList(int personId) {
-		
-		return minibank.getAccounts(personId);
 	}
 
 	public static void setUpClient() throws Exception {

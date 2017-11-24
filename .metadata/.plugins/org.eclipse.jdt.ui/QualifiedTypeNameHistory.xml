@@ -10,7 +10,6 @@
 <fullyQualifiedTypeName name="java.io.Serializable"/>
 <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
 <fullyQualifiedTypeName name="java.time.LocalDate"/>
-<fullyQualifiedTypeName name="java.util.Date"/>
 <fullyQualifiedTypeName name="java.time.ZoneId"/>
 <fullyQualifiedTypeName name="javax.ejb.EJB"/>
 <fullyQualifiedTypeName name="javax.naming.Context"/>
@@ -21,8 +20,9 @@
 <fullyQualifiedTypeName name="clientBeans.MiniBankRemote"/>
 <fullyQualifiedTypeName name="java.util.Scanner"/>
 <fullyQualifiedTypeName name="sessionsBeans.CardsRemote"/>
+<fullyQualifiedTypeName name="entity.Card"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
 <fullyQualifiedTypeName name="entity.Person"/>
 <fullyQualifiedTypeName name="entity.Account"/>
-<fullyQualifiedTypeName name="entity.Card"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 </qualifiedTypeNameHistroy>
