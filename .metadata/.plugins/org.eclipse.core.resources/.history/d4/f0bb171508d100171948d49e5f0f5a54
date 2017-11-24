@@ -348,11 +348,4 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 		}
 		return null;
 	}
-
-	@Override
-	public List<Log> showLog(int accountId) {
-		return logsBean.showLog(accountId);
-	}
-
-
 }

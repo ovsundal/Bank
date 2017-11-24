@@ -41,11 +41,6 @@ public interface MiniBankRemote {
 
 	public List<Account> getAccounts(int personId);
 	
-	/**
-	 * Returns all logs for an account
-	 * @param accountId
-	 * @return
-	 */
-	public List<Log> showLog(int accountId);
+	public List<Log> getAccountStatement(int from, int to);
 
 }

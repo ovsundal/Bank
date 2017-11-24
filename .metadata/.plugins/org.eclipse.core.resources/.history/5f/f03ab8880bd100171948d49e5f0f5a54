@@ -85,7 +85,6 @@ public class Client {
 						case 3:
 							System.out.print("Enter amount to withdraw: ");
 							int amountForWithdrawal = sc.nextInt();
-							//todo: must be % 100 = 0
 							minibank.withdraw(accountId, amountForWithdrawal);
 							System.out.println("Withdrew " + amountForWithdrawal + ". New " + minibank.getAccountBalance(accountId));
 							continue;

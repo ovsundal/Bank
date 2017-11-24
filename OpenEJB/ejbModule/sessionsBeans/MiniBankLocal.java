@@ -6,6 +6,7 @@ import java.util.List;
 import javax.ejb.Local;
 
 import entity.Account;
+import entity.Log;
 import entity.Person;
 
 @Local
@@ -39,4 +40,11 @@ public interface MiniBankLocal {
 	public Person getAccountOwner(int accountId);
 	
 	public List<Account> getAccounts(int personId);
+	
+	/**
+	 * Returns all logs for an account
+	 * @param accountId
+	 * @return
+	 */
+	public List<Log> showLog(int accountId);
 }

@@ -80,14 +80,13 @@ public class Client {
 							System.out.print("Enter amount to deposit: ");
 							int amountForDeposit = sc.nextInt();
 							minibank.deposit(accountId, amountForDeposit);
-							System.out.println("Deposited " + amountForDeposit + ". New " +  minibank.getAccountBalance(accountId));
+							System.out.println("Deposited " + amountForDeposit + ". " +  minibank.getAccountBalance(accountId));
 							continue;
 						case 3:
 							System.out.print("Enter amount to withdraw: ");
 							int amountForWithdrawal = sc.nextInt();
-							//todo: must be % 100 = 0
 							minibank.withdraw(accountId, amountForWithdrawal);
-							System.out.println("Withdrew " + amountForWithdrawal + ". New " + minibank.getAccountBalance(accountId));
+							System.out.println("Withdrew " + amountForWithdrawal + ". " + minibank.getAccountBalance(accountId));
 							continue;
 						case 4:
 							//list available accounts 

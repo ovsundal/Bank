@@ -80,14 +80,13 @@ public class Client {
 							System.out.print("Enter amount to deposit: ");
 							int amountForDeposit = sc.nextInt();
 							minibank.deposit(accountId, amountForDeposit);
-							System.out.println("Deposited " + amountForDeposit + ". New " +  minibank.getAccountBalance(accountId));
+							System.out.println("Deposited " + amountForDeposit + ". New balance is: " + minibank.getAccountBalance(accountId));
 							continue;
 						case 3:
 							System.out.print("Enter amount to withdraw: ");
 							int amountForWithdrawal = sc.nextInt();
-							//todo: must be % 100 = 0
 							minibank.withdraw(accountId, amountForWithdrawal);
-							System.out.println("Withdrew " + amountForWithdrawal + ". New " + minibank.getAccountBalance(accountId));
+							System.out.println("Withdrew " + amountForWithdrawal + ". New balance is: " + minibank.getAccountBalance(accountId));
 							continue;
 						case 4:
 							//list available accounts 
@@ -118,9 +117,9 @@ public class Client {
 							//account statement
 						case 7:
 							//request FROM-TO period
-							System.out.println("Get account statement FROM WHEN? (ddmmyyyy)");
+							System.out.println("Get account statement FROM WHEN? (ddmmyyyy");
 							String from = sc.next();
-							System.out.println("Get account statement TO WHEN? (ddmmyyyy)");
+							System.out.println("Get account statement TO WHEN? (ddmmyyyy");
 							String to = sc.next();
 							
 							//get dates from user input
@@ -141,7 +140,6 @@ public class Client {
 							
 							//get account log
 							List<Log> listOfLogs = minibank.showLog(accountId);
-							System.out.println("got this list: " + listOfLogs);
 							
 							//filter log and list statements
 							System.out.println("Showing account balance from " + fromYear + "." + fromMonth + "." + fromDay +

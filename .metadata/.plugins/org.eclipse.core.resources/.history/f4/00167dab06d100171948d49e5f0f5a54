@@ -150,10 +150,9 @@ public class LogTest extends TestCase {
 			
 			List<Log> listOfLogs = logs.showLog(accountId);
 			
-			System.out.println("Showing account balance from " + dateF + " to " + dateT + ":");
 			for (Log l : listOfLogs) {
 				if(l.getDate().after(dateFrom) && l.getDate().before(dateTo)) {
-					System.out.println(l.getAccountBalance());
+					System.out.println("Showing account balance from " + dateF + " to " + dateT + " " + l.getAccountBalance());
 				}
 			}
 			
