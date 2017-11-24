@@ -2,6 +2,7 @@ package client;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
@@ -106,7 +107,7 @@ public class Client {
 						case 5:
 							System.out.print("Enter account name: ");
 							String accountName = sc.next();
-							System.out.println("Account generated" + minibank.createAccount(p.getPersonId(), accountName, 0, new Date()));
+							System.out.println("Account generated" + minibank.createAccount(p.getPersonId(), accountName, 0, Calendar.getInstance()));
 							continue;
 						case 6:
 							System.out.println("Your accounts:");
@@ -120,35 +121,44 @@ public class Client {
 							//request FROM-TO period
 							System.out.println("Get account statement FROM WHEN? (ddmmyyyy)");
 							String from = sc.next();
+							
+							
+							//get dates from user input
+							Integer fromYear = Integer.valueOf(from.substring(4));
+							Integer fromMonth = Integer.valueOf(from.substring(2, 4)) - 1;
+							Integer fromDay = Integer.valueOf(from.substring(0, 2));
+							
+							Calendar calFrom = Calendar.getInstance();
+							calFrom.set(fromYear, fromMonth, fromDay, 0, 0, 0);
+							
+							System.out.println("-------------THIS DATE: " + calFrom.getTime());
+							
 							System.out.println("Get account statement TO WHEN? (ddmmyyyy)");
 							String to = sc.next();
 							
-							//get dates from user input
-							int fromYear = Integer.valueOf(from.substring(4));
-							int fromMonth = Integer.valueOf(from.substring(2, 3));
-							int fromDay = Integer.valueOf(from.substring(0, 1));
+							Integer toYear = Integer.valueOf(to.substring(4));
+							Integer toMonth = Integer.valueOf(to.substring(2, 4)) - 1;
+							Integer toDay = Integer.valueOf(to.substring(0, 2));
 							
-							int toYear = Integer.valueOf(to.substring(4));
-							int toMonth = Integer.valueOf(to.substring(2, 3));
-							int toDay = Integer.valueOf(to.substring(0, 1));
+							Calendar calTo = Calendar.getInstance();
+							calTo.set(toYear, toMonth, toDay, 0, 0, 0);
 							
 							//convert user input to Date
-							LocalDate dateF = LocalDate.of( fromYear,fromMonth,fromDay);
-							LocalDate dateT = LocalDate.of( toYear,toMonth,toDay);
+//							LocalDate dateF = LocalDate.of( fromYear,fromMonth,fromDay);
+//							LocalDate dateT = LocalDate.of( toYear,toMonth,toDay);
 							
-							Date dateFrom = Date.from(dateF.atStartOfDay(ZoneId.systemDefault()).toInstant());
-							Date dateTo = Date.from(dateT.atStartOfDay(ZoneId.systemDefault()).toInstant());
+//							Date dateFrom = Date.from(dateF.atStartOfDay(ZoneId.systemDefault()).toInstant());
+//							Date dateTo = Date.from(dateT.atStartOfDay(ZoneId.systemDefault()).toInstant());
 							
 							//get account log
 							List<Log> listOfLogs = minibank.showLog(accountId);
-							System.out.println("got this list: " + listOfLogs);
 							
 							//filter log and list statements
-							System.out.println("Showing account balance from " + fromYear + "." + fromMonth + "." + fromDay +
-									" to " + toYear + "." + toMonth + "." + toDay);
+							System.out.println("Showing account balance from " + calFrom.getTime() +
+									" to " + calTo.getTime());
 							for (Log l : listOfLogs) {
-								if(l.getDate().after(dateFrom) && l.getDate().before(dateTo)) {
-									System.out.println(l.getAccountBalance());
+								if(l.getDate().getTime().after(calFrom.getTime()) && l.getDate().getTime().before(calTo.getTime())) {
+									System.out.println("Balance at " + l.getDate().getTime() + " - " + l.getBalance());
 								}
 							}							
 							continue;

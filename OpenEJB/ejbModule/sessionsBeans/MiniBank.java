@@ -1,5 +1,6 @@
 package sessionsBeans;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -64,7 +65,7 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 			acc = accountsBean.get(accountId);
 
 			// create log of event
-			Log l = new Log(new Date(), "deposit", amount, newBalance, acc.getId());
+			Log l = new Log(Calendar.getInstance(), "deposit", amount, newBalance, acc.getId());
 			logsBean.add(l);
 
 			return "You have deposited " + amount + " into account " + acc.getName();
@@ -104,7 +105,7 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 			acc.setBalance(newBalance);
 
 			// create log of event
-			Log l = new Log(new Date(), "withdraw", amount, newBalance, acc.getId());
+			Log l = new Log(Calendar.getInstance(), "withdraw", amount, newBalance, acc.getId());
 			logsBean.add(l);
 
 			return "You have withdrawn " + amount + " from account " + acc.getName();
@@ -160,12 +161,12 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 			toAcc.setBalance(newBalanceForToAccount);
 
 			// create log of transfer from event
-			Log transferFromLog = new Log(new Date(), "transferFrom", amount, newBalanceForFromAccount, fromAcc.getId(),
+			Log transferFromLog = new Log(Calendar.getInstance(), "transferFrom", amount, newBalanceForFromAccount, fromAcc.getId(),
 					toAcc.getId());
 			logsBean.add(transferFromLog);
 
 			// create log of transfer to event
-			Log transferToLog = new Log(new Date(), "transferTo", amount, newBalanceForToAccount, toAcc.getId(),
+			Log transferToLog = new Log(Calendar.getInstance(), "transferTo", amount, newBalanceForToAccount, toAcc.getId(),
 					fromAcc.getId());
 			logsBean.add(transferToLog);
 
@@ -182,7 +183,7 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 
 	@Override
 	@TransactionAttribute(value = TransactionAttributeType.REQUIRES_NEW)
-	public String createAccount(String personId, String accountName, int initialBalance, Date dateCreated) {
+	public String createAccount(String personId, String accountName, int initialBalance, Calendar dateCreated) {
 
 		try {
 			// find person
@@ -223,7 +224,7 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 	 */
 	@Override
 	@TransactionAttribute(value = TransactionAttributeType.REQUIRES_NEW)
-	public String deposit(int accountId, int amount, Date date) {
+	public String deposit(int accountId, int amount, Calendar date) {
 
 		Account acc;
 		try {
@@ -250,7 +251,7 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 	 */
 	@Override
 	@TransactionAttribute(value = TransactionAttributeType.REQUIRES_NEW)
-	public String withdraw(int accountId, int amount, Date date) {
+	public String withdraw(int accountId, int amount, Calendar date) {
 
 		try {
 			Account acc;
@@ -276,7 +277,7 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 	 */
 	@Override
 	@TransactionAttribute(value = TransactionAttributeType.REQUIRES_NEW)
-	public String transfer(int fromAccId, int toAccId, int amount, Date date) {
+	public String transfer(int fromAccId, int toAccId, int amount, Calendar date) {
 
 		String response = "Error, cannot transfer a negative amount";
 
@@ -298,12 +299,12 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 			toAcc.setBalance(newBalanceForToAccount);
 
 			// create log of transfer from event
-			Log transferFromLog = new Log(new Date(), "transferFrom", amount, newBalanceForFromAccount, fromAcc.getId(),
+			Log transferFromLog = new Log(Calendar.getInstance(), "transferFrom", amount, newBalanceForFromAccount, fromAcc.getId(),
 					toAcc.getId());
 			logsBean.add(transferFromLog);
 
 			// create log of transfer to event
-			Log transferToLog = new Log(new Date(), "transferTo", amount, newBalanceForToAccount, toAcc.getId(),
+			Log transferToLog = new Log(Calendar.getInstance(), "transferTo", amount, newBalanceForToAccount, toAcc.getId(),
 					fromAcc.getId());
 			logsBean.add(transferToLog);
 

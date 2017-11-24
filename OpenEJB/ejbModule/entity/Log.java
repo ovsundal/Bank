@@ -1,6 +1,7 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -17,7 +18,7 @@ public class Log implements Serializable {
 	@GeneratedValue
 	private int id;
 	@Column(name = "date", nullable = false)
-	private Date date;
+	private Calendar date;
 	@Column(name = "action", nullable = false)
 	private String action;
 	@Column(name = "amount", nullable = false)
@@ -33,7 +34,7 @@ public class Log implements Serializable {
 	}
 
 	//used for deposit and withdrawal
-	public Log(Date date, String action, int amount, int balance, int thisAccountId) {
+	public Log(Calendar date, String action, int amount, int balance, int thisAccountId) {
 		this.date = date;
 		this.action = action;
 		this.amount = amount;
@@ -42,7 +43,7 @@ public class Log implements Serializable {
 	}
 	
 	//used for transfers
-	public Log(Date date, String action, int amount, int balance, int thisAccountId, int otherAccountId) {
+	public Log(Calendar date, String action, int amount, int balance, int thisAccountId, int otherAccountId) {
 		this.date = date;
 		this.action = action;
 		this.amount = amount;
@@ -55,15 +56,15 @@ public class Log implements Serializable {
 	public String toString() {
 	
 		if("deposit".equals(action)) {
-			return "(logId: " + id + " - From account: " + thisAccountId + " ) Date: " + date + " - Deposited " + amount + " - Balance of account after transaction: " + balance;
+			return "(logId: " + id + " - From account: " + thisAccountId + " ) Date: " + date.getTime() + " - Deposited " + amount + " - Balance of account after transaction: " + balance;
 		} else if("withdraw".equals(action)) {
-			return "(logId: " + id + " - From account: " + thisAccountId + ") Date: " + date + " - Withdrew " + amount + " - Balance of account after transaction: " + balance;
+			return "(logId: " + id + " - From account: " + thisAccountId + ") Date: " + date.getTime() + " - Withdrew " + amount + " - Balance of account after transaction: " + balance;
 		} else if("transferFrom".equals(action)){
-			return "(logId: " + id + " - From account: " + thisAccountId + ") Date: " + date + " - Transfer " + amount + " - Balance of account after transaction: " + balance + " from this account: " + thisAccountId + " to this account: " + otherAccountId;
+			return "(logId: " + id + " - From account: " + thisAccountId + ") Date: " + date.getTime() + " - Transfer " + amount + " - Balance of account after transaction: " + balance + " from this account: " + thisAccountId + " to this account: " + otherAccountId;
 		} else if("transferTo".equals(action)) {
-			return "(logId: " + id + " - From account: " + thisAccountId + ") Date: " + date + " - Transfer " + amount + " - Balance of account after transaction: " + balance + " to this account: " + thisAccountId + " from this account: " + otherAccountId;
+			return "(logId: " + id + " - From account: " + thisAccountId + ") Date: " + date.getTime() + " - Transfer " + amount + " - Balance of account after transaction: " + balance + " to this account: " + thisAccountId + " from this account: " + otherAccountId;
 		} else if("create".equals(action)) {
-			return "(logId: " + id + " - From account: " + thisAccountId + ") ACCOUNT CREATED - Date: " + date + " - Balance of account: " + balance;
+			return "(logId: " + id + " - From account: " + thisAccountId + ") ACCOUNT CREATED - Date: " + date.getTime() + " - Balance of account: " + balance;
 		}
 		else {
 			return "ERROR, unclassified log event displayed";
@@ -102,11 +103,11 @@ public class Log implements Serializable {
 		this.id = id;
 	}
 
-	public Date getDate() {
+	public Calendar getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(Calendar date) {
 		this.date = date;
 	}
 

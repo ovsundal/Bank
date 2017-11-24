@@ -1,5 +1,6 @@
 package test;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
@@ -116,7 +117,7 @@ public class MinibankTest extends TestCase {
 		
 		try {
 			//create account with oves personId
-			String response = minibank.createAccount("01020304056", "Cryptokonto", 400, new Date());
+			String response = minibank.createAccount("01020304056", "Cryptokonto", 400, Calendar.getInstance());
 			System.out.println(response);
 		} catch(Exception e) {
 			System.out.println("ERROR, could not create account in MinibankTest, createAccount()");

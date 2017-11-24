@@ -2,6 +2,7 @@ package entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 
@@ -26,7 +27,7 @@ public class Account implements Serializable {
 	@Column(name = "balance",length = 20)
 	private int balance;
 	@Column(name = "dateCreated")
-	private Date dateCreated;
+	private Calendar dateCreated;
 	
 	@ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name="OWNER_ID")
@@ -43,7 +44,7 @@ public class Account implements Serializable {
 	
 	public Account() {}
 
-	public Account(Person p, String navn, int balance, Date dato) {
+	public Account(Person p, String navn, int balance, Calendar dato) {
 		
 		setOwner(p);
 		setName(navn);
@@ -53,7 +54,7 @@ public class Account implements Serializable {
 
 	@Override
 	public String toString() {
-		return "[id=" + id + ", name=" + name + ", balance=" + balance + ", dateCreated=" + dateCreated + "]";
+		return "[id=" + id + ", name=" + name + ", balance=" + balance + ", dateCreated=" + dateCreated.getTime() + "]";
 	}
 
 	public Person getOwner() {
@@ -88,11 +89,11 @@ public class Account implements Serializable {
 		this.balance = balance;
 	}
 
-	public Date getDateCreated() {
+	public Calendar getDateCreated() {
 		return dateCreated;
 	}
 
-	public void setDateCreated(Date dateCreated) {
+	public void setDateCreated(Calendar dateCreated) {
 		this.dateCreated = dateCreated;
 	}
 	

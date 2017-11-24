@@ -46,7 +46,7 @@ public class KontoTest extends TestCase {
 			String personnummer = "01020304056";
 			Person ove = persons.get(personnummer);
 			
-			Date d = new Date();
+			Calendar d = Calendar.getInstance();
 			
 			//add an account to person
 			Account k = new Account(ove, "Forbrukskonto", 0, d);
@@ -55,7 +55,7 @@ public class KontoTest extends TestCase {
 			//query a person (Knut) from database and create three accounts:
 			personnummer = "33332223344";
 			Person knut = persons.get(personnummer);
-			d = new Date();
+
 			k = new Account(knut, "Gjeldskonto", 0, d);
 			accounts.add(k);
 			k = new Account(knut, "Midtlivskrisekonto", 0, d);
