@@ -1,6 +1,9 @@
 package client;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 import java.util.Scanner;
@@ -12,7 +15,11 @@ import entity.Account;
 import entity.Log;
 import entity.Person;
 import sessionsBeans.MiniBankRemote;
-
+import test.CardTest;
+import test.KontoTest;
+import test.LogTest;
+import test.MinibankTest;
+import test.PersonTest;
 
 /**
  * This class simulates the minibank a customer interacts with. All remote
