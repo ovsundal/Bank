@@ -189,4 +189,22 @@ public class FeedDatabaseWithTestData {
 		}
 
 	}
+/**
+ * 
+ * @param year
+ * @param month
+ * @param day
+ * @return
+ */
+//	static Date getDate(int year, int month, int day) {
+//
+//		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+//
+//		// date from
+//		LocalDate date = LocalDate.of(2017, 01, 01);
+//
+//		Date dateFrom = Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());
+//		return dateFrom;
+//	}
+
 }

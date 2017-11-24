@@ -116,6 +116,11 @@ public class FeedDatabaseWithTestData {
 			d3.set(2015, 02, 07);
 			d4.set(2016, 07, 22);
 			
+//			Date deposit1 = getDate(2011, 04, 13);
+//			Date deposit2 = getDate(2013, 12, 18);
+//			Date deposit3 = getDate(2015, 02, 07);
+//			Date deposit4 = getDate(2016, 07, 22);
+			
 			//create old dates for deposits into account 2
 			Calendar d5 = Calendar.getInstance();
 			Calendar d6 = Calendar.getInstance();
@@ -126,6 +131,11 @@ public class FeedDatabaseWithTestData {
 			d6.set(2014, 10, 19);
 			d7.set(2015, 01, 29);
 			d8.set(2017, 06, 21);
+			
+//			Date deposit5 = getDate(2014, 07, 22);
+//			Date deposit6 = getDate(2014, 10, 19);
+//			Date deposit7 = getDate(2015, 01, 29);
+//			Date deposit8 = getDate(2017, 06, 21);
 			
 			//deposit into account 1
 			minibank.deposit(a1.getId(), 1000, d1);
@@ -151,20 +161,29 @@ public class FeedDatabaseWithTestData {
 			w3.set(2015, 07, 07);
 			w4.set(2017, 12, 05);
 			
+//			Date withdraw1 = getDate(2011, 10, 18);
+//			Date withdraw2 = getDate(2014, 03, 15);
+//			Date withdraw3 = getDate(2015, 07, 07);
+//			Date withdraw4 = getDate(2016, 12, 05);
+			
 			//create old dates for withdrawals into account 2
 			Calendar w5 = Calendar.getInstance();
 			Calendar w6 = Calendar.getInstance();
 			
 			w5.set(2015, 11, 30);
 			w6.set(2017, 02, 01);
-
-			//do withdraws from account 1
+			
+			
+//			Date withdraw5 = getDate(2015, 11, 30);
+//			Date withdraw6 = getDate(2017, 02, 01);
+			
+			//withdraw from account 1
 			minibank.withdraw(a1.getId(), 200, w1);
 			minibank.withdraw(a1.getId(), 900, w2);
 			minibank.withdraw(a1.getId(), 2000, w3);
 			minibank.withdraw(a1.getId(), 3500, w4);
 
-			//do withdraws from account 2
+			//withdraw from account 2
 			minibank.withdraw(a2.getId(), 400, w5);
 			minibank.withdraw(a2.getId(), 1700, w6);
 			
@@ -173,9 +192,11 @@ public class FeedDatabaseWithTestData {
 			Calendar t1 = Calendar.getInstance();
 			Calendar t2 = Calendar.getInstance();
 			
-			//do transfers
 			t1.set(2016, 04, 28);
 			t2.set(2017, 01, 07);
+			
+//			Date transfer1 = getDate(2016, 04, 28);
+//			Date transfer2 = getDate(2017, 01, 07);
 			
 			//transfer between accounts
 			minibank.transfer(a1.getId(), a2.getId(), 1400, t1);
@@ -184,9 +205,21 @@ public class FeedDatabaseWithTestData {
 			System.out.println("Data successfully added to database");
 			
 		} catch (Exception e) {
-			System.out.println("ERROR, could not add testdata. Delete the database and try again");
+			System.out.println("ERROR, could not add testdata");
 			e.printStackTrace();
 		}
 
 	}
+
+	static Date getDate(int year, int month, int day) {
+
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+
+		// date from
+		LocalDate date = LocalDate.of(2017, 01, 01);
+
+		Date dateFrom = Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());
+		return dateFrom;
+	}
+
 }
