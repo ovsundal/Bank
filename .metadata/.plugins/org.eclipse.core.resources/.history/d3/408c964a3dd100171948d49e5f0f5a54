@@ -15,41 +15,39 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
- * Class for Account-entity. Has a many(this)-to-one relation with entity class
- * Person, and a one-to-one relation with entity class Card
- * 
+ * Class for Account-entity. Has a many(this)-to-one relation with entity class Person, 
+ * and a one-to-one relation with entity class Card
  * @author Ove
  *
  */
-@Entity(name = "Account")
+@Entity(name= "Account")
 @Table(name = "Account")
 public class Account implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@GeneratedValue
 	private int id;
 	@Column(name = "name", length = 30)
 	private String name;
-	@Column(name = "balance", length = 20)
+	@Column(name = "balance",length = 20)
 	private int balance;
 	@Column(name = "dateCreated")
 	private Calendar dateCreated;
-
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "OWNER_ID")
+	
+	@ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name="OWNER_ID")
 	private Person owner;
 
-	@OneToOne(mappedBy = "owner")
+	@OneToOne(mappedBy="owner")
 	private Card card;
-
-	// constructors
-	public Account() {
-	}
+	
+	//constructors
+	public Account() {}
 
 	public Account(Person p, String navn, int balance, Calendar dato) {
-
+		
 		setOwner(p);
 		setName(navn);
 		setBalance(balance);
@@ -60,8 +58,8 @@ public class Account implements Serializable {
 	public String toString() {
 		return "[id=" + id + ", name=" + name + ", balance=" + balance + ", dateCreated=" + dateCreated.getTime() + "]";
 	}
-
-	// getters and setters
+	
+	//getters and setters
 	public Person getOwner() {
 		return owner;
 	}
@@ -101,5 +99,13 @@ public class Account implements Serializable {
 	public void setDateCreated(Calendar dateCreated) {
 		this.dateCreated = dateCreated;
 	}
+	
+	
 
+
+	
+	
+	
+	
+	
 }
