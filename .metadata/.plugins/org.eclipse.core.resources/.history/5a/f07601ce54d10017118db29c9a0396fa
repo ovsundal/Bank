@@ -180,7 +180,7 @@ public class Client {
 		for (Log l : listOfLogs) {
 			if (l.getDate().getTime().after(calFrom.getTime())
 					&& l.getDate().getTime().before(calTo.getTime())
-					&& l.getThisAccountId() == accountId) {
+					) {
 				System.out.println(l.toString());
 			}
 		}

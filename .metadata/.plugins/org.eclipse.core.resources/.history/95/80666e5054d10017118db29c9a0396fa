@@ -180,12 +180,12 @@ public class Client {
 		for (Log l : listOfLogs) {
 			if (l.getDate().getTime().after(calFrom.getTime())
 					&& l.getDate().getTime().before(calTo.getTime())
-					&& l.getThisAccountId() == accountId) {
+					&& !"transferTo".equals(l.getAction())) {
 				System.out.println(l.toString());
 			}
 		}
 	}
-//	&& !"transferTo".equals(l.getAction())
+
 	private static String doTransfer(int personId, int accountId) {
 		// get available accounts for transfering
 		boolean transferWasDone = false;

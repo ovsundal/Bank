@@ -113,7 +113,7 @@ public class Client {
 						case 5:
 							System.out.print("Enter account name: ");
 							String accountName = sc.next();
-							System.out.println("Account generated\n"
+							System.out.println("Account generated"
 									+ minibank.createAccount(p.getPersonId(), accountName, 0, Calendar.getInstance()));
 							continue;
 							// List all accounts owned by person
@@ -126,7 +126,42 @@ public class Client {
 							continue;
 							// get account statement
 						case 7:
-							getAccountStatement(accountId);
+							// request FROM period
+							System.out.println("Get account statement FROM WHEN? (ddmmyyyy)");
+							String from = sc.next();
+
+							// set dates from user input into calendar
+							Integer fromYear = Integer.valueOf(from.substring(4));
+							Integer fromMonth = Integer.valueOf(from.substring(2, 4)) - 1;
+							Integer fromDay = Integer.valueOf(from.substring(0, 2));
+
+							Calendar calFrom = Calendar.getInstance();
+							calFrom.set(fromYear, fromMonth, fromDay, 0, 0, 0);
+
+							// request TO period
+							System.out.println("Get account statement TO WHEN? (ddmmyyyy)");
+							String to = sc.next();
+
+							// set dates from user input into calendar
+							Integer toYear = Integer.valueOf(to.substring(4));
+							Integer toMonth = Integer.valueOf(to.substring(2, 4)) - 1;
+							Integer toDay = Integer.valueOf(to.substring(0, 2));
+
+							Calendar calTo = Calendar.getInstance();
+							calTo.set(toYear, toMonth, toDay, 0, 0, 0);
+
+							// get account log
+							List<Log> listOfLogs = minibank.showLog(accountId);
+
+							// filter log and list relevant statements
+							System.out.println(
+									"Showing account balance from " + calFrom.getTime() + " to " + calTo.getTime());
+							for (Log l : listOfLogs) {
+								if (l.getDate().getTime().after(calFrom.getTime())
+										&& l.getDate().getTime().before(calTo.getTime())) {
+									System.out.println("Balance at " + l.getDate().getTime() + " - " + l.getBalance());
+								}
+							}
 							continue;
 							// logout
 						case 8:
@@ -146,47 +181,7 @@ public class Client {
 
 	}
 
-	private static void getAccountStatement(int accountId) {
-		// request FROM period
-		System.out.println("Get account statement FROM WHEN? (ddmmyyyy)");
-		String from = sc.next();
-
-		// set dates from user input into calendar
-		Integer fromYear = Integer.valueOf(from.substring(4));
-		Integer fromMonth = Integer.valueOf(from.substring(2, 4)) - 1;
-		Integer fromDay = Integer.valueOf(from.substring(0, 2));
-
-		Calendar calFrom = Calendar.getInstance();
-		calFrom.set(fromYear, fromMonth, fromDay, 0, 0, 0);
-
-		// request TO period
-		System.out.println("Get account statement TO WHEN? (ddmmyyyy)");
-		String to = sc.next();
-
-		// set dates from user input into calendar
-		Integer toYear = Integer.valueOf(to.substring(4));
-		Integer toMonth = Integer.valueOf(to.substring(2, 4)) - 1;
-		Integer toDay = Integer.valueOf(to.substring(0, 2));
-
-		Calendar calTo = Calendar.getInstance();
-		calTo.set(toYear, toMonth, toDay, 0, 0, 0);
-
-		// get account log
-		List<Log> listOfLogs = minibank.showLog(accountId);
-
-		// filter log and list relevant statements
-		System.out.println(
-				"Showing account balance from " + calFrom.getTime() + " to " + calTo.getTime());
-		for (Log l : listOfLogs) {
-			if (l.getDate().getTime().after(calFrom.getTime())
-					&& l.getDate().getTime().before(calTo.getTime())
-					&& l.getThisAccountId() == accountId) {
-				System.out.println(l.toString());
-			}
-		}
-	}
-//	&& !"transferTo".equals(l.getAction())
-	private static String doTransfer(int personId, int accountId) {
+	public static String doTransfer(int personId, int accountId) {
 		// get available accounts for transfering
 		boolean transferWasDone = false;
 		String response = "";
