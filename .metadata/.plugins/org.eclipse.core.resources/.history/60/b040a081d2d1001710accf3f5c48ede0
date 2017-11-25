@@ -169,7 +169,21 @@ public class FeedDatabaseWithTestData {
 			minibank.withdraw(a2.getId(), 400, w5);
 			minibank.withdraw(a2.getId(), 1700, w6);
 			minibank.deposit(a2.getId(), 19000, d8);
-
+			
+			
+			//create old dates for transfer 
+			
+//			Calendar t1 = Calendar.getInstance();
+//			Calendar t2 = Calendar.getInstance();
+			
+//			
+//			t1.set(2017, 04, 28);
+//			t2.set(2017, 07, 07);
+			
+			//transfer between accounts (in correct timeline)
+//			minibank.transfer(a2.getId(), a1.getId(), 1400, t1);
+//			minibank.transfer(a2.getId(), a1.getId(), 470, t2);
+			
 			System.out.println("Data successfully added to database");
 			
 		} catch (Exception e) {
