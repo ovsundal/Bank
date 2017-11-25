@@ -12,8 +12,8 @@ import javax.naming.InitialContext;
 import entity.Account;
 import entity.Person;
 import junit.framework.TestCase;
-import sessionsBeans.AccountsRemote;
-import sessionsBeans.PersonsRemote;
+import sessionBeans.AccountsRemote;
+import sessionBeans.PersonsRemote;
 
 public class KontoTest extends TestCase {
 	Context context;

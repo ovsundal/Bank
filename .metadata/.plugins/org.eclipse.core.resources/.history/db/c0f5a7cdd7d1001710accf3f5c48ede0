@@ -1,0 +1,39 @@
+package sessionBeans;
+
+import java.util.Date;
+import java.util.List;
+
+import javax.ejb.Local;
+
+import entity.Account;
+import entity.Person;
+
+@Local
+public interface AccountsLocal {
+
+	/**
+	 * Creates a new account
+	 * @param k
+	 */
+	public void add(Account k);
+
+	/**
+	 * Returns account balance
+	 * @param accountId
+	 * @return
+	 * @throws Exception
+	 */
+	public int getAccountBalance(int accountId) throws Exception;
+
+	public Account get(int accountId) throws Exception;
+	
+	
+
+	List<Account> acquireFromPerson(int personId) throws Exception;
+	
+	//for testing
+	public List<Account> list() throws Exception;
+
+	//useless
+	public int getAccountId(String cardNumber);
+}

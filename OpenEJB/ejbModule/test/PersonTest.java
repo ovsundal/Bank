@@ -5,8 +5,8 @@ import javax.ejb.EJB;
 import javax.naming.*;
 import java.util.Properties;
 import junit.framework.TestCase;
+import sessionBeans.*;
 import entity.*;
-import sessionsBeans.*;
 
 public class PersonTest extends TestCase {
 	Context context;

@@ -12,9 +12,9 @@ import entity.Card;
 import entity.Person;
 import entity.RandomCreditCardNumberGenerator;
 import junit.framework.TestCase;
-import sessionsBeans.AccountsRemote;
-import sessionsBeans.CardsRemote;
-import sessionsBeans.PersonsRemote;
+import sessionBeans.AccountsRemote;
+import sessionBeans.CardsRemote;
+import sessionBeans.PersonsRemote;
 
 public class CardTest extends TestCase {
 	Context context;

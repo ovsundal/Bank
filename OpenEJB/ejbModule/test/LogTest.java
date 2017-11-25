@@ -15,9 +15,9 @@ import entity.Account;
 import entity.Log;
 import entity.Person;
 import junit.framework.TestCase;
-import sessionsBeans.AccountsRemote;
-import sessionsBeans.LogsRemote;
-import sessionsBeans.PersonsRemote;
+import sessionBeans.AccountsRemote;
+import sessionBeans.LogsRemote;
+import sessionBeans.PersonsRemote;
 
 public class LogTest extends TestCase {
 	Context context;

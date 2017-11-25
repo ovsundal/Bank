@@ -11,7 +11,7 @@ import javax.naming.InitialContext;
 import entity.Account;
 import entity.Log;
 import entity.Person;
-import sessionsBeans.MiniBankRemote;
+import sessionBeans.MiniBankRemote;
 
 /**
  * This class simulates the minibank a customer interacts with. All remote

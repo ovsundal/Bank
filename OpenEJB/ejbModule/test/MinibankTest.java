@@ -13,9 +13,9 @@ import entity.Account;
 import entity.Card;
 import entity.Person;
 import junit.framework.TestCase;
-import sessionsBeans.AccountsRemote;
-import sessionsBeans.MiniBankRemote;
-import sessionsBeans.PersonsRemote;
+import sessionBeans.AccountsRemote;
+import sessionBeans.MiniBankRemote;
+import sessionBeans.PersonsRemote;
 
 public class MinibankTest extends TestCase {
 

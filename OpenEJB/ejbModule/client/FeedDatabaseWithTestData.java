@@ -11,10 +11,10 @@ import javax.naming.InitialContext;
 import entity.Account;
 import entity.Card;
 import entity.Person;
-import sessionsBeans.AccountsRemote;
-import sessionsBeans.CardsRemote;
-import sessionsBeans.MiniBankRemote;
-import sessionsBeans.PersonsRemote;
+import sessionBeans.AccountsRemote;
+import sessionBeans.CardsRemote;
+import sessionBeans.MiniBankRemote;
+import sessionBeans.PersonsRemote;
 
 /**
  * This class injects minibank test data into the database. 
@@ -85,8 +85,8 @@ public class FeedDatabaseWithTestData {
 			accounts.add(account2);
 			
 			//get accounts with database id
-			List<Account> a1List = accounts.acquireFromPerson(p1.getId());
-			List<Account> a2List = accounts.acquireFromPerson(p2.getId());
+			List<Account> a1List = accounts.getOwnedAccounts(p1.getId());
+			List<Account> a2List = accounts.getOwnedAccounts(p2.getId());
 			Account a1 = a1List.get(0);
 			Account a2 = a2List.get(0);
 			
