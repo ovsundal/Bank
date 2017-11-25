@@ -1,10 +1,6 @@
 package client;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
@@ -111,6 +107,7 @@ public class FeedDatabaseWithTestData {
 			Calendar d3 = Calendar.getInstance();
 			Calendar d4 = Calendar.getInstance();
 			
+			
 			d1.set(2011, 04, 13);
 			d2.set(2013, 12, 18);
 			d3.set(2015, 02, 07);
@@ -122,22 +119,17 @@ public class FeedDatabaseWithTestData {
 			Calendar d7 = Calendar.getInstance();
 			Calendar d8 = Calendar.getInstance();
 			
+			
 			d5.set(2014, 07, 22);
 			d6.set(2014, 10, 19);
 			d7.set(2015, 01, 29);
 			d8.set(2017, 06, 21);
 			
-			//deposit into account 1
-			minibank.deposit(a1.getId(), 1000, d1);
-			minibank.deposit(a1.getId(), 7431, d2);
-			minibank.deposit(a1.getId(), 15000, d3);
-			minibank.deposit(a1.getId(), 14782, d4);
+			////deposit/withdraws for account 1
+			
 			
 			//deposit into account 2
-			minibank.deposit(a2.getId(), 784, d5);
-			minibank.deposit(a2.getId(), 2513, d6);
-			minibank.deposit(a2.getId(), 8569, d7);
-			minibank.deposit(a2.getId(), 19000, d8);
+			
 
 			//create old dates for withdrawals into account 1
 			
@@ -158,26 +150,37 @@ public class FeedDatabaseWithTestData {
 			w5.set(2015, 11, 30);
 			w6.set(2017, 02, 01);
 
-			//do withdraws from account 1
+			//do deposits and withdraws from account 1 (in correct timeline)
+			
+			
+			minibank.deposit(a1.getId(), 1000, d1);
 			minibank.withdraw(a1.getId(), 200, w1);
+			minibank.deposit(a1.getId(), 7431, d2);
 			minibank.withdraw(a1.getId(), 900, w2);
+			minibank.deposit(a1.getId(), 15000, d3);
 			minibank.withdraw(a1.getId(), 2000, w3);
+			minibank.deposit(a1.getId(), 14782, d4);
 			minibank.withdraw(a1.getId(), 3500, w4);
 
-			//do withdraws from account 2
+			//do deposits and withdraws from account 2 (in correct timeline)
+			minibank.deposit(a2.getId(), 784, d5);
+			minibank.deposit(a2.getId(), 2513, d6);
+			minibank.deposit(a2.getId(), 8569, d7);
 			minibank.withdraw(a2.getId(), 400, w5);
 			minibank.withdraw(a2.getId(), 1700, w6);
+			minibank.deposit(a2.getId(), 19000, d8);
+			
 			
 			//create old dates for transfer 
 			
 			Calendar t1 = Calendar.getInstance();
 			Calendar t2 = Calendar.getInstance();
 			
-			//do transfers
-			t1.set(2016, 04, 28);
-			t2.set(2017, 01, 07);
 			
-			//transfer between accounts
+			t1.set(2017, 04, 28);
+			t2.set(2017, 07, 07);
+			
+			//transfer between accounts (in correct timeline)
 			minibank.transfer(a1.getId(), a2.getId(), 1400, t1);
 			minibank.transfer(a2.getId(), a1.getId(), 470, t2);
 			

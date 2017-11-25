@@ -77,8 +77,8 @@ public class Log implements Serializable {
 					+ thisAccountId + " to account: " + otherAccountId + ")" + " - Balance of account after transaction: " + balance;
 		} else if ("transferTo".equals(action)) {
 			return "(logId: " + id + " - From account: " + thisAccountId + ") Date: " + date.getTime() + " - Transfer to this account "
-					+ amount  + " (Transfer to this account: "
-					+ thisAccountId + " from account: " + otherAccountId + ")" + " - Balance of account after transaction: " + balance;
+					+ amount  + " (Transfer to this account: " + thisAccountId + " from account: " + otherAccountId + ")" + 
+					" - Balance of account after transaction: " + balance;
 		} else if ("create".equals(action)) {
 			return "(logId: " + id + " - From account: " + thisAccountId + ") ACCOUNT CREATED - Date: " + date.getTime()
 					+ " - Balance of account: " + balance;
