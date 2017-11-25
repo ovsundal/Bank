@@ -1,0 +1,28 @@
+package sessionBeans;
+
+import java.util.List;
+
+import javax.ejb.Local;
+
+import entity.Account;
+import entity.Card;
+
+@Local
+public interface CardsLocal {
+	/**
+	 * Add a card to an existing account
+	 * @param c
+	 * @throws Exception
+	 */
+	public void add(Card c);
+
+	public List<Card> list() throws Exception;
+
+	public void remove(Card c);
+
+	public boolean validateCardNumber(String cardNumber);
+
+	public boolean validatePin(String cardNumber, String pin);
+
+	public int getAccountId(String cardNumber);
+}

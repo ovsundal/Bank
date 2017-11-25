@@ -6,6 +6,8 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
@@ -18,7 +20,9 @@ import entity.Person;
 /**
  * Session Bean implementation class Cards
  */
-@Stateless
+@TransactionManagement(value = TransactionManagementType.CONTAINER)
+@TransactionAttribute(value = TransactionAttributeType.SUPPORTS)
+@Stateless(name = "Cards")
 @LocalBean
 public class Cards implements CardsRemote, CardsLocal {
 	@PersistenceContext(unitName = "bankdb-unit", type = PersistenceContextType.TRANSACTION)
@@ -36,25 +40,6 @@ public class Cards implements CardsRemote, CardsLocal {
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void add(Card card) throws Exception {
 		entityManager.persist(card);
-		entityManager.flush();
-	}
-
-	/**
-	 * Lists all cards in the database. Only used for testing
-	 */
-	@SuppressWarnings("unchecked")
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public List<Card> list() throws Exception {
-		// bruker Java Persistence Query Language, ikke SQL
-		Query query = entityManager.createQuery("SELECT c from Card as c");
-		List<Card> l = query.getResultList();
-		return l;
-	}
-
-	@Override
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void remove(Card c) {
-		entityManager.remove(entityManager.merge(c));
 		entityManager.flush();
 	}
 
@@ -83,12 +68,12 @@ public class Cards implements CardsRemote, CardsLocal {
 	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public boolean validatePin(String cardNumber, String pin) {
-		
+
 		boolean isValid = false;
 		try {
-			Query query = entityManager.createQuery("SELECT c from Card as c WHERE c.cardNumber LIKE :cardNumber AND c.pin LIKE :pin")
-					.setParameter("cardNumber", cardNumber)
-					.setParameter("pin", pin);
+			Query query = entityManager
+					.createQuery("SELECT c from Card as c WHERE c.cardNumber LIKE :cardNumber AND c.pin LIKE :pin")
+					.setParameter("cardNumber", cardNumber).setParameter("pin", pin);
 
 			if (query.getSingleResult() != null) {
 				isValid = true;
@@ -103,12 +88,15 @@ public class Cards implements CardsRemote, CardsLocal {
 		return isValid;
 	}
 
+	/**
+	 * Finds the account belonging to card number
+	 */
 	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public int getAccountId(String cardNumber) {
-		
+
 		int accountId = -1;
-		
+
 		try {
 			Query query = entityManager.createQuery("SELECT c from Card as c WHERE c.cardNumber LIKE :cardNumber")
 					.setParameter("cardNumber", cardNumber);
@@ -116,7 +104,7 @@ public class Cards implements CardsRemote, CardsLocal {
 			Card c = (Card) query.getSingleResult();
 			accountId = c.getAccount().getId();
 			return accountId;
-		
+
 		} catch (NoResultException ex) {
 			System.out.println("Could not find any results with this combination of card number and pin");
 		} catch (Exception e) {
@@ -124,6 +112,27 @@ public class Cards implements CardsRemote, CardsLocal {
 			e.printStackTrace();
 		}
 		return accountId;
+	}
+
+	/**
+	 * Lists all cards in the database. Only used for testing
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Card> list() throws Exception {
+		// bruker Java Persistence Query Language, ikke SQL
+		Query query = entityManager.createQuery("SELECT c from Card as c");
+		List<Card> l = query.getResultList();
+		return l;
+	}
+
+	/**
+	 * Removes all cards in the database. Only used for testing
+	 */
+	@Override
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void remove(Card c) {
+		entityManager.remove(entityManager.merge(c));
+		entityManager.flush();
 	}
 
 }

@@ -2,12 +2,13 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="transferTo" key="selection"/>
+		<item value="getAccountId" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="getAccountId"/>
 			<item value="transferto"/>
 			<item value="getaccount"/>
 			<item value="getaccountbalance"/>
@@ -15,7 +16,6 @@
 			<item value="found this"/>
 			<item value="date"/>
 			<item value="wrong"/>
-			<item value="log"/>
 		</list>
 		<list key="replacehistory">
 		</list>

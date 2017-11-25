@@ -42,7 +42,7 @@ public class Accounts implements AccountsRemote, AccountsLocal {
 	/**
 	 * Create an account and assign it to a Person owner
 	 */
-	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void add(Account k) {
 
 		entityManager.persist(k);
