@@ -19,7 +19,13 @@ import sessionBeans.AccountsRemote;
 import sessionBeans.LogsRemote;
 import sessionBeans.PersonsRemote;
 
-public class LogTest extends TestCase {
+/**
+ * Test methods for Log-bean
+ * 
+ * @author Ove
+ *
+ */
+public class LogTest {
 	Context context;
 	@EJB
 	LogsRemote logs;
@@ -41,10 +47,6 @@ public class LogTest extends TestCase {
 		accounts = (AccountsRemote) context.lookup("AccountsRemote");
 	}
 
-	@Override
-	public void tearDown() throws Exception {
-	}
-
 	public void showDepositMoneyLog() {
 
 		try {
@@ -62,7 +64,7 @@ public class LogTest extends TestCase {
 	}
 
 	public void showWithdrawMoneyLog() {
-		
+
 		try {
 			List<Log> list = logs.list();
 			for (Log l : list) {
@@ -75,7 +77,7 @@ public class LogTest extends TestCase {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void showTransferMoneyLog() {
 		try {
 			List<Log> list = logs.list();
@@ -88,7 +90,7 @@ public class LogTest extends TestCase {
 			System.out.println("ERROR, could not show log from showWithdrawMoneyLog in LogTest");
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	/**
@@ -112,13 +114,13 @@ public class LogTest extends TestCase {
 	}
 
 	public void listAllTransactionsInSingleAccount() {
-		
+
 		try {
 			List<Account> list = accounts.list();
-			
+
 			int accountId = list.get(0).getId();
 			List<Log> logList = logs.showLog(accountId);
-			
+
 			for (Log l : logList) {
 				System.out.println(l.toString());
 			}
@@ -126,44 +128,46 @@ public class LogTest extends TestCase {
 			System.out.println("ERROR, could not show log from listAllTransactionsInSingleAccount in LogTest");
 			e.printStackTrace();
 		}
-		
+
 	}
 
-//	public void showAccountBalance() {
-//		
-//		List<Account> list;
-//		
-//		try {
-//			list = accounts.list();
-//			int accountId = list.get(0).getId();
-//			
-//			SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
-//			
-//			
-//			
-//			//date from 
-//			LocalDate dateF = LocalDate.of( 2017,01,01);
-//			LocalDate dateT = LocalDate.of( 2020,01,01);
-//			
-//			Date dateFrom = Date.from(dateF.atStartOfDay(ZoneId.systemDefault()).toInstant());
-//			Date dateTo = Date.from(dateT.atStartOfDay(ZoneId.systemDefault()).toInstant());
-//			
-//			List<Log> listOfLogs = logs.showLog(accountId);
-//			
-//			System.out.println("Showing account balance from " + dateF + " to " + dateT + ":");
-//			for (Log l : listOfLogs) {
-//				if(l.getDate().after(dateFrom) && l.getDate().before(dateTo)) {
-//					System.out.println(l.getAccountBalance());
-//				}
-//			}
-//			
-//		} catch (Exception e) {
-//			System.out.println("ERROR in showAccountBalance, could not get balance list of account");
-//			e.printStackTrace();
-//		}
-//
-//	}
-
-
+	// public void showAccountBalance() {
+	//
+	// List<Account> list;
+	//
+	// try {
+	// list = accounts.list();
+	// int accountId = list.get(0).getId();
+	//
+	// SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+	//
+	//
+	//
+	// //date from
+	// LocalDate dateF = LocalDate.of( 2017,01,01);
+	// LocalDate dateT = LocalDate.of( 2020,01,01);
+	//
+	// Date dateFrom =
+	// Date.from(dateF.atStartOfDay(ZoneId.systemDefault()).toInstant());
+	// Date dateTo =
+	// Date.from(dateT.atStartOfDay(ZoneId.systemDefault()).toInstant());
+	//
+	// List<Log> listOfLogs = logs.showLog(accountId);
+	//
+	// System.out.println("Showing account balance from " + dateF + " to " +
+	// dateT + ":");
+	// for (Log l : listOfLogs) {
+	// if(l.getDate().after(dateFrom) && l.getDate().before(dateTo)) {
+	// System.out.println(l.getAccountBalance());
+	// }
+	// }
+	//
+	// } catch (Exception e) {
+	// System.out.println("ERROR in showAccountBalance, could not get balance
+	// list of account");
+	// e.printStackTrace();
+	// }
+	//
+	// }
 
 }

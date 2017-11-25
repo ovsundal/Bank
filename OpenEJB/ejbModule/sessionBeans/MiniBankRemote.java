@@ -32,9 +32,6 @@ public interface MiniBankRemote {
 	// only used for generating test data with older log date
 	public String withdraw(int accountId, int amount, Calendar date);
 
-	// only used for generating test data with older log date
-	public String transfer(int fromAccId, int toAccId, int amount, Calendar date);
-
 	public int getAccountId(String cardNumber);
 	
 	public Person getAccountOwner(int accountId);

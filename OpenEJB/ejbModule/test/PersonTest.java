@@ -8,7 +8,13 @@ import junit.framework.TestCase;
 import sessionBeans.*;
 import entity.*;
 
-public class PersonTest extends TestCase {
+/**
+ * Test methods for Person-bean
+ * 
+ * @author Ove
+ *
+ */
+public class PersonTest {
 	Context context;
 	@EJB
 	PersonsRemote persons;
@@ -25,20 +31,6 @@ public class PersonTest extends TestCase {
 		p.put("Unmanaged_BankDBDataSource.JtaManaged", "false");
 		context = new InitialContext(p);
 		persons = (PersonsRemote) context.lookup("PersonsRemote");
-	}
-
-	@Override
-	public void tearDown() throws Exception {
-	}
-
-	public void test() throws Exception {
-		List<Person> list = persons.list();
-		int assertsize = list.size();
-		assertEquals("List.size()", assertsize, list.size());
-		addPersons();
-		list = persons.list();
-		assertEquals("List.size()", assertsize + 4, list.size());
-		list();
 	}
 
 	/**
@@ -69,9 +61,9 @@ public class PersonTest extends TestCase {
 
 		try {
 			Person pers = persons.get(personnummer);
-			
+
 			System.out.println(pers.toString());
-			
+
 		} catch (NullPointerException e) {
 			System.out.println("ERROR, could not find person with this personnummer");
 		} catch (Exception e) {
@@ -90,7 +82,7 @@ public class PersonTest extends TestCase {
 			p = persons.get(personnummer);
 			persons.remove(p);
 		} catch (Exception e) {
-			System.out.println("Error, could not delete person with personnummer " + personnummer );
+			System.out.println("Error, could not delete person with personnummer " + personnummer);
 			e.printStackTrace();
 		}
 
@@ -103,9 +95,9 @@ public class PersonTest extends TestCase {
 	 */
 	public void list() throws Exception {
 		List<Person> list = persons.list();
-		
+
 		for (Person pers : list) {
-			System.out.println(pers.toString());		
+			System.out.println(pers.toString());
 		}
 	}
 

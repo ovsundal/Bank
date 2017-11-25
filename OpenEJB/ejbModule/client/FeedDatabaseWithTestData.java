@@ -99,7 +99,7 @@ public class FeedDatabaseWithTestData {
 			System.out.println(c1.greet());
 			System.out.println(c2.greet());
 			
-			//do some deposits, withdrawals and transfers
+			//do some deposits, withdrawals and transfers...
 			
 			//create old dates for deposits into account 1
 			Calendar d1 = Calendar.getInstance();
@@ -124,12 +124,6 @@ public class FeedDatabaseWithTestData {
 			d6.set(2014, 10, 19);
 			d7.set(2015, 01, 29);
 			d8.set(2017, 06, 21);
-			
-			////deposit/withdraws for account 1
-			
-			
-			//deposit into account 2
-			
 
 			//create old dates for withdrawals into account 1
 			
@@ -151,7 +145,6 @@ public class FeedDatabaseWithTestData {
 			w6.set(2017, 02, 01);
 
 			//do deposits and withdraws from account 1 (in correct timeline)
-			
 			
 			minibank.deposit(a1.getId(), 1000, d1);
 			minibank.withdraw(a1.getId(), 200, w1);

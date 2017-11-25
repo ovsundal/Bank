@@ -15,7 +15,9 @@ import entity.Log;
 import entity.Person;
 
 /**
- * Session Bean implementation class MiniBank
+ * Session Bean implementation class MiniBank. This class handles all
+ * communication with the client, and accesses the other beans on behalf of
+ * client
  */
 @Stateless
 @LocalBean
@@ -120,7 +122,6 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 	 * Returns account balance
 	 */
 	@Override
-	@TransactionAttribute(value = TransactionAttributeType.SUPPORTS)
 	public String getAccountBalance(int accountId) {
 		try {
 
@@ -161,13 +162,13 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 			toAcc.setBalance(newBalanceForToAccount);
 
 			// create log of transfer from event
-			Log transferFromLog = new Log(Calendar.getInstance(), "transferFrom", amount, newBalanceForFromAccount, fromAcc.getId(),
-					toAcc.getId());
+			Log transferFromLog = new Log(Calendar.getInstance(), "transferFrom", amount, newBalanceForFromAccount,
+					fromAcc.getId(), toAcc.getId());
 			logsBean.add(transferFromLog);
 
 			// create log of transfer to event
-			Log transferToLog = new Log(Calendar.getInstance(), "transferTo", amount, newBalanceForToAccount, toAcc.getId(),
-					fromAcc.getId());
+			Log transferToLog = new Log(Calendar.getInstance(), "transferTo", amount, newBalanceForToAccount,
+					toAcc.getId(), fromAcc.getId());
 			logsBean.add(transferToLog);
 
 			// output this to user
@@ -272,55 +273,7 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 		return "";
 	}
 
-	/**
-	 * Transfer with a user-defined log date. Only used for generating test data
-	 */
 	@Override
-	@TransactionAttribute(value = TransactionAttributeType.REQUIRES_NEW)
-	public String transfer(int fromAccId, int toAccId, int amount, Calendar date) {
-
-		String response = "Error, cannot transfer a negative amount";
-
-		try {
-			Account fromAcc = accountsBean.get(fromAccId);
-
-			// abort if account does not have enough funds
-			if (fromAcc.getBalance() < amount) {
-				response = "Insufficient funds for transfer. Aborted";
-				return response;
-			}
-
-			Account toAcc = accountsBean.get(toAccId);
-
-			int newBalanceForFromAccount = fromAcc.getBalance() - amount;
-			int newBalanceForToAccount = fromAcc.getBalance() + amount;
-
-			fromAcc.setBalance(newBalanceForFromAccount);
-			toAcc.setBalance(newBalanceForToAccount);
-
-			// create log of transfer from event
-			Log transferFromLog = new Log(date, "transferFrom", amount, newBalanceForFromAccount, fromAcc.getId(),
-					toAcc.getId());
-			logsBean.add(transferFromLog);
-
-			// create log of transfer to event
-			Log transferToLog = new Log(date, "transferTo", amount, newBalanceForToAccount, toAcc.getId(),
-					fromAcc.getId());
-			logsBean.add(transferToLog);
-
-			// output this to user
-			response = "Transferred " + amount + " from account: " + fromAcc.getName() + " to account "
-					+ toAcc.getName();
-
-		} catch (Exception e) {
-			System.out.println("ERROR, could not perform transfer:");
-			e.printStackTrace();
-		}
-		return response;
-	}
-
-	@Override
-	@TransactionAttribute(value = TransactionAttributeType.REQUIRES_NEW)
 	public int getAccountId(String cardNumber) {
 
 		return cardsBean.getAccountId(cardNumber);
@@ -354,6 +307,5 @@ public class MiniBank implements MiniBankRemote, MiniBankLocal {
 	public List<Log> showLog(int accountId) {
 		return logsBean.showLog(accountId);
 	}
-
 
 }

@@ -11,3 +11,5 @@
 1511542563179	Delete element
 1511608871267	Rename package 'sessionsBeans'
 1511616079287	Rename method 'acquireFromPerson'
+1511621152072	Rename local variable 'personnummer'
+1511621646629	Rename type 'KontoTest'

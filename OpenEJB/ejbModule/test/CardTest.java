@@ -9,17 +9,22 @@ import javax.naming.InitialContext;
 
 import entity.Account;
 import entity.Card;
-import entity.Person;
 import entity.RandomCreditCardNumberGenerator;
 import junit.framework.TestCase;
 import sessionBeans.AccountsRemote;
 import sessionBeans.CardsRemote;
-import sessionBeans.PersonsRemote;
 
-public class CardTest extends TestCase {
+/**
+ * Test methods for Card-bean
+ * 
+ * @author Ove
+ *
+ */
+public class CardTest {
 	Context context;
 	@EJB
 	CardsRemote cards;
+	@EJB
 	AccountsRemote accounts;
 
 	public void setUp() throws Exception {
@@ -37,23 +42,18 @@ public class CardTest extends TestCase {
 		cards = (CardsRemote) context.lookup("CardsRemote");
 	}
 
-	@Override
-	public void tearDown() throws Exception {
-	}
-
 	public void addCard() {
 		try {
 			List<Account> list = accounts.list();
 
 			Account acc = list.get(0);
 			Account acc2 = list.get(3);
-			
-			  
-			Card c = new Card(acc);		
-			Card c2 = new Card(acc2);		
-			 	
-			 cards.add(c);		
-			 cards.add(c2);
+
+			Card c = new Card(acc);
+			Card c2 = new Card(acc2);
+
+			cards.add(c);
+			cards.add(c2);
 
 		} catch (Exception e) {
 			System.out.println("ERROR, could not add card to account");
@@ -90,7 +90,7 @@ public class CardTest extends TestCase {
 		List<Card> list;
 		try {
 			list = cards.list();
-			
+
 			for (Card c : list) {
 				System.out.println(cards.validateCardNumber(c.getCardNumber()));
 			}
@@ -98,16 +98,15 @@ public class CardTest extends TestCase {
 			System.out.println("ERROR, could not validate card in validateTrueCardNumber CardTest");
 			e.printStackTrace();
 		}
-		
-		
+
 	}
 
 	public void validateFalseCardNumber() {
 		List<Card> list;
 		try {
 			list = cards.list();
-			
-			//replace existing card number with a new
+
+			// replace existing card number with a new
 			for (Card c : list) {
 				c.setCardNumber(RandomCreditCardNumberGenerator.generateMasterCardNumber());
 				System.out.println(cards.validateCardNumber(c.getCardNumber()));
@@ -116,7 +115,7 @@ public class CardTest extends TestCase {
 			System.out.println("ERROR, could not validate card number in validateFalseCardNumber CardTest");
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	public void validateTruePin() {
@@ -130,7 +129,7 @@ public class CardTest extends TestCase {
 			System.out.println("ERROR, could not validate pin in validateTruePin CardTest");
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	public void validateFalsePin() {
@@ -138,7 +137,7 @@ public class CardTest extends TestCase {
 		try {
 			list = cards.list();
 			for (Card c : list) {
-				//replace existing pin with a new
+				// replace existing pin with a new
 				c.setPin(Card.generateRandomPin());
 				System.out.println(cards.validatePin(c.getCardNumber(), c.getPin()));
 			}
@@ -146,7 +145,7 @@ public class CardTest extends TestCase {
 			System.out.println("ERROR, could not validate pin in validateTruePin CardTest");
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }

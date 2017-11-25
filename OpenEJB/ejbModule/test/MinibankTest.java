@@ -17,7 +17,13 @@ import sessionBeans.AccountsRemote;
 import sessionBeans.MiniBankRemote;
 import sessionBeans.PersonsRemote;
 
-public class MinibankTest extends TestCase {
+/**
+ * Test methods for minibank-bean
+ * 
+ * @author Ove
+ *
+ */
+public class MinibankTest {
 
 	Context context;
 	@EJB
@@ -42,18 +48,15 @@ public class MinibankTest extends TestCase {
 		accounts = (AccountsRemote) context.lookup("AccountsRemote");
 		persons = (PersonsRemote) context.lookup("PersonsRemote");
 	}
-	
-	@Override
-	public void tearDown() throws Exception {}
 
 	/**
 	 * Deposits money in all test accounts
 	 */
 	public void depositMoney(int moneyToDeposit) {
-		
-		try {	
+
+		try {
 			List<Account> list = accounts.list();
-			for(Account acc : list) {
+			for (Account acc : list) {
 				minibank.deposit(acc.getId(), moneyToDeposit);
 				moneyToDeposit += 2000;
 			}
@@ -61,50 +64,54 @@ public class MinibankTest extends TestCase {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 	/**
 	 * Tries to deposit a negative sum
 	 */
 	public void depositNegativeMoney(int moneyToDeposit) {
-		
-		try {	
+
+		try {
 			List<Account> list = accounts.list();
-			for(Account acc : list) {
+			for (Account acc : list) {
 				minibank.deposit(acc.getId(), moneyToDeposit);
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
-/**
- * Withdraw money
- * @param moneyToWithdraw
- */
+
+	/**
+	 * Withdraw money
+	 * 
+	 * @param moneyToWithdraw
+	 */
 	public void withdrawMoney(int moneyToWithdraw) {
-		
-		try {;
-			
+
+		try {
+			;
+
 			List<Account> list = accounts.list();
-			for(Account acc : list) {
+			for (Account acc : list) {
 				minibank.withdraw(acc.getId(), moneyToWithdraw);
 			}
-		} catch(Exception e) {
+		} catch (Exception e) {
 			System.out.println("ERROR, could not withdraw money from accounts in MiniBankTest withdrawMoney()");
 		}
-		
+
 	}
-	
+
 	/**
 	 * Transfer 1000 NOK from account 4 to account 1
+	 * 
 	 * @param amount
 	 */
 	public void transferMoney(int amount) {
-		
-		try {	
+
+		try {
 			List<Account> list = accounts.list();
 			minibank.transfer(list.get(3).getId(), list.get(0).getId(), amount);
 		} catch (Exception e) {
@@ -114,21 +121,15 @@ public class MinibankTest extends TestCase {
 	}
 
 	public void createAccount() {
-		
+
 		try {
-			//create account with oves personId
+			// create account with oves personId
 			String response = minibank.createAccount("01020304056", "Cryptokonto", 400, Calendar.getInstance());
 			System.out.println(response);
-		} catch(Exception e) {
+		} catch (Exception e) {
 			System.out.println("ERROR, could not create account in MinibankTest, createAccount()");
 			e.printStackTrace();
 		}
 	}
 
-
-
-	
-	
-	
-	
 }
