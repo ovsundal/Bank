@@ -3,26 +3,24 @@ package sessionBeans;
 import java.util.Date;
 import java.util.List;
 
-import javax.ejb.Remote;
+import javax.ejb.Local;
 
 import entity.Log;
 import entity.Person;
 
-@Remote
-public interface LogsRemote {
+@Local
+public interface LogsLocal {
 	/**
 	 * Adds a log to db
 	 * 
 	 * @param l
 	 */
 	public void add(Log l);
-
-	/**
-	 * Lists all logs belonging to an account
-	 * 
-	 * @param accountId
-	 * @return
-	 */
+/**
+ * Lists all logs belonging to an account
+ * @param accountId
+ * @return
+ */
 	public List<Log> showLog(int accountId);
 
 	/**
