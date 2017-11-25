@@ -1,9 +1,0 @@
-package sessionsBeans;
-
-import javax.ejb.Local;
-
-@Local
-public interface MiniBankLocal {
-
-	public String deposit();
-}

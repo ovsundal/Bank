@@ -83,19 +83,29 @@ public class Client {
 						case 1:
 							System.out.println(minibank.getAccountBalance(accountId));
 							continue;
-							// deposit money
+						// deposit money
 						case 2:
 							System.out.print("Enter amount to deposit: ");
 							int amountForDeposit = sc.nextInt();
+							// abort if amount is 0 or negative
+							if (amountForDeposit <= 0) {
+								System.out.println("You cannot deposit a negative amount. Aborted");
+								continue;
+							}
 							minibank.deposit(accountId, amountForDeposit);
 							System.out.println(
 									"Deposited " + amountForDeposit + ". New " + minibank.getAccountBalance(accountId));
 							continue;
-							// withdraw money
+						// withdraw money
 						case 3:
 							System.out.print("Enter amount to withdraw: ");
 							int amountForWithdrawal = sc.nextInt();
 
+							// abort if amount is 0 or negative
+							if (amountForWithdrawal <= 0) {
+								System.out.println("You cannot withdraw a negative amount. Aborted");
+								continue;
+							}
 							// abort if amount is not divisible by 100
 							if (amountForWithdrawal % 100 != 0) {
 								System.out.println("Amount must be rounded to nearest 100. Transaction aborted.");
@@ -105,18 +115,18 @@ public class Client {
 							System.out.println("Withdrew " + amountForWithdrawal + ". New "
 									+ minibank.getAccountBalance(accountId));
 							continue;
-							// transfer money
+						// transfer money
 						case 4:
 							System.out.println(doTransfer(p.getId(), accountId));
 							continue;
-							// create new account
+						// create new account
 						case 5:
 							System.out.print("Enter account name: ");
 							String accountName = sc.next();
 							System.out.println("Account generated\n"
 									+ minibank.createAccount(p.getPersonId(), accountName, 0, Calendar.getInstance()));
 							continue;
-							// List all accounts owned by person
+						// List all accounts owned by person
 						case 6:
 							System.out.println("Your accounts:\n");
 							accountList = getAccountList(p.getId());
@@ -124,11 +134,11 @@ public class Client {
 								System.out.println("Listing : " + item.toString());
 							}
 							continue;
-							// get account statement
+						// get account statement
 						case 7:
 							getAccountStatement(accountId);
 							continue;
-							// logout
+						// logout
 						case 8:
 							System.out.println("Have a nice day!");
 							loggedIn = false;
@@ -137,7 +147,6 @@ public class Client {
 					}
 
 				}
-
 			} else {
 				System.out.println("Could not recognize card number, please try again");
 				continue;
@@ -175,19 +184,17 @@ public class Client {
 		List<Log> listOfLogs = minibank.showLog(accountId);
 
 		// filter log and list relevant statements
-		System.out.println(
-				"Showing account balance from " + calFrom.getTime() + " to " + calTo.getTime());
+		System.out.println("Showing account balance from " + calFrom.getTime() + " to " + calTo.getTime());
 		for (Log l : listOfLogs) {
-			if (l.getDate().getTime().after(calFrom.getTime())
-					&& l.getDate().getTime().before(calTo.getTime())
+			if (l.getDate().getTime().after(calFrom.getTime()) && l.getDate().getTime().before(calTo.getTime())
 					&& l.getThisAccountId() == accountId) {
 				System.out.println(l.toString());
 			}
 		}
 	}
-//	&& !"transferTo".equals(l.getAction())
+
 	private static String doTransfer(int personId, int accountId) {
-		// get available accounts for transfering
+		// get available accounts for transferring
 		boolean transferWasDone = false;
 		String response = "";
 		System.out.print("Your available accounts are:\n");
@@ -198,16 +205,17 @@ public class Client {
 		// do transfer
 		System.out.print("Transfer from this account to which? (enter id number of account)");
 		int transferTo = sc.nextInt();
-		// prevent an account to transfer to itself
-		if (transferTo == accountId) {
-			return "An account cannot transfer to itself. Aborted";
-		}
 		// validate transfer-to account id
 		for (Account item : accountList) {
 			// if found, go ahead with transaction
 			if (transferTo == item.getId()) {
 				System.out.println("Enter transfer amount; ");
 				int amount = sc.nextInt();
+				// abort if amount is 0 or negative
+				if (amount <= 0) {
+					System.out.println("You cannot transfer a negative amount. Aborted.");
+					break;
+				}
 				response = minibank.transfer(accountId, transferTo, amount);
 				transferWasDone = true;
 				break;
@@ -215,14 +223,14 @@ public class Client {
 		}
 		// if used input account was not found, notify user and abort
 		if (!transferWasDone) {
-			return "Error, could not find that account. Try again";
+			return "Error, could not do transfer. Try again";
 		} else {
 			return response;
 		}
 	}
 
 	/**
-	 * Returnes all accounts owned by person
+	 * Returns all accounts owned by person
 	 * 
 	 * @param personId
 	 * @return

@@ -1,3 +1,0 @@
-eclipse.preferences.version=1
-module-start-timeout=300000
-runtimes=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<runtimes>\r\n  <runtime id\="OpenEJB 3.0.0" location\="C\:/Users/Ove/Desktop/apache-openejb-7.0.2" name\="OpenEJB 3.0.0" runtime-type-id\="org.apache.openejb.server.generic.runtime.openejb3" timestamp\="0"/>\r\n  <runtime id\="OpenEJB 3.0.0 (2)" location\="C\:/Users/Ove/Desktop/apache-openejb-7.0.2" name\="OpenEJB 3.0.0 (2)" runtime-type-id\="org.apache.openejb.server.generic.runtime.openejb3" timestamp\="0"/>\r\n  <runtime id\="OpenEJB 3.0.0 (3)" location\="C\:/Users/Ove/Desktop/apache-openejb-7.0.2" name\="OpenEJB 3.0.0 (3)" runtime-type-id\="org.apache.openejb.server.generic.runtime.openejb3" timestamp\="0"/>\r\n</runtimes>\r\n
